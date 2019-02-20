@@ -133,11 +133,11 @@ Then set your custom `ErrorStateGenerator`
 
 ```kotlin
 ViewStateStoreConfig.errorStateGenerator = { throwable -> // this = ErrorStateFactory
-	when ( throwable ) {
-		is ClassCastException -> ClassCastErrro( throwable ) 
-		is NullPointerException -> NPError( throwable )
-		else -> /* this. */default // ViewState.Error default constructor is called
-	}
+    when ( throwable ) {
+        is ClassCastException -> ClassCastErrro( throwable ) 
+        is NullPointerException -> NPError( throwable )
+        else -> /* this. */default // ViewState.Error default constructor is called
+    }
 }
 ```
 
