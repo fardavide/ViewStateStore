@@ -6,25 +6,37 @@ import org.gradle.api.JavaVersion
 
 /**
  * @author Davide Giuseppe Farella.
- * An object containing params for the App.
+ * An object containing params for the Library.
  */
 object Project {
 
-    /** The [String] id of the App */
-    val id = "studio.forface.viewstatestore"
-    /** The Android API level as target of the App */
-    val targetSdk = 28
-    /** The Android API level required for run the App */
-    val minSdk = 14
-    /** The version of the JDK  */
-    val jdkVersion = JavaVersion.VERSION_1_8
-
+    /* Version */
     private val major:      Int =       1
     private val minor:      Int =       0
     private val channel:    Channel =   Stable
     private val patch:      Int =       0
     private val build:      Int =       0
 
+    /* Publishing */
+    val bintrayGroup =      "studio.forface"
+    val groupId =           "$bintrayGroup.viewstatestore"
+    val name =              "ViewStateStore"
+    val description =       ""
+    val siteUrl =           "http://4face.studio"
+    val gitUrl =            "https://github.com/4face-studi0/ViewStateStore"
+    val developerId =       "4face-studi0"
+    val developerName =     "4face Studio"
+    val developerEmail =    "mail@4face.studio"
+    val licenseName =       "The Apache Software License, Version 2.0"
+    val licenseUrl =        "http://www.apache.org/licenseS/LICENSEeZ.®.txt"
+    val allLicenses =       arrayOf( "Apache-2.0" )
+
+    /** The Android API level as target of the App */
+    val targetSdk = 28
+    /** The Android API level required for run the App */
+    val minSdk = 14
+    /** The version of the JDK  */
+    val jdkVersion = JavaVersion.VERSION_1_8
 
     // ====================   S T A T I C   C O D E   ==================== //
 

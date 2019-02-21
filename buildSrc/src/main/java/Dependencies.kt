@@ -16,7 +16,9 @@ val repos: RepositoryHandler.() -> Unit get() = {
 
 val ScriptHandlerScope.classpathDependencies: DependencyHandlerScope.() -> Unit get() = {
     classpath( kotlin("gradle-plugin", Versions.kotlin) )
-    classpath("com.android.tools.build:gradle:${Versions.android_gradle_plugin}" )
+    classpath( Libs.Android.gradle_plugin )
+    classpath( Libs.Publishing.bintray_plugin )
+    classpath( Libs.Publishing.maven_plugin )
 }
 
 @Suppress("unused")
@@ -60,10 +62,13 @@ object Versions {
     val mockk =                         "1.9"
 
     val android_espresso =              "3.1.1"
-    val android_gradle_plugin =         "3.3.0"
+    val android_gradle_plugin =         "3.3.1"
     val android_lifecycle =             "2.0.0"
     val android_paging =                "2.1.0"
     val android_test_runner =           "1.1.1"
+
+    val publishing_bintray_plugin =     "1.8.4"
+    val publishing_maven_plugin =       "2.1"
 }
 
 @Suppress("unused")
@@ -80,11 +85,18 @@ object Libs {
     /* Android */
     object Android {
         val espresso =                          "androidx.test.espresso:espresso-core:${Versions.android_espresso}"
+        val gradle_plugin =                     "com.android.tools.build:gradle:${Versions.android_gradle_plugin}"
         val livedata =                          "androidx.lifecycle:lifecycle-livedata:${Versions.android_lifecycle}"
         val livedata_testing =                  "androidx.arch.core:core-testing:${Versions.android_lifecycle}"
         val paging =                            "androidx.paging:paging-runtime-ktx:${Versions.android_paging}"
         val paging_testing =                    "androidx.paging:paging-common-ktx:${Versions.android_paging}"
         val support_annotations =               "com.android.support:support-annotations:28.0.0"
         val test_runner =                       "com.android.support.test:runner:${Versions.android_test_runner}"
+    }
+
+    /* Publishing */
+    object Publishing {
+        val bintray_plugin =                    "com.jfrog.bintray.gradle:gradle-bintray-plugin:${Versions.publishing_bintray_plugin}"
+        val maven_plugin =                      "com.github.dcendents:android-maven-gradle-plugin:${Versions.publishing_maven_plugin}"
     }
 }
