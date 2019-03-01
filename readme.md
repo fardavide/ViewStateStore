@@ -2,7 +2,7 @@
 
 # ViewStateStore
 
-[(https://img.shields.io/badge/MinSDK-14-blue.svg)]
+[!(https://img.shields.io/badge/MinSDK-14-blue.svg)]
 
 **ViewStateStore** wraps a *LiveData* for deliver **ViewState**s to the *UI*.
 
