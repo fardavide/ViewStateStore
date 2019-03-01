@@ -1,7 +1,6 @@
-@file:Suppress("MayBeConstant")
+@file:Suppress("MayBeConstant", "ConstantConditionIf")
 
-import Project.Channel.Build
-import Project.Channel.Stable
+import Project.Channel.*
 import org.gradle.api.JavaVersion
 
 /**
@@ -12,9 +11,9 @@ object Project {
 
     /* Version */
     private val major:      Int =       1
-    private val minor:      Int =       0
-    private val channel:    Channel =   Stable
-    private val patch:      Int =       0
+    private val minor:      Int =       1
+    private val channel:    Channel =   Beta
+    private val patch:      Int =       1
     private val build:      Int =       0
 
     /* Publishing */
@@ -70,7 +69,7 @@ object Project {
     private val versionNameSuffix: String get() {
         preconditions()
 
-        val number = if ( channel is Build ) buildNumber else build
+        val number = if ( build > 0 ) buildNumber else patch
         return "${channel.suffix}${channelNumberString( number )}"
     }
 

@@ -23,38 +23,17 @@ val ScriptHandlerScope.classpathDependencies: DependencyHandlerScope.() -> Unit 
 
 @Suppress("unused")
 fun DependencyHandler.applyAndroidTests() {
-    Libs.run {
-        listOf( test, test_junit, mockk_android )
-            .forEach { add("androidTestImplementation", it ) }
-    }
-    Libs.Android.run {
-        listOf( espresso, livedata_testing, test_runner )
-            .forEach { add( "androidTestImplementation", it ) }
-    }
-}
-
-@Suppress("unused")
-fun TestedExtension.applyAndroidConfig() {
-    compileSdkVersion( Project.targetSdk )
-    defaultConfig {
-        minSdkVersion( Project.minSdk )
-        targetSdkVersion( Project.targetSdk )
-        versionCode = Project.versionCode
-        versionName = Project.versionName
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
-    }
-    buildTypes {
-        getByName( "release" ) {
-            isMinifyEnabled = false
-            proguardFiles( getDefaultProguardFile("proguard-android.txt" ), "proguard-rules.pro" )
-        }
-        getByName("debug" ) {}
-    }
-    compileOptions {
-        sourceCompatibility = Project.jdkVersion
-        targetCompatibility = Project.jdkVersion
-    }
+    val unit = "testImplementation"
+    val android = "androidTestImplementation"
+    add( unit, Libs.test )
+    add( unit, Libs.test_junit )
+    add( unit, Libs.Android.lifecycle )
+    add( unit, Libs.Android.livedata_testing )
+    add( unit, Libs.mockk )
+    // add( unit, Libs.Android.robolectric )
+    add( android, Libs.Android.espresso )
+    add( android, Libs.mockk_android )
+    add( android, Libs.Android.test_runner )
 }
 
 object Versions {
@@ -65,6 +44,7 @@ object Versions {
     val android_gradle_plugin =         "3.3.1"
     val android_lifecycle =             "2.0.0"
     val android_paging =                "2.1.0"
+    val android_robolectric =           "4.2"
     val android_test_runner =           "1.1.1"
 
     val publishing_bintray_plugin =     "1.8.4"
@@ -86,10 +66,12 @@ object Libs {
     object Android {
         val espresso =                          "androidx.test.espresso:espresso-core:${Versions.android_espresso}"
         val gradle_plugin =                     "com.android.tools.build:gradle:${Versions.android_gradle_plugin}"
+        val lifecycle =                         "androidx.lifecycle:lifecycle-runtime:${Versions.android_lifecycle}"
         val livedata =                          "androidx.lifecycle:lifecycle-livedata:${Versions.android_lifecycle}"
         val livedata_testing =                  "androidx.arch.core:core-testing:${Versions.android_lifecycle}"
         val paging =                            "androidx.paging:paging-runtime-ktx:${Versions.android_paging}"
         val paging_testing =                    "androidx.paging:paging-common-ktx:${Versions.android_paging}"
+        val robolectric =                       "org.robolectric:robolectric:${Versions.android_robolectric}"
         val support_annotations =               "com.android.support:support-annotations:28.0.0"
         val test_runner =                       "com.android.support.test:runner:${Versions.android_test_runner}"
     }

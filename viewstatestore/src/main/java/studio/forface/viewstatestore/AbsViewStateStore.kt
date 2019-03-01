@@ -105,9 +105,9 @@ abstract class AbsViewStateStore<V> {
      * @see LiveData.observe with an [Observer] created with an instance of [ViewStateObserver]
      * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
      */
-    inline fun observeData( owner: LifecycleOwner, crossinline block: V.() -> Unit ) {
+    inline fun observeData( owner: LifecycleOwner, crossinline block: (V) -> Unit ) {
         val observer = `access$onCreateViewStateObserver`( owner )
-        observer.onData = { it.block() }
+        observer.onData = { block( it ) }
         liveData.observe( owner, observerWith( observer ) )
     }
 
@@ -126,9 +126,9 @@ abstract class AbsViewStateStore<V> {
      * @see LiveData.observeForever with an [Observer] created with an instance of [ViewStateObserver]
      * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
      */
-    inline fun observeDataForever( crossinline block: V.() -> Unit ) {
+    inline fun observeDataForever( crossinline block: (V) -> Unit ) {
         val observer = `access$onCreateViewStateObserver`()
-        observer.onData = { it.block() }
+        observer.onData = { block( it ) }
         liveData.observeForever( observerWith( observer ) )
     }
 

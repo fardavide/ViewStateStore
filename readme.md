@@ -57,6 +57,12 @@ Supported **ViewState** types are;
 
 #### Observe ViewStateStore
 
+For observe within a `Lifecycle` component without pass the `LifecycleOwer` explicitly, implement `ViewStateActivity` on your `Activity` or `ViewStateFragment` on your `Fragment`.
+
+This `viewStateStore.observe( viewLifecycleOwner ) { ... }` will become simply `viewStateStore.observe { ... }` 
+
+
+
 ###### observe within `Lifecycle` - from `Activity` or `Fragment`
 
 ```kotlin
@@ -69,6 +75,8 @@ viewStateStore.observe {
 }
 ```
 
+
+
 ###### observe with `Lifecycle` - from any class
 
 ```kotlin
@@ -76,12 +84,16 @@ val viewStateStore = myViewModel.car
 viewStateStore.observe( lifecycleOwner ) { ... }
 ```
 
+
+
 ###### observe without `Lifecycle` - from any class
 
 ```kotlin
 val viewStateStore = myViewModel.car
 viewStateStore.observeForever { ... }
 ```
+
+
 
 
 
