@@ -165,8 +165,14 @@ abstract class AbsViewStateStore<V>( internal val dropOnSame: Boolean ) {
             liveData.value = state
     }
 
-    /** @see LiveData.getValue on [liveData] */
-    fun state() = liveData.value!!
+    /** @return [LiveData.getValue] on [liveData] */
+    fun state() = liveData.value
+
+    /**
+     * @return [LiveData.getValue] asserted as non null
+     * @throws KotlinNullPointerException if [state] is null.
+     */
+    fun unsafeState() = state()!!
 
     @PublishedApi
     @Suppress("FunctionName")
