@@ -35,3 +35,21 @@ object ViewStateStoreConfig {
      */
     var errorStateGenerator: ErrorStateGenerator = { default }
 }
+
+/**
+ * An override on [invoke] operator for set [ViewStateStoreConfig] in a more fluent way, using it as receiver of a
+ * lambda.
+ *
+ * E.g:
+ * >
+    ViewStateStoreConfig {
+        dropOnSame = true
+        errorStateGenerator = { throwable -> // this = ErrorStateFactory
+            when( throwable ) {
+                is ClassCastException -> MyClassCastViewStateError
+                else -> /* this. */default
+            }
+        }
+    }
+ */
+operator fun ViewStateStoreConfig.invoke( block: ViewStateStoreConfig.() -> Unit ) = apply( block )
