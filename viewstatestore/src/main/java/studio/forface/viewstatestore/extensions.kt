@@ -11,46 +11,46 @@ package studio.forface.viewstatestore
  * Post a [ViewState.Success] with the given [data].
  * @see ViewStateStore.postState
  */
-fun <V> AbsViewStateStore<V>.postData( data: V ) {
-    postState( ViewState.Success( data ) )
+fun <V> AbsViewStateStore<V>.postData( data: V, dropOnSame: Boolean = this.dropOnSame ) {
+    postState( ViewState.Success( data ), dropOnSame )
 }
 
 /**
  * Post a [ViewState.Error] created from the given [errorThrowable].
  * @see ViewStateStore.postState
  */
-fun AbsViewStateStore<*>.postError( errorThrowable: Throwable ) {
-    postState( ViewState.Error.fromThrowable( errorThrowable ) )
+fun AbsViewStateStore<*>.postError( errorThrowable: Throwable, dropOnSame: Boolean = this.dropOnSame ) {
+    postState( ViewState.Error.fromThrowable( errorThrowable ), dropOnSame )
 }
 
 /**
  * Post a [ViewState.Loading].
  * @see ViewStateStore.postState
  */
-fun AbsViewStateStore<*>.postLoading() {
-    postState( ViewState.Loading )
+fun AbsViewStateStore<*>.postLoading( dropOnSame: Boolean = this.dropOnSame ) {
+    postState( ViewState.Loading, dropOnSame )
 }
 
 /**
  * Set a [ViewState.Success] with the given [data].
  * @see ViewStateStore.setState
  */
-fun <V> AbsViewStateStore<V>.setData( data: V ) {
-    setState( ViewState.Success( data ) )
+fun <V> AbsViewStateStore<V>.setData( data: V, dropOnSame: Boolean = this.dropOnSame ) {
+    setState( ViewState.Success( data ), dropOnSame )
 }
 
 /**
  * Set a [ViewState.Error] created from the given [errorThrowable].
  * @see ViewStateStore.setState
  */
-fun AbsViewStateStore<*>.setError( errorThrowable: Throwable ) {
-    setState( ViewState.Error.fromThrowable( errorThrowable ) )
+fun AbsViewStateStore<*>.setError( errorThrowable: Throwable, dropOnSame: Boolean = this.dropOnSame ) {
+    setState( ViewState.Error.fromThrowable( errorThrowable ), dropOnSame )
 }
 
 /**
  * Set a [ViewState.Loading].
  * @see ViewStateStore.postState
  */
-fun AbsViewStateStore<*>.setLoading() {
-    setState( ViewState.Loading )
+fun AbsViewStateStore<*>.setLoading( dropOnSame: Boolean = this.dropOnSame ) {
+    setState( ViewState.Loading, dropOnSame )
 }

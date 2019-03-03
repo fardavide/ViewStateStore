@@ -8,6 +8,8 @@ import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import studio.forface.viewstatestore.AbsViewStateStore
+import studio.forface.viewstatestore.ViewState
+import studio.forface.viewstatestore.ViewStateStoreConfig
 import studio.forface.viewstatestore.setData
 
 /**
@@ -21,8 +23,16 @@ import studio.forface.viewstatestore.setData
  * @param pageSize the size of the page of the internal [PagedViewStateObserver.liveData].
  * @see LivePagedListBuilder constructor.
  * Default is 25
+ *
+ * @param dropOnSame This [Boolean] defines whether a publishing should be dropped if the same [ViewState] is already
+ * the last [state]
+ * @see ViewStateStoreConfig.dropOnSame
+ * Default value is inherited from [ViewStateStoreConfig.dropOnSame]
  */
-class PagedViewStateStore<V>( private var pageSize: Int = 25 ) : AbsViewStateStore<PagedList<V>>() {
+class PagedViewStateStore<V>(
+    private var pageSize: Int = 25,
+    dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
+) : AbsViewStateStore<PagedList<V>>( dropOnSame ) {
 
     /** A [DataSource.Factory] for retrieve [V] */
     private lateinit var factory: DataSource.Factory<Int, V>

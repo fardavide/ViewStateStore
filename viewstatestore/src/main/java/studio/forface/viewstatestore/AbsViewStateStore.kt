@@ -35,8 +35,13 @@ import androidx.lifecycle.Observer
  * This class is abstract and will be inherited from `ViewStateStore` and `PagedViewStateStore`.
  *
  * @param V is the type of the [data]
+ *
+ * @param dropOnSame This [Boolean] defines whether a publishing should be dropped if the same [ViewState] is already
+ * the last [state]
+ * @see ViewStateStoreConfig.dropOnSame
+ * Default value is inherited from [ViewStateStoreConfig.dropOnSame]
  */
-abstract class AbsViewStateStore<V> {
+abstract class AbsViewStateStore<V>( internal val dropOnSame: Boolean ) {
 
     /**
      * This property will store the last available [ViewState.data], so it will be emitted every
@@ -136,14 +141,28 @@ abstract class AbsViewStateStore<V> {
     protected open fun onCreateViewStateObserver( owner: LifecycleOwner? = null ) =
             ViewStateObserver<V>()
 
-    /** @see MutableLiveData.postValue on [liveData] */
-    fun postState( state: ViewState<V>) {
-        liveData.postValue( state )
+    /**
+     * @see MutableLiveData.postValue on [liveData]
+     *
+     * @param dropOnSame This [Boolean] defines whether a publishing should be dropped if the same [ViewState] is
+     * same as the last [state]
+     * Default is [ViewStateStore.dropOnSame]
+     */
+    fun postState( state: ViewState<V>, dropOnSame: Boolean = this.dropOnSame ) {
+        if ( ! dropOnSame || state() != state )
+            liveData.postValue( state )
     }
 
-    /** @see MutableLiveData.setValue of [liveData] */
-    fun setState( state: ViewState<V>) {
-        liveData.value = state
+    /**
+     * @see MutableLiveData.setValue of [liveData]
+     *
+     * @param dropOnSame This [Boolean] defines whether a publishing should be dropped if the same [ViewState] is
+     * same as the last [state]
+     * Default is [ViewStateStore.dropOnSame]
+     */
+    fun setState( state: ViewState<V>, dropOnSame: Boolean = this.dropOnSame ) {
+        if ( ! dropOnSame || state() != state )
+            liveData.value = state
     }
 
     /** @see LiveData.getValue on [liveData] */

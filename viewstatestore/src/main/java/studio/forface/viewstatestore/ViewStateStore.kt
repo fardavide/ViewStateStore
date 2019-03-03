@@ -9,8 +9,16 @@ import androidx.lifecycle.MutableLiveData
  * Base implementation of [AbsViewStateStore]
  *
  * @param initialState the initial [ViewState] to be delivered when [ViewStateStore] is initialized.
+ *
+ * @param dropOnSame This [Boolean] defines whether a publishing should be dropped if the same [ViewState] is already
+ * the last [state]
+ * @see ViewStateStoreConfig.dropOnSame
+ * Default value is inherited from [ViewStateStoreConfig.dropOnSame]
  */
-class ViewStateStore<V>( initialState: ViewState<V> = ViewState.None ): AbsViewStateStore<V>() {
+class ViewStateStore<V>(
+    initialState: ViewState<V> = ViewState.None,
+    dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
+): AbsViewStateStore<V>( dropOnSame ) {
 
     /**
      * @constructor for implicitly create a [ViewStateStore] with a [ViewState.Success] as `initialState` with the

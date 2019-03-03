@@ -57,6 +57,10 @@ Supported **ViewState** types are;
 
 `ViewStateStore( CarUiModel() )`
 
+###### defining whether a `ViewState` publishing should be dropped if the `ViewState` is alredy the last `ViewStateStore.state()` - default is _false_
+
+`ViewStateStore( dropOnSame = true )`
+
 
 
 #### Observe ViewStateStore
@@ -118,6 +122,8 @@ Some examples:
 
 * `setState( ViewState.Success( carUiModel ) )`
 
+* `setState( ViewState.Success( carUiModel ), dropOnSame = false )`
+
 * `postState( ViewState.Error.fromThrowable( someThrowable ) )`
 
   
@@ -128,11 +134,12 @@ Some examples:
 
 * `setData( carUiModel )`
 * `postError( someThrowable )`
+* `postError( someThrowable, dropOnSame = true )`
 * `postLoading()`
 
 
 
-#### Error handling
+#### Error handling & Configuration
 
 `ViewState.Error` is an *open class* so it can be extended with some custom implementations.
 
@@ -156,6 +163,12 @@ ViewStateStoreConfig.errorStateGenerator = { throwable -> // this = ErrorStateFa
     }
 }
 ```
+
+
+
+`ViewStateStoreConfig` also holds a _Boolean_ `dropOnSame` ( default is _false_ ):  this value defines whether a publishing should be dropped if the same `ViewState` is already the last `ViewStateStore.state`
+
+This can be set through `ViewStateStoreConfig.dropOnSame = true` and can be overridden by a constructor ( e.g. `ViewStateStore<Int>( dropOnSame = true )` ) and a single publishing function ( e.g. `ViewStateStore.setData( 15, dropOnSame = false )` )
 
 
 
