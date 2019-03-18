@@ -62,37 +62,46 @@ abstract class AbsViewStateStore<V>( internal val dropOnSame: Boolean ) {
     internal open val liveData = MutableLiveData<ViewState<V>>()
 
     /**
-     * @return an instance of [Observer] that will save [ViewState.data] in case of success and then
-     * trigger the callbacks the following callbacks on the given [ViewStateObserver]:
-     * [ViewStateObserver.onEach], [ViewStateObserver.onData], [ViewStateObserver.onError] and
-     * [ViewStateObserver.onLoadingChange].
+     * @return an instance of [Observer]
+     * @see handleViewState
      */
     @PublishedApi
-    internal fun observerWith( observer: ViewStateObserver<V> ) = observer.run {
-        Observer<ViewState<V>> { viewState ->
-            // Deliver every ViewState.
-            onEach( viewState )
+    internal fun observerWith( observer: ViewStateObserver<V> ) =
+            Observer<ViewState<V>> { viewState -> handleViewState( observer, viewState ) }
 
-            // Every time the observer is triggered for any reason ( loading change, data or error ),
-            // if ViewState is Success, we store the new data then, in every case, if data is not
-            // null, we deliver the data.
-            viewState.doOnData { data = it }
-            data?.let( onData )
+    /**
+     * Handle the delivery of a [ViewState] though [ViewStateObserver]
+     *
+     * This will save [ViewState.data] in case of success and then trigger the callbacks the following callbacks on the
+     * given [ViewStateObserver]: [ViewStateObserver.onEach], [ViewStateObserver.onData], [ViewStateObserver.onError]
+     * and [ViewStateObserver.onLoadingChange].
+     */
+    protected fun handleViewState(
+        observer: ViewStateObserver<V>,
+        viewState: ViewState<V>
+    ) = with( observer ) {
+        // Deliver every ViewState.
+        onEach( viewState )
 
-            // Every time the observer is triggered for any reason ( loading change, data or error ),
-            // we instantiate a new NULL ViewState.Error on newError then, if ViewState is Error
-            // we store the value in newError then, if error is different from lastError, we
-            // deliver it if not Null and store in lastError.
-            var newError: ViewState.Error? = null
-            viewState.doOnError { error -> newError = error }
-            if ( newError !== lastError ) {
-                newError?.let( onError )
-                lastError = newError
-            }
+        // Every time the observer is triggered for any reason ( loading change, data or error ),
+        // if ViewState is Success, we store the new data then, in every case, if data is not
+        // null, we deliver the data.
+        viewState.doOnData { data = it }
+        data?.let( onData )
 
-            // If View.Stare is a loading change, we deliver it.
-            viewState.doOnLoadingChange( onLoadingChange )
+        // Every time the observer is triggered for any reason ( loading change, data or error ),
+        // we instantiate a new NULL ViewState.Error on newError then, if ViewState is Error
+        // we store the value in newError then, if error is different from lastError, we
+        // deliver it if not Null and store in lastError.
+        var newError: ViewState.Error? = null
+        viewState.doOnError { error -> newError = error }
+        if ( newError !== lastError ) {
+            newError?.let( onError )
+            lastError = newError
         }
+
+        // If View.Stare is a loading change, we deliver it.
+        viewState.doOnLoadingChange( onLoadingChange )
     }
 
     /**

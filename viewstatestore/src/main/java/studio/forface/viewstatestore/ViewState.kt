@@ -24,17 +24,17 @@ sealed class ViewState<out T> {
 
     /** Execute an [action] in case of [Success] */
     inline fun doOnData( action: (T) -> Unit ) {
-        if ( this is Success) action( data )
+        if ( this is Success ) action( data )
     }
 
     /** Execute an [action] in case of [Error] */
     inline fun doOnError( action: (Error) -> Unit ) {
-        if ( this is Error) action( this )
+        if ( this is Error ) action( this )
     }
 
     /** Execute an [action] whether is [Loading] or not */
     inline fun doOnLoadingChange( action: (isLoading: Boolean) -> Unit ) {
-        action( this is Loading)
+        action( this is Loading )
     }
 
     /**
@@ -105,3 +105,7 @@ sealed class ViewState<out T> {
         override fun <R> map( mapper: (Nothing) -> R ): ViewState<R> = this
     }
 }
+
+/** @constructor for [ViewState.Success] */
+@Suppress("FunctionName")
+fun <T> ViewState(data: T ) = ViewState.Success( data )

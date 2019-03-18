@@ -13,7 +13,7 @@ object Project {
     private val major:      Int =       1
     private val minor:      Int =       1
     private val channel:    Channel =   Beta
-    private val patch:      Int =       4
+    private val patch:      Int =       5
     private val build:      Int =       1
 
     /* Publishing */
@@ -43,7 +43,7 @@ object Project {
     val versionCode: Int get() {
         // pattern:
         // major minor channel patch build
-        // 00    00    0      00     00
+        // 00    00    0       00    00
 
         val build   = build         *            1
         val patch   = patch         *         1_00
@@ -66,6 +66,7 @@ object Project {
      * @throws IllegalArgumentException
      * @see preconditions
      */
+    @Suppress("ConstantConditionIf")
     private val versionNameSuffix: String get() {
         preconditions()
 
@@ -97,19 +98,24 @@ object Project {
         if ( channel is Build && build < 1 )
             throw IllegalArgumentException( "'Build number' must be greater than 0 if 'channel' is 'Build'" )
 
-        if ( channel is Stable && build > 0 )
-            throw  IllegalArgumentException(
-                "'Stable channel' can't have a `build number` greater than 0 increase the 'minor' for the next build"
-            )
+        if ( channel is Stable ) {
+            if ( patch > 0 ) throw  IllegalArgumentException( "'Stable channel' can't have a `patch number` greater " +
+                    "than 0, increase the 'minor' for the next build" )
+            if ( build > 0 ) throw  IllegalArgumentException( "'Stable channel' can't have a `build number` greater " +
+                    "than 0, increase the 'minor' for the next build" )
+        } else {
+            if ( patch < 1 ) throw  IllegalArgumentException( "A `patch number` greater than 0, is required for " +
+                    "'${channel.suffix.replace( "-", "" )}' channel" )
+        }
     }
 
     /** A sealed class for the Channel of the Version of the App */
     @Suppress("unused")
     sealed class Channel(val value: Int, val suffix: String ) {
-        object Build :      Channel(0,"-build" )
-        object Alpha :      Channel(1,"-alpha" )
-        object Beta :       Channel(2,"-beta" )
-        object RC :         Channel(3,"-rc" )
-        object Stable :     Channel(4,"" )
+        object Build :      Channel( 0, "-build" )
+        object Alpha :      Channel( 1, "-alpha" )
+        object Beta :       Channel( 2, "-beta" )
+        object RC :         Channel( 3, "-rc" )
+        object Stable :     Channel( 4, "" )
     }
 }

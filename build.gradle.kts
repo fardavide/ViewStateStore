@@ -1,5 +1,3 @@
-@file:Suppress("PropertyName")
-
 buildscript {
     repositories( repos )
     dependencies( classpathDependencies )
