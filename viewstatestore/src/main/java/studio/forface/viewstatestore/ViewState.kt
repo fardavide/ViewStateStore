@@ -71,9 +71,9 @@ sealed class ViewState<out T> {
 
             /**
              * @return a new instance of [ViewState.Error]
-             * This function is used for instantiate a [ViewState.Error] inside the library.
+             * This function is used for instantiate a [ViewState.DefaultError] inside the library.
              */
-            internal fun createDefault( throwable: Throwable ) = ViewState.Error( throwable )
+            internal fun createDefault( throwable: Throwable ): ViewState.Error = ViewState.DefaultError( throwable )
         }
 
         /** @return a [String] message from [throwable] */
@@ -88,6 +88,8 @@ sealed class ViewState<out T> {
 
         override fun <R> map( mapper: (Nothing) -> R ): ViewState<R> = this
     }
+
+    internal class DefaultError( throwable: Throwable ): ViewState.Error( throwable )
 
     /**
      * A class that represents the loading state and will contains [Nothing]

@@ -141,6 +141,8 @@ Some examples:
 
 #### Error handling & Configuration
 
+##### ErrorStateGenerator
+
 `ViewState.Error` is an *open class* so it can be extended with some custom implementations.
 
 ```kotlin
@@ -164,7 +166,19 @@ ViewStateStoreConfig.errorStateGenerator = { throwable -> // this = ErrorStateFa
 }
 ```
 
+`ErrorStateGenerator`s can also be merged by `plus` operator: consider using that for declare more *generators* in different modules, for handle *module specific Exceptions*:
 
+```kotlin
+val generator1: ErrorStateGenerator = { ... }
+val generator2: ErrorStateGenerator = { ... }
+val generator3: ErrorStateGenerator = { ... }
+
+ViewStateStoreConfig.errorStateGenerator = generator1 + generator2 + generator3
+```
+
+
+
+##### DropOnSame
 
 `ViewStateStoreConfig` also holds a _Boolean_ `dropOnSame` ( default is _false_ ):  this value defines whether a publishing should be dropped if the same `ViewState` is already the last `ViewStateStore.state`
 
