@@ -8,8 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 
 /**
- * @author Davide Giuseppe Farella.
- *
  * This class will store and handle the [ViewState] and submit it via a [LiveData].
  * `ViewStateStore` will only deliver the last [data] when the observer become active.
  * This `ViewStateStore` is *locked* so `set` functions and `post` functions can only be called within [ViewStateStoreScope]
@@ -42,6 +40,9 @@ import androidx.lifecycle.Observer
  * the last [state]
  * @see ViewStateStoreConfig.dropOnSame
  * Default value is inherited from [ViewStateStoreConfig.dropOnSame]
+ *
+ *
+ * @author Davide Giuseppe Farella
  */
 abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
 

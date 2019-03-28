@@ -6,13 +6,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 
 /**
- * @author Davide Giuseppe Farella.
- *
  * This class will store and handle the [ViewState] and submit it via a [LiveData].
  * `ViewStateStore` will only deliver the last [data] when the observer become active.
  *
  * Inherit from [LockedViewStateStore] and implements [ViewStateStoreScope], so [setState] and [postState] can be called
- * with any additional scope.
+ * without any additional scope.
  *
  *
  * ### Publish:
@@ -41,6 +39,9 @@ import androidx.lifecycle.LiveData
  * the last [state]
  * @see ViewStateStoreConfig.dropOnSame
  * Default value is inherited from [ViewStateStoreConfig.dropOnSame]
+ *
+ *
+ * @author Davide Giuseppe Farella
  */
 abstract class AbsViewStateStore<V>( dropOnSame: Boolean ) :
     LockedViewStateStore<V>( dropOnSame ),
