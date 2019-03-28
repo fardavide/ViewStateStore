@@ -11,9 +11,9 @@ object Project {
 
     /* Version */
     private val major:      Int =       1
-    private val minor:      Int =       1
-    private val channel:    Channel =   Stable
-    private val patch:      Int =       0
+    private val minor:      Int =       2
+    private val channel:    Channel =   Alpha
+    private val patch:      Int =       2
     private val build:      Int =       1
 
     /* Publishing */
@@ -104,8 +104,8 @@ object Project {
             if ( build > 0 ) throw  IllegalArgumentException( "'Stable channel' can't have a `build number` greater " +
                     "than 0, increase the 'minor' for the next build" )
         } else {
-            if ( patch < 1 ) throw  IllegalArgumentException( "A `patch number` greater than 0, is required for " +
-                    "'${channel.suffix.replace( "-", "" )}' channel" )
+            if ( patch < 1 && build < 0 ) throw  IllegalArgumentException( "A `patch number` greater than 0, is " +
+                    "required for '${channel.suffix.replace( "-", "" )}' channel" )
         }
     }
 

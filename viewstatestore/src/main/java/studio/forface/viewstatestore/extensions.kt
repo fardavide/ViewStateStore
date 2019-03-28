@@ -8,8 +8,16 @@ package studio.forface.viewstatestore
  */
 
 /**
+ * Post a [ViewState] with the given [state].
+ * @see ViewStateStoreScope.postState
+ */
+fun <V> AbsViewStateStore<V>.postState( state: ViewState<V>, dropOnSame: Boolean = this.dropOnSame ) {
+    postState( state, dropOnSame )
+}
+
+/**
  * Post a [ViewState.Success] with the given [data].
- * @see ViewStateStore.postState
+ * @see ViewStateStoreScope.postState
  */
 fun <V> AbsViewStateStore<V>.postData( data: V, dropOnSame: Boolean = this.dropOnSame ) {
     postState( ViewState.Success( data ), dropOnSame )
@@ -17,7 +25,7 @@ fun <V> AbsViewStateStore<V>.postData( data: V, dropOnSame: Boolean = this.dropO
 
 /**
  * Post a [ViewState.Error] created from the given [errorThrowable].
- * @see ViewStateStore.postState
+ * @see ViewStateStoreScope.postState
  */
 fun AbsViewStateStore<*>.postError( errorThrowable: Throwable, dropOnSame: Boolean = this.dropOnSame ) {
     postState( ViewState.Error.fromThrowable( errorThrowable ), dropOnSame )
@@ -25,15 +33,23 @@ fun AbsViewStateStore<*>.postError( errorThrowable: Throwable, dropOnSame: Boole
 
 /**
  * Post a [ViewState.Loading].
- * @see ViewStateStore.postState
+ * @see ViewStateStoreScope.postState
  */
 fun AbsViewStateStore<*>.postLoading( dropOnSame: Boolean = this.dropOnSame ) {
     postState( ViewState.Loading, dropOnSame )
 }
 
 /**
+ * Set a [ViewState] with the given [state].
+ * @see ViewStateStoreScope.setState
+ */
+fun <V> AbsViewStateStore<V>.setState( state: ViewState<V>, dropOnSame: Boolean = this.dropOnSame ) {
+    setState( state, dropOnSame )
+}
+
+/**
  * Set a [ViewState.Success] with the given [data].
- * @see ViewStateStore.setState
+ * @see ViewStateStoreScope.setState
  */
 fun <V> AbsViewStateStore<V>.setData( data: V, dropOnSame: Boolean = this.dropOnSame ) {
     setState( ViewState.Success( data ), dropOnSame )
@@ -41,7 +57,7 @@ fun <V> AbsViewStateStore<V>.setData( data: V, dropOnSame: Boolean = this.dropOn
 
 /**
  * Set a [ViewState.Error] created from the given [errorThrowable].
- * @see ViewStateStore.setState
+ * @see ViewStateStoreScope.setState
  */
 fun AbsViewStateStore<*>.setError( errorThrowable: Throwable, dropOnSame: Boolean = this.dropOnSame ) {
     setState( ViewState.Error.fromThrowable( errorThrowable ), dropOnSame )
@@ -49,7 +65,7 @@ fun AbsViewStateStore<*>.setError( errorThrowable: Throwable, dropOnSame: Boolea
 
 /**
  * Set a [ViewState.Loading].
- * @see ViewStateStore.postState
+ * @see ViewStateStoreScope.postState
  */
 fun AbsViewStateStore<*>.setLoading( dropOnSame: Boolean = this.dropOnSame ) {
     setState( ViewState.Loading, dropOnSame )
