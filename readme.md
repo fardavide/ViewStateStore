@@ -21,186 +21,49 @@ Supported **ViewState** types are;
 
 #### ViewStateStore
 
-###### Groovy
-
-`implementation "studio.forface.viewstatestore:viewstatestore:last_version"`
-
-###### Kotlin-DSL
-
 `implementation( "studio.forface.viewstatestore:viewstatestore:last_version" )`
 
 #### Paging extension
 
-###### Groovy
-
-`implementation "studio.forface.viewstatestore:viewstatestore-paging:last_version"`
-
-###### Kotlin-DSL
-
 `implementation( "studio.forface.viewstatestore:viewstatestore-paging:last_version" )`
 
-
-
-## Usage
-
-### ViewStateStore
-
-
-
-#### Instantiate ViewStateStore
-
-###### no *initialValue*
-
-`ViewStateStore<CarUiModel>()`
-
-###### with *initialValue*
-
-`ViewStateStore( CarUiModel() )`
-
-###### defining whether a `ViewState` publishing should be dropped if the `ViewState` is alredy the last `ViewStateStore.state()` - default is _false_
-
-`ViewStateStore( dropOnSame = true )`
-
-
-
-#### Observe ViewStateStore
-
-For observe within a `Lifecycle` component without pass the `LifecycleOwer` explicitly, implement `ViewStateActivity` on your `Activity` or `ViewStateFragment` on your `Fragment`.
-
-This `viewStateStore.observe( viewLifecycleOwner ) { ... }` will become simply `viewStateStore.observe { ... }` 
-
-
-
-###### observe within `Lifecycle` - from `Activity` or `Fragment`
-
+## Minimal usage
 ```kotlin
-val viewStateStore = myViewModel.car
-viewStateStore.observe {
-    doOnData( ::updateUi )
-    doOnError { viewStateError -> showToast( viewStateError.customMessageRes ) }
-    doOnLoadingChange { isLoading -> ... }
-    doOnEach { viewState -> ... }
+class CarsViewModel( val getCars: GetCars ): ViewModel() {
+    val cars = ViewStateStore<List<Car>>()
+
+    init {
+        cars.setLoading()
+        viewModelScope.launch {
+            runCatching { withContext( IO ) { getCars() } }
+                .onSuccess( cars::setData )
+                .onFailure( cars::setError )
+        }
+    }
+}
+
+class CarsFragment: Fragment(), ViewStateFragment {
+    override fun onActivityCreated( savedInstanceState: Bundle? ) {
+        carsViewModel.cars.observe {
+            doOnLoading { isLoading -> progressBar.isVisible = isLoading }
+            doOnError( ::showError )
+            doOnData( ::updateCars )
+        }
+    }
 }
 ```
-
-
-
-###### observe with `Lifecycle` - from any class
-
+It's also possible to `lock` the `ViewStateStore` for make it be mutable only from a `ViewStateStoreScope`
 ```kotlin
-val viewStateStore = myViewModel.car
-viewStateStore.observe( lifecycleOwner ) { ... }
-```
-
-
-
-###### observe without `Lifecycle` - from any class
-
-```kotlin
-val viewStateStore = myViewModel.car
-viewStateStore.observeForever { ... }
-```
-
-
-
-
-
-###### observe data ( same pattern as before `LifecycleOwner.observeData( callback )`, `observeData( LifecycleOwer, callback )`, `observeDataForever( callback )` )
-
-```kotlin
-val viewStateStore = myViewModel.car
-viewStateStore.observeData( ::updateUi )
-```
-
-
-
-#### Publish to ViewStateStore
-
-Use `set` functions for publish on the same thread, use `post` functions for publish on the main thread.
-
-Some examples:
-
-* `setState( ViewState.Success( carUiModel ) )`
-
-* `setState( ViewState.Success( carUiModel ), dropOnSame = false )`
-
-* `postState( ViewState.Error.fromThrowable( someThrowable ) )`
-
-  
-
-Also some *extension functions* are available.
-
-Some examples:
-
-* `setData( carUiModel )`
-* `postError( someThrowable )`
-* `postError( someThrowable, dropOnSame = true )`
-* `postLoading()`
-
-
-
-#### Error handling & Configuration
-
-##### ErrorStateGenerator
-
-`ViewState.Error` is an *open class* so it can be extended with some custom implementations.
-
-```kotlin
-class ClassCastError( t: ClassCastException ): ViewState.Error( t ) {
-    override val customMessageRes get() = R.string.error_class_cast
+class CarsViewModel( val getCars: GetCars ): ViewModel(), ViewStateStoreScope {
+    val cars = ViewStateStore<List<Car>>().lock // Locking the ViewStateStore
 }
-class NPError( t: NullPointerExeption ): ViewState.Error( t ) {
-    override val customMessageRes get() = R.string.error_npe
-}
-```
 
-Then set your custom `ErrorStateGenerator`
-
-```kotlin
-ViewStateStoreConfig.errorStateGenerator = { throwable -> // this = ErrorStateFactory
-    when ( throwable ) {
-        is ClassCastException -> ClassCastErrro( throwable ) 
-        is NullPointerException -> NPError( throwable )
-        else -> /* this. */default // ViewState.Error default constructor is called
+class CarsFragment: Fragment(), ViewStateFragment {
+    override fun onActivityCreated( savedInstanceState: Bundle? ) {
+        carsViewModel.cars.postLoading() // Does NOT compile, LockedViewStateStore.postLoading not resolved
     }
 }
 ```
 
-`ErrorStateGenerator`s can also be merged by `plus` operator: consider using that for declare more *generators* in different modules, for handle *module specific Exceptions*:
-
-```kotlin
-val generator1: ErrorStateGenerator = { ... }
-val generator2: ErrorStateGenerator = { ... }
-val generator3: ErrorStateGenerator = { ... }
-
-ViewStateStoreConfig.errorStateGenerator = generator1 + generator2 + generator3
-```
-
-
-
-##### DropOnSame
-
-`ViewStateStoreConfig` also holds a _Boolean_ `dropOnSame` ( default is _false_ ):  this value defines whether a publishing should be dropped if the same `ViewState` is already the last `ViewStateStore.state`
-
-This can be set through `ViewStateStoreConfig.dropOnSame = true` and can be overridden by a constructor ( e.g. `ViewStateStore<Int>( dropOnSame = true )` ) and a single publishing function ( e.g. `ViewStateStore.setData( 15, dropOnSame = false )` )
-
-
-
-### Paging extension
-
-An extension for *Android's Paging* is also available.
-
-When using it, instad of `setData( T )`, you would call `setDataFactory( DataSource.Factory<Int, T> )`.
-
-Here's an example:
-
-```kotlin
-// ViewModel
-val car = PagedViewStateStore( pageSize = 40 )
-val carDataFactory: DataSource.Factory<Int, Car> = myRepository.getCars()
-car.setDataFactory( carDataFactory )
-
-// Fragment
-myViewModel.car.observeData( adapter::submitList )
-```
-
+## Wiki
+#### Full Wiki [here](https://github.com/4face-studi0/ViewStateStore/wiki)
