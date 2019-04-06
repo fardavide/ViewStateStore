@@ -6,6 +6,7 @@ import io.mockk.verify
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
+import studio.forface.viewstatestore.utils.TestLifecycle
 
 /**
  * @author Davide Giuseppe Farella

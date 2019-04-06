@@ -1,4 +1,4 @@
-package studio.forface.viewstatestore
+package studio.forface.viewstatestore.utils
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Lifecycle.Event.*

@@ -33,8 +33,12 @@ fun <V> AbsViewStateStore<V>.setData( data: V, dropOnSame: Boolean = this.dropOn
  * @see ViewStateStoreScope.setState
  */
 @UiThread
-fun AbsViewStateStore<*>.setError( errorThrowable: Throwable, dropOnSame: Boolean = this.dropOnSame ) {
-    setState( ViewState.Error.fromThrowable( errorThrowable ), dropOnSame )
+fun AbsViewStateStore<*>.setError(
+    errorThrowable: Throwable,
+    dropOnSame: Boolean = this.dropOnSame,
+    errorResolution: ErrorResolution? = null
+) {
+    setState( ViewState.Error.fromThrowable( errorThrowable, errorResolution ), dropOnSame )
 }
 
 /**
@@ -66,8 +70,12 @@ fun <V> AbsViewStateStore<V>.postData( data: V, dropOnSame: Boolean = this.dropO
  * Post a [ViewState.Error] created from the given [errorThrowable].
  * @see ViewStateStoreScope.postState
  */
-fun AbsViewStateStore<*>.postError( errorThrowable: Throwable, dropOnSame: Boolean = this.dropOnSame ) {
-    postState( ViewState.Error.fromThrowable( errorThrowable ), dropOnSame )
+fun AbsViewStateStore<*>.postError(
+    errorThrowable: Throwable,
+    dropOnSame: Boolean = this.dropOnSame,
+    errorResolution: ErrorResolution? = null
+) {
+    postState( ViewState.Error.fromThrowable( errorThrowable, errorResolution ), dropOnSame )
 }
 
 /**

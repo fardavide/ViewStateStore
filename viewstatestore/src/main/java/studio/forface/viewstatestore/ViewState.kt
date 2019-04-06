@@ -1,7 +1,9 @@
-@file:Suppress("unused")
+@file:Suppress("unused", "MemberVisibilityCanBePrivate")
 
 package studio.forface.viewstatestore
 
+import android.content.Context
+import android.content.res.Resources
 import androidx.annotation.StringRes
 import studio.forface.viewstatestore.ViewState.*
 import studio.forface.viewstatestore.ViewState.Error.Companion.createDefault
@@ -51,22 +53,40 @@ sealed class ViewState<out T> {
      * Inherit from [ViewState]
      *
      *
-     * @constructor is protected so [Error] cannot be instantiated outside this class or a child class.
+     * @constructor is private so [Error] cannot be instantiated outside this class or a child class.
      * Use [fromThrowable] instead.
      *
      * This object can also be instantiated inside the library through [createDefault] function on the companion object.
+     *
+     *
+     * @property customMessage an OPTIONAL [CharSequence] representing a custom message to show to the user
+     *
+     * @see ViewState.Error( [Throwable], [CharSequence] )
+     *
+     *
+     * @property customMessageRes an OPTIONAL [StringRes] representing a custom message to show to the user, it can
+     * be coupled with
+     * @property customMessageResArgs a vararg or [Any] representing arguments for [customMessageRes]
+     *
+     * @see ViewState.Error( [Throwable], [StringRes], vararg [Any] )
      */
-    open class Error protected constructor (
-        @Suppress("MemberVisibilityCanBePrivate")
-        val throwable: Throwable
+    open class Error private constructor(
+        val throwable: Throwable,
+        private val customMessage: CharSequence?,
+        @StringRes private val customMessageRes: Int?,
+        vararg customMessageResArgs: Any
     ) : ViewState<Nothing>() {
 
         companion object {
+
+            /** @return an instance of [ViewState.Error] with an OPTIONAL [ErrorResolution] */
+            fun fromThrowable( throwable: Throwable, resolution: ErrorResolution? = null ) =
+                    create( throwable ).appendResolution( resolution )
+
             /**
-             * @return an instance of [ViewState.Error] or a custom extension for the the given [throwable].
-             * @see ErrorStateGenerator
+             * @return an instance of [ViewState.Error] created from [ErrorStateGenerator] with the given [Throwable]
              */
-            fun fromThrowable( throwable: Throwable ): ViewState.Error =
+            private fun create( throwable: Throwable ) =
                 ViewStateStoreConfig.errorStateGenerator( ErrorStateFactory( throwable ), throwable )
 
             /**
@@ -77,18 +97,101 @@ sealed class ViewState<out T> {
         }
 
         /** @return a [String] message from [throwable] */
-        val baseMessage: String get() = with( throwable ) { localizedMessage ?: message ?: "error" }
+        private val throwableMessage: String get() = with( throwable ) { localizedMessage ?: message ?: "error" }
 
-        /** The [StringRes] for a custom message to show to the user */
-        @get:StringRes
-        open val customMessageRes: Int? = null
+        /** Strong reference of [Array] of [Any] to homonym vararg in primary constructor */
+        private val customMessageResArgs: Array<Any> = customMessageResArgs.toList().toTypedArray()
+
+        /**
+         * An OPTIONAL [ErrorResolution] for this instance [ViewState.Error]
+         *
+         * E.g. for an hypothetical `DocumentsSyncError` instance of [ViewState.Error] a possible resolution could be
+         * `{ DocumentsSyncService.tryToSync() }`
+         *
+         * Set it via [appendResolution]
+         */
+        private var resolution: ErrorResolution? = null
+
+
+        /**
+         * @constructor INTERNAL that takes only a [Throwable]
+         *
+         * @param throwable
+         * @see ViewState.Error.throwable
+         */
+        internal constructor( throwable: Throwable ) : this( throwable,null,null )
+
+        /**
+         * @constructor PROTECTED that takes a [Throwable] and a [CharSequence]
+         *
+         * @param throwable
+         * @see ViewState.Error.throwable
+         *
+         * @param customMessage
+         * @see ViewState.Error.customMessage
+         */
+        protected constructor(
+            throwable: Throwable,
+            customMessage: CharSequence
+        ) : this( throwable, customMessage,null )
+
+        /**
+         * @constructor PROTECTED that takes a [Throwable] a [StringRes] and a vararg of [Any]
+         *
+         * @param throwable
+         * @see ViewState.Error.throwable
+         *
+         * @param customMessageRes
+         * @see ViewState.Error.customMessageRes
+         *
+         * @param args
+         * @see ViewState.Error.customMessageResArgs
+         */
+        protected constructor(
+            throwable: Throwable,
+            @StringRes customMessageRes: Int,
+            vararg args: Any
+        ) : this( throwable,null, customMessageRes, args )
+
+
+        /**
+         * @return a [CharSequence] trying to resolve from [customMessage] if not `null`, else [customMessageRes] with
+         * [customMessageResArgs] if not `null`, else [throwableMessage]
+         */
+        fun getMessage( context: Context ) = getMessage( context.resources )
+
+        /**
+         * @return a [CharSequence] trying to resolve from [customMessage] if not `null`, else [customMessageRes] with
+         * [customMessageResArgs] if not `null`, else [throwableMessage]
+         */
+        fun getMessage( resources: Resources ): CharSequence {
+            return customMessage
+                ?: customMessageRes?.let { resources.getString( it, * customMessageResArgs ) }
+                ?: throwableMessage
+        }
 
         /** [Throwable.printStackTrace] from [throwable] */
         fun printStackTrace() = throwable.printStackTrace()
 
+        /**
+         * Set a [ErrorResolution] for [ViewState.Error.resolution]
+         *
+         * @return this [ViewState.Error]
+         */
+        fun appendResolution( resolution: ErrorResolution? ) = apply {
+            this.resolution = resolution
+        }
+
+        /** @return `true` if [ViewState.Error.resolution] is not `null` */
+        fun hasResolution() = resolution != null
+
+        /** @return OPTIONAL [ErrorResolution] of [ViewState.Error.resolution] */
+        fun getResolution() = resolution
+
         override fun <R> map( mapper: (Nothing) -> R ): ViewState<R> = this
     }
 
+    /** A default ( not customized ) [ViewState.Error] that only holds a [Throwable] */
     internal class DefaultError( throwable: Throwable ): ViewState.Error( throwable )
 
     /**
@@ -110,4 +213,7 @@ sealed class ViewState<out T> {
 
 /** @constructor for [ViewState.Success] */
 @Suppress("FunctionName")
-fun <T> ViewState(data: T ) = ViewState.Success( data )
+fun <T> ViewState( data: T ) = ViewState.Success( data )
+
+/** Typealias for a lambda that resolves a [ViewState.Error] */
+typealias ErrorResolution = () -> Unit

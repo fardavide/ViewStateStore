@@ -37,7 +37,7 @@ class CarsViewModel( val getCars: GetCars ): ViewModel() {
         viewModelScope.launch {
             runCatching { withContext( IO ) { getCars() } }
                 .onSuccess( cars::setData )
-                .onFailure( cars::setError )
+                .onFailure { cars.setError( it ) }
         }
     }
 }
@@ -52,7 +52,50 @@ class CarsFragment: Fragment(), ViewStateFragment {
     }
 }
 ```
+Or you can set an `ErrorResolution`
+
+```kotlin
+// CarsViewModel
+    init {
+        loadCars()
+    }
+
+    private fun loadCars() {
+        cars.setLoading()
+        viewModelScope.launch {
+            runCatching { withContext( IO ) { getCars() } }
+                .onSuccess( cars::setData )
+                .onFailure { cars.setError( it ) { loadCars() } }
+        }
+    }
+}
+
+// CarsFragment
+    override fun onActivityCreated( savedInstanceState: Bundle? ) {
+        carsViewModel.cars.observe {
+            ...
+            doOnError( ::showError )
+        }
+    }
+
+    fun showError( error: ViewState.Error ) {
+        Snackbar.make( 
+            coordinatorLayout,
+            error.getMessage( requireContext() ),
+            Snackbar.LENGTH_SHORT
+        ).apply { 
+            if ( error.hasResolution() )
+                setAction( "Retry" ) { error.getResolution() } }
+            show()
+        }
+    }
+}
+```
+
+
+
 It's also possible to `lock` the `ViewStateStore` for make it be mutable only from a `ViewStateStoreScope`
+
 ```kotlin
 class CarsViewModel( val getCars: GetCars ): ViewModel(), ViewStateStoreScope {
     val cars = ViewStateStore<List<Car>>().lock // Locking the ViewStateStore
@@ -66,4 +109,5 @@ class CarsFragment: Fragment(), ViewStateFragment {
 ```
 
 ## Wiki
+
 #### Full Wiki [here](https://github.com/4face-studi0/ViewStateStore/wiki)

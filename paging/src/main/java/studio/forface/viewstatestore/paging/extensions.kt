@@ -5,6 +5,7 @@ package studio.forface.viewstatestore.paging
 import androidx.annotation.UiThread
 import androidx.paging.DataSource
 import androidx.paging.PagedList
+import studio.forface.viewstatestore.ErrorResolution
 import studio.forface.viewstatestore.ViewState
 
 /*
@@ -44,8 +45,12 @@ fun <V> PagedViewStateStore<V>.setData( data: PagedList<V>, dropOnSame: Boolean 
  * @see PagedViewStateStoreScope.setState
  */
 @UiThread
-fun PagedViewStateStore<*>.setError( errorThrowable: Throwable, dropOnSame: Boolean = this.dropOnSame ) {
-    setState( ViewState.Error.fromThrowable( errorThrowable ), dropOnSame )
+fun PagedViewStateStore<*>.setError(
+    errorThrowable: Throwable,
+    dropOnSame: Boolean = this.dropOnSame,
+    errorResolution: ErrorResolution? = null
+) {
+    setState( ViewState.Error.fromThrowable( errorThrowable, errorResolution ), dropOnSame )
 }
 
 /**
@@ -77,8 +82,12 @@ fun <V> PagedViewStateStore<V>.postData( data: PagedList<V>, dropOnSame: Boolean
  * Post a [ViewState.Error] created from the given [errorThrowable].
  * @see PagedViewStateStoreScope.postState
  */
-fun PagedViewStateStore<*>.postError( errorThrowable: Throwable, dropOnSame: Boolean = this.dropOnSame ) {
-    postState( ViewState.Error.fromThrowable( errorThrowable ), dropOnSame )
+fun PagedViewStateStore<*>.postError(
+    errorThrowable: Throwable,
+    dropOnSame: Boolean = this.dropOnSame,
+    errorResolution: ErrorResolution? = null
+) {
+    postState( ViewState.Error.fromThrowable( errorThrowable, errorResolution ), dropOnSame )
 }
 
 /**

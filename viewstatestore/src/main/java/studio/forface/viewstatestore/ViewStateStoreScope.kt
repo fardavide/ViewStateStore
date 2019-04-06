@@ -48,8 +48,12 @@ interface ViewStateStoreScope {
      * Post a [ViewState.Error] created from the given [errorThrowable].
      * @see postState
      */
-    fun LockedViewStateStore<*>.postError( errorThrowable: Throwable, dropOnSame: Boolean = this.dropOnSame ) {
-        postState( ViewState.Error.fromThrowable( errorThrowable ), dropOnSame )
+    fun LockedViewStateStore<*>.postError(
+        errorThrowable: Throwable,
+        dropOnSame: Boolean = this.dropOnSame,
+        errorResolution: ErrorResolution? = null
+    ) {
+        postState( ViewState.Error.fromThrowable( errorThrowable, errorResolution ), dropOnSame )
     }
 
     /**
@@ -72,8 +76,12 @@ interface ViewStateStoreScope {
      * Set a [ViewState.Error] created from the given [errorThrowable].
      * @see setState
      */
-    fun LockedViewStateStore<*>.setError( errorThrowable: Throwable, dropOnSame: Boolean = this.dropOnSame ) {
-        setState( ViewState.Error.fromThrowable( errorThrowable ), dropOnSame )
+    fun LockedViewStateStore<*>.setError(
+        errorThrowable: Throwable,
+        dropOnSame: Boolean = this.dropOnSame,
+        errorResolution: ErrorResolution? = null
+    ) {
+        setState( ViewState.Error.fromThrowable( errorThrowable, errorResolution ), dropOnSame )
     }
 
     /**
