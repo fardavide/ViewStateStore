@@ -65,7 +65,7 @@ Or you can set an `ErrorResolution`
         viewModelScope.launch {
             runCatching { withContext( IO ) { getCars() } }
                 .onSuccess( cars::setData )
-                .onFailure { cars.setError( it ) { loadCars() } }
+                .onFailure { cars.setError( it, ::loadCars ) }
         }
     }
 }
