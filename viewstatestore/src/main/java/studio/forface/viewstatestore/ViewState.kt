@@ -185,8 +185,14 @@ sealed class ViewState<out T> {
         /** @return `true` if [ViewState.Error.resolution] is not `null` */
         fun hasResolution() = resolution != null
 
-        /** @return OPTIONAL [ErrorResolution] of [ViewState.Error.resolution] */
-        fun getResolution() = resolution
+        /**
+         * Invoke [resolution] lambda
+         * @throws NoResolutionException if [resolution] is `null`
+         */
+        fun resolve() = resolution?.invoke() ?: throw NoResolutionException( this )
+
+        /** Invoke [resolution] lambda if not `null`, else do nothing */
+        fun tryToResolve() = resolution?.invoke()
 
         override fun <R> map( mapper: (Nothing) -> R ): ViewState<R> = this
     }

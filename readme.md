@@ -85,7 +85,7 @@ Or you can set an `ErrorResolution`
             Snackbar.LENGTH_SHORT
         ).apply { 
             if ( error.hasResolution() )
-                setAction( "Retry" ) { error.getResolution() } }
+                setAction( "Retry" ) { error.resolve() } }
             show()
         }
     }
