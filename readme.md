@@ -5,7 +5,6 @@
 [![Download](https://api.bintray.com/packages/4face/ViewStateStore/studio.forface.viewstatestore/images/download.svg)](https://bintray.com/4face/ViewStateStore/studio.forface.viewstatestore/_latestVersion)  ![MinSDK](https://img.shields.io/badge/MinSDK-14-f44336.svg)  [![star this repo](http://githubbadges.com/star.svg?user=4face-studi0&repo=ViewStateStore&style=flat&color=fff&background=4caf50)](https://github.com/4face-studi0/ViewStateStore)  [![fork this repo](http://githubbadges.com/fork.svg?user=4face-studi0&repo=ViewStateStore&style=flat&color=fff&background=4caf50)](https://github.com/4face-studi0/ViewStateStore/fork)
 
 
-
 **ViewStateStore** wraps a *LiveData* for deliver **ViewState**s to the *UI*.
 
 Supported **ViewState** types are;

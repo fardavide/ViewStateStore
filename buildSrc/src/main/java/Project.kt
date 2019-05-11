@@ -11,9 +11,9 @@ object Project {
 
     /* Version */
     private val major:      Int =       1
-    private val minor:      Int =       2
+    private val minor:      Int =       3
     private val channel:    Channel =   Alpha
-    private val patch:      Int =       6
+    private val patch:      Int =       0
     private val build:      Int =       1
 
     /* Publishing */
