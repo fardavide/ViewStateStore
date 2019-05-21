@@ -9,7 +9,7 @@ import androidx.annotation.UiThread
  * A set of extension functions
  */
 
-
+// region set
 /**
  * Set a [ViewState] with the given [state].
  * @see ViewStateStoreScope.setState
@@ -49,7 +49,9 @@ fun AbsViewStateStore<*>.setError(
 fun AbsViewStateStore<*>.setLoading( dropOnSame: Boolean = this.dropOnSame ) {
     setState( ViewState.Loading, dropOnSame )
 }
+// endregion
 
+// region post
 /**
  * Post a [ViewState] with the given [state].
  * @see ViewStateStoreScope.postState
@@ -85,3 +87,4 @@ fun AbsViewStateStore<*>.postError(
 fun AbsViewStateStore<*>.postLoading( dropOnSame: Boolean = this.dropOnSame ) {
     postState( ViewState.Loading, dropOnSame )
 }
+// endregion
