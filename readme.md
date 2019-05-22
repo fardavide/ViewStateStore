@@ -78,11 +78,11 @@ Or you can set an `ErrorResolution`
     }
 
     fun showError( error: ViewState.Error ) {
-        Snackbar.make( 
+        Snackbar.make(
             coordinatorLayout,
             error.getMessage( requireContext() ),
             Snackbar.LENGTH_SHORT
-        ).apply { 
+        ).apply {
             if ( error.hasResolution() )
                 setAction( "Retry" ) { error.resolve() } }
             show()
@@ -125,11 +125,10 @@ val cars = ViewStateStore.from( carsDataSource )
 
 
 
-## [Wiki](https://4face-studi0.github.io/ViewStateStore/paging/)
+## Wiki
 
 #### Full Wiki [here](https://github.com/4face-studi0/ViewStateStore/wiki)
 
 #### ViewStateStore Doc [here](https://4face-studi0.github.io/ViewStateStore/viewstatestore/)
 
 #### Paging Doc [here](https://4face-studi0.github.io/ViewStateStore/paging/)
-
