@@ -1,0 +1,166 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ViewState.Error - viewstatestore</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">ViewState</a>&nbsp;/&nbsp;<a href="./index.html">Error</a><br/>
+<br/>
+<h1>Error</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Error</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">&gt;</span></code>
+<p>A class that represents a failure and will contains the relative <a href="throwable.html">throwable</a>.
+Inherit from <a href="../index.html">ViewState</a></p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">Error</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Error$<init>(kotlin.Throwable, kotlin.CharSequence)/throwable">throwable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Error$<init>(kotlin.Throwable, kotlin.CharSequence)/customMessage">customMessage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a><span class="symbol">)</span></code>
+<p>PROTECTED that takes a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html">Throwable</a> and a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html">CharSequence</a></p>
+<code><span class="identifier">Error</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Error$<init>(kotlin.Throwable, kotlin.Int, kotlin.Array((kotlin.Any)))/throwable">throwable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Error$<init>(kotlin.Throwable, kotlin.Int, kotlin.Array((kotlin.Any)))/customMessageRes">customMessageRes</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="keyword">vararg</span> <span class="identifier" id="studio.forface.viewstatestore.ViewState.Error$<init>(kotlin.Throwable, kotlin.Int, kotlin.Array((kotlin.Any)))/args">args</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span></code>
+<p>PROTECTED that takes a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html">Throwable</a> a <a href="#">StringRes</a> and a vararg of <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="throwable.html">throwable</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">throwable</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../data.html">data</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">data</span><span class="symbol">: </span><a href="../index.html#T"><span class="identifier">T</span></a><span class="symbol">?</span></code>
+<p>An instance of <a href="../index.html#T">T</a> that will be available in case of <a href="../-success/index.html">Success</a>, else it will be null</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="append-resolution.html">appendResolution</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">appendResolution</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Error$appendResolution(kotlin.Function0((kotlin.Unit)))/resolution">resolution</span><span class="symbol">:</span>&nbsp;<a href="../../-error-resolution.html"><span class="identifier">ErrorResolution</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">ViewState.Error</span></a></code>
+<p>Set a <a href="../../-error-resolution.html">ErrorResolution</a> for <a href="#">ViewState.Error.resolution</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-message.html">getMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getMessage</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Error$getMessage(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/Context.html"><span class="identifier">Context</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">getMessage</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Error$getMessage(android.content.res.Resources)/resources">resources</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/content/res/Resources.html"><span class="identifier">Resources</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-char-sequence/index.html"><span class="identifier">CharSequence</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="has-resolution.html">hasResolution</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hasResolution</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="map.html">map</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">map</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Error$map(kotlin.Function1((kotlin.Nothing, studio.forface.viewstatestore.ViewState.Error.map.R)))/mapper">mapper</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="map.html#R"><span class="identifier">R</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="map.html#R"><span class="identifier">R</span></a><span class="symbol">&gt;</span></code>
+<p>A function for map the current <a href="../data.html">data</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="print-stack-trace.html">printStackTrace</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">printStackTrace</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/print-stack-trace.html">Throwable.printStackTrace</a> from <a href="throwable.html">throwable</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="resolve.html">resolve</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">resolve</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Invoke <a href="#">resolution</a> lambda</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="try-to-resolve.html">tryToResolve</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">tryToResolve</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">?</span></code>
+<p>Invoke <a href="#">resolution</a> lambda if not <code>null</code>, else do nothing</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../do-on-data.html">doOnData</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><s><span class="identifier">doOnData</span></s><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState$doOnData(kotlin.Function1((studio.forface.viewstatestore.ViewState.T, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../index.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Execute an <a href="../do-on-data.html#studio.forface.viewstatestore.ViewState$doOnData(kotlin.Function1((studio.forface.viewstatestore.ViewState.T, kotlin.Unit)))/action">action</a> in case of <a href="../-success/index.html">Success</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../do-on-error.html">doOnError</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><s><span class="identifier">doOnError</span></s><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState$doOnError(kotlin.Function1((studio.forface.viewstatestore.ViewState.Error, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="./index.html"><span class="identifier">ViewState.Error</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Execute an <a href="../do-on-error.html#studio.forface.viewstatestore.ViewState$doOnError(kotlin.Function1((studio.forface.viewstatestore.ViewState.Error, kotlin.Unit)))/action">action</a> in case of <a href="./index.html">Error</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../do-on-loading-change.html">doOnLoadingChange</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><s><span class="identifier">doOnLoadingChange</span></s><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState$doOnLoadingChange(kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">isLoading</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Execute an <a href="../do-on-loading-change.html#studio.forface.viewstatestore.ViewState$doOnLoadingChange(kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/action">action</a> whether is <a href="../-loading/index.html">Loading</a> or not</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="from-throwable.html">fromThrowable</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">fromThrowable</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Error.Companion$fromThrowable(kotlin.Throwable, kotlin.Function0((kotlin.Unit)))/throwable">throwable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Error.Companion$fromThrowable(kotlin.Throwable, kotlin.Function0((kotlin.Unit)))/resolution">resolution</span><span class="symbol">:</span>&nbsp;<a href="../../-error-resolution.html"><span class="identifier">ErrorResolution</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">ViewState.Error</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

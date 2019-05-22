@@ -1,6 +1,7 @@
 package studio.forface.viewstatestore.paging
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.paging.DataSource
 import androidx.paging.PagedList
 import androidx.paging.PositionalDataSource
 import io.mockk.every
@@ -9,6 +10,8 @@ import io.mockk.verify
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
+import studio.forface.viewstatestore.ViewStateStore
+import studio.forface.viewstatestore.paging.utils.TestLifecycle
 
 /**
  * @author Davide Giuseppe Farella
@@ -21,16 +24,14 @@ internal class LifecycleTest {
 
     @Test
     fun `PagedViewStateStore emits correctly through the Lifecycle`() {
-        val vss = PagedViewStateStore<Int>()
+        val dsf = mockk<DataSource.Factory<Int, Int>> {
+            every { create() } answers { mockk<PositionalDataSource<Int>>(relaxed = true) }
+        }
+        val vss = ViewStateStore.from( dsf )
 
         // Setup Android test components
         val observer = mockk<(PagedList<Int>) -> Unit>( relaxed = true )
         val lifecycle = TestLifecycle()
-
-        // Publish to vss
-        vss.setDataSource( mockk {
-            every { create() } answers { mockk<PositionalDataSource<Int>>( relaxed = true ) }
-        } )
 
         // Start observing
         vss.observeData( lifecycle, observer )

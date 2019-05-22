@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 
 /**
  * Only entities that implements this interface will be able to call `set` and `post` methods of [LockedViewStateStore],
- * This is also implemented by [AbsViewStateStore]
+ * This is also implemented by [ViewStateStore]
  *
  * @author Davide Giuseppe Farella
  */

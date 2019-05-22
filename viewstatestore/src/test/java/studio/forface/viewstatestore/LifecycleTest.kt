@@ -9,8 +9,8 @@ import org.junit.rules.TestRule
 import studio.forface.viewstatestore.utils.TestLifecycle
 
 /**
- * @author Davide Giuseppe Farella
  * A class for test `ViewStateStore` observing through `Lifecycle` events.
+ * @author Davide Giuseppe Farella
  */
 internal class LifecycleTest {
 

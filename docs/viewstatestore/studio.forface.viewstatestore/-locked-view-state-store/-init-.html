@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>LockedViewStateStore.<init> - viewstatestore</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="index.html">LockedViewStateStore</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="studio.forface.viewstatestore.LockedViewStateStore$&lt;init&gt;(kotlin.Boolean)"></a>
+<code><span class="identifier">LockedViewStateStore</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$<init>(kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span></code>
+<p>This class will store and handle the <a href="../-view-state/index.html">ViewState</a> and submit it via a <a href="#">LiveData</a>.
+<code>ViewStateStore</code> will only deliver the last <a href="#">data</a> when the observer become active.
+This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> functions and <code>post</code> functions can only be called within <a href="../-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
+<h3>Publish:</h3>
+<p>Use the <a href="../-view-state-store-scope/set-state.html">ViewStateStoreScope.setState</a> for deliver the <a href="../-view-state/index.html">ViewState</a> on the current thread.
+Use the <a href="../-view-state-store-scope/post-state.html">ViewStateStoreScope.postState</a> for deliver the <a href="../-view-state/index.html">ViewState</a> on the main thread.
+Use <a href="state.html">state</a> for retrieve the last state.</p>
+<h3>Observe:</h3>
+<p>Use <a href="observe.html">observe</a> for observe the published <a href="../-view-state/index.html">ViewState</a> within a <a href="#">LifecycleOwner</a>
+Use <a href="observe-forever.html">observeForever</a> for observe the published <a href="../-view-state/index.html">ViewState</a>. NOTE! This will probably lead to a memory leak.</p>
+<p>Use <a href="observe-data.html">observeData</a> for observe ONLY the the published <a href="#">data</a> within a <a href="#">LifecycleOwner</a>
+Use <a href="observe-forever.html">observeForever</a> for observe ONLY the the published <a href="#">data</a>. NOTE! This will probably lead to a memory leak.</p>
+<h3>Parameters</h3>
+<p><a name="V"></a>
+<code>V</code> - is the type of the <a href="#">data</a></p>
+<p><a name="dropOnSame"></a>
+<code>dropOnSame</code> - This <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> defines whether a publishing should be dropped if the same <a href="../-view-state/index.html">ViewState</a> is already
+the last <a href="state.html">state</a></p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-view-state-observer/index.html">ViewStateObserver</a></p>
+<p><a href="../-view-state-store-config/drop-on-same.html">ViewStateStoreConfig.dropOnSame</a></p>
+</p>
+<p><strong>Author</strong><br/>
+Davide Giuseppe Farella</p>
+</BODY>
+</HTML>

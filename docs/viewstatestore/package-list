@@ -1,0 +1,4 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:studio.forface.viewstatestore$plus(kotlin.Function2((studio.forface.viewstatestore.ErrorStateFactory, kotlin.Throwable, studio.forface.viewstatestore.ViewState.Error)), kotlin.Function2((studio.forface.viewstatestore.ErrorStateFactory, kotlin.Throwable, studio.forface.viewstatestore.ViewState.Error)))studio.forface.viewstatestore/kotlin.-function2/plus.html
+studio.forface.viewstatestore

@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>LockedViewStateStore.handleViewState - viewstatestore</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="index.html">LockedViewStateStore</a>&nbsp;/&nbsp;<a href="./handle-view-state.html">handleViewState</a><br/>
+<br/>
+<h1>handleViewState</h1>
+<a name="studio.forface.viewstatestore.LockedViewStateStore$handleViewState(studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.LockedViewStateStore.V)))"></a>
+<code><span class="keyword">protected</span> <span class="keyword">fun </span><span class="identifier">handleViewState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$handleViewState(studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.LockedViewStateStore.V)))/observer">observer</span><span class="symbol">:</span>&nbsp;<a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$handleViewState(studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.LockedViewStateStore.V)))/viewState">viewState</span><span class="symbol">:</span>&nbsp;<a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Handle the delivery of a <a href="../-view-state/index.html">ViewState</a> though <a href="../-view-state-observer/index.html">ViewStateObserver</a></p>
+<p>This will save <a href="../-view-state/data.html">ViewState.data</a> in case of success and then trigger the callbacks the following callbacks on the
+given <a href="../-view-state-observer/index.html">ViewStateObserver</a>: <a href="#">ViewStateObserver.onEach</a>, <a href="#">ViewStateObserver.onData</a>, <a href="#">ViewStateObserver.onError</a>
+and <a href="#">ViewStateObserver.onLoadingChange</a>.</p>
+</BODY>
+</HTML>

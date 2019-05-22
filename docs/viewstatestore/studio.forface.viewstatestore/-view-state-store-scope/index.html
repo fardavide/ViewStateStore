@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ViewStateStoreScope - viewstatestore</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="./index.html">ViewStateStoreScope</a><br/>
+<br/>
+<h1>ViewStateStoreScope</h1>
+<code><span class="keyword">interface </span><span class="identifier">ViewStateStoreScope</span></code>
+<p>Only entities that implements this interface will be able to call <code>set</code> and <code>post</code> methods of <a href="../-locked-view-state-store/index.html">LockedViewStateStore</a>,
+This is also implemented by <a href="../-view-state-store/index.html">ViewStateStore</a></p>
+<p><strong>Author</strong><br/>
+Davide Giuseppe Farella</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="post-data.html">postData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><a href="post-data.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$postData(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateStoreScope.postData.V)), studio.forface.viewstatestore.ViewStateStoreScope.postData.V, kotlin.Boolean)/data">data</span><span class="symbol">:</span>&nbsp;<a href="post-data.html#V"><span class="identifier">V</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$postData(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateStoreScope.postData.V)), studio.forface.viewstatestore.ViewStateStoreScope.postData.V, kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="../-view-state/-success/index.html">ViewState.Success</a> with the given <a href="post-data.html#studio.forface.viewstatestore.ViewStateStoreScope$postData(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateStoreScope.postData.V)), studio.forface.viewstatestore.ViewStateStoreScope.postData.V, kotlin.Boolean)/data">data</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post-error.html">postError</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postError</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$postError(studio.forface.viewstatestore.LockedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$postError(studio.forface.viewstatestore.LockedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$postError(studio.forface.viewstatestore.LockedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorResolution">errorResolution</span><span class="symbol">:</span>&nbsp;<a href="../-error-resolution.html"><span class="identifier">ErrorResolution</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="../-view-state/-error/index.html">ViewState.Error</a> created from the given <a href="post-error.html#studio.forface.viewstatestore.ViewStateStoreScope$postError(studio.forface.viewstatestore.LockedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post-loading.html">postLoading</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postLoading</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$postLoading(studio.forface.viewstatestore.LockedViewStateStore((kotlin.Any)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="../-view-state/-loading/index.html">ViewState.Loading</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post-state.html">postState</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><a href="post-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$postState(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateStoreScope.postState.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.ViewStateStoreScope.postState.V)), kotlin.Boolean)/state">state</span><span class="symbol">:</span>&nbsp;<a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="post-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$postState(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateStoreScope.postState.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.ViewStateStoreScope.postState.V)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="set-data.html">setData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><a href="set-data.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$setData(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateStoreScope.setData.V)), studio.forface.viewstatestore.ViewStateStoreScope.setData.V, kotlin.Boolean)/data">data</span><span class="symbol">:</span>&nbsp;<a href="set-data.html#V"><span class="identifier">V</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$setData(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateStoreScope.setData.V)), studio.forface.viewstatestore.ViewStateStoreScope.setData.V, kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="../-view-state/-success/index.html">ViewState.Success</a> with the given <a href="set-data.html#studio.forface.viewstatestore.ViewStateStoreScope$setData(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateStoreScope.setData.V)), studio.forface.viewstatestore.ViewStateStoreScope.setData.V, kotlin.Boolean)/data">data</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-error.html">setError</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setError</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$setError(studio.forface.viewstatestore.LockedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$setError(studio.forface.viewstatestore.LockedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$setError(studio.forface.viewstatestore.LockedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorResolution">errorResolution</span><span class="symbol">:</span>&nbsp;<a href="../-error-resolution.html"><span class="identifier">ErrorResolution</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="../-view-state/-error/index.html">ViewState.Error</a> created from the given <a href="set-error.html#studio.forface.viewstatestore.ViewStateStoreScope$setError(studio.forface.viewstatestore.LockedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-loading.html">setLoading</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setLoading</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$setLoading(studio.forface.viewstatestore.LockedViewStateStore((kotlin.Any)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="../-view-state/-loading/index.html">ViewState.Loading</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-state.html">setState</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><a href="set-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$setState(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateStoreScope.setState.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.ViewStateStoreScope.setState.V)), kotlin.Boolean)/state">state</span><span class="symbol">:</span>&nbsp;<a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="set-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ViewStateStoreScope$setState(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateStoreScope.setState.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.ViewStateStoreScope.setState.V)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-view-state-store/index.html">ViewStateStore</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><a href="../-view-state-store/index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">ViewStateStoreScope</span></a></code>
+<p>This class will store and handle the <a href="../-view-state/index.html">ViewState</a> and submit it via a <code>LiveData</code>.
+<code>ViewStateStore</code> will only deliver the last <a href="#">data</a> when the observer become active.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

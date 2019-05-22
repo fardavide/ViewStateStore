@@ -1,0 +1,55 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ViewStateFragment - viewstatestore</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="./index.html">ViewStateFragment</a><br/>
+<br/>
+<h1>ViewStateFragment</h1>
+<code><span class="keyword">interface </span><span class="identifier">ViewStateFragment</span></code>
+<p><strong>Author</strong><br/>
+<p>Davide Giuseppe Farella.
+An interface containing <code>Lifecycle</code>-driven observe extensions functions for <code>Fragment</code></p>
+
+
+<p>Implements this interface on your <code>Fragment</code> for be able to call <a href="../-locked-view-state-store/observe.html">LockedViewStateStore.observe</a> and
+<a href="../-locked-view-state-store/observe-data.html">LockedViewStateStore.observeData</a> without passing the <a href="#">LifecycleOwner</a> explicitly.
+I.e. <code>myViewStateStore.observeData( ::updateUi )</code> it's a valid function that will observe the data respecting the
+<code>Fragment</code>s <code>Lifecycle</code>.</p>
+</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-view-lifecycle-owner.html">getViewLifecycleOwner</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getViewLifecycleOwner</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">LifecycleOwner</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="observe.html">observe</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><a href="observe.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">observe</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateFragment$observe(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateFragment.observe.V)), kotlin.Function1((studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.ViewStateFragment.observe.V)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><a href="observe.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Call <a href="../-locked-view-state-store/observe.html">LockedViewStateStore.observe</a> within a <a href="get-view-lifecycle-owner.html">getViewLifecycleOwner</a> as <a href="#">LifecycleOwner</a>
+This function can't be inlined since it's inside an interface.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="observe-data.html">observeData</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="../-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><a href="observe-data.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">observeData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateFragment$observeData(studio.forface.viewstatestore.LockedViewStateStore((studio.forface.viewstatestore.ViewStateFragment.observeData.V)), kotlin.Function1((studio.forface.viewstatestore.ViewStateFragment.observeData.V, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="observe-data.html#V"><span class="identifier">V</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Call <a href="../-locked-view-state-store/observe-data.html">LockedViewStateStore.observeData</a> within a <a href="get-view-lifecycle-owner.html">getViewLifecycleOwner</a> as <a href="#">LifecycleOwner</a>
+This function can't be inlined since it's inside an interface.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

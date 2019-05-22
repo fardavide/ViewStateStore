@@ -1,0 +1,165 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ViewState - viewstatestore</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="./index.html">ViewState</a><br/>
+<br/>
+<h1>ViewState</h1>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">ViewState</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>This class hold <em>data</em> for <a href="../-view-state-store/index.html">ViewStateStore</a>.
+The <a href="data.html">data</a> could be a <a href="-success/index.html">Success</a>, an <a href="-error/index.html">Error</a>, a <a href="-loading/index.html">Loading</a> or <a href="-none/index.html">None</a></p>
+<h3>Parameters</h3>
+<p><a name="T"></a>
+<code>T</code> - the type of the <a href="-success/index.html">Success</a> data</p>
+<p><strong>Author</strong><br/>
+Davide Giuseppe Farella</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-error/index.html">Error</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Error</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">&gt;</span></code>
+<p>A class that represents a failure and will contains the relative <a href="-error/throwable.html">throwable</a>.
+Inherit from <a href="./index.html">ViewState</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-loading/index.html">Loading</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">Loading</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">&gt;</span></code>
+<p>A class that represents the loading state and will contains <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a>
+Inherit from <a href="./index.html">ViewState</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-none/index.html">None</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">None</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">&gt;</span></code>
+<p>A class that represents the unknown state and will contains <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a>
+Inherit from <a href="./index.html">ViewState</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-success/index.html">Success</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Success</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="-success/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>A class that represents the success and will contains the <a href="-success/index.html#T">data</a>
+Inherit from <a href="./index.html">ViewState</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="data.html">data</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">data</span><span class="symbol">: </span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">?</span></code>
+<p>An instance of <a href="index.html#T">T</a> that will be available in case of <a href="-success/index.html">Success</a>, else it will be null</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="do-on-data.html">doOnData</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><s><span class="identifier">doOnData</span></s><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState$doOnData(kotlin.Function1((studio.forface.viewstatestore.ViewState.T, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Execute an <a href="do-on-data.html#studio.forface.viewstatestore.ViewState$doOnData(kotlin.Function1((studio.forface.viewstatestore.ViewState.T, kotlin.Unit)))/action">action</a> in case of <a href="-success/index.html">Success</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="do-on-error.html">doOnError</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><s><span class="identifier">doOnError</span></s><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState$doOnError(kotlin.Function1((studio.forface.viewstatestore.ViewState.Error, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="-error/index.html"><span class="identifier">ViewState.Error</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Execute an <a href="do-on-error.html#studio.forface.viewstatestore.ViewState$doOnError(kotlin.Function1((studio.forface.viewstatestore.ViewState.Error, kotlin.Unit)))/action">action</a> in case of <a href="-error/index.html">Error</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="do-on-loading-change.html">doOnLoadingChange</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><s><span class="identifier">doOnLoadingChange</span></s><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState$doOnLoadingChange(kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">isLoading</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Execute an <a href="do-on-loading-change.html#studio.forface.viewstatestore.ViewState$doOnLoadingChange(kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/action">action</a> whether is <a href="-loading/index.html">Loading</a> or not</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="map.html">map</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">map</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState$map(kotlin.Function1((studio.forface.viewstatestore.ViewState.T, studio.forface.viewstatestore.ViewState.map.R)))/mapper">mapper</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="map.html#R"><span class="identifier">R</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="map.html#R"><span class="identifier">R</span></a><span class="symbol">&gt;</span></code>
+<p>A function for map the current <a href="data.html">data</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-error/index.html">Error</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Error</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">&gt;</span></code>
+<p>A class that represents a failure and will contains the relative <a href="-error/throwable.html">throwable</a>.
+Inherit from <a href="./index.html">ViewState</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-loading/index.html">Loading</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">Loading</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">&gt;</span></code>
+<p>A class that represents the loading state and will contains <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a>
+Inherit from <a href="./index.html">ViewState</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-none/index.html">None</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">None</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html"><span class="identifier">Nothing</span></a><span class="symbol">&gt;</span></code>
+<p>A class that represents the unknown state and will contains <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a>
+Inherit from <a href="./index.html">ViewState</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-success/index.html">Success</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Success</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="-success/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>A class that represents the success and will contains the <a href="-success/index.html#T">data</a>
+Inherit from <a href="./index.html">ViewState</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

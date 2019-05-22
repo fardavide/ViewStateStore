@@ -1,0 +1,168 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>studio.forface.viewstatestore.paging - paging</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">paging</a>&nbsp;/&nbsp;<a href="./index.html">studio.forface.viewstatestore.paging</a><br/>
+<br/>
+<h2>Package studio.forface.viewstatestore.paging</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-locked-paged-view-state-store/index.html">LockedPagedViewStateStore</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">LockedPagedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">LockedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">PagedList</span><span class="symbol">&lt;</span><a href="-locked-paged-view-state-store/index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>A Locked <code>ViewStateStore</code> that support Android's Paging</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-paged-view-state-observer.html">PagedViewStateObserver</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">PagedViewStateObserver</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ViewStateObserver</span><span class="symbol">&lt;</span><span class="identifier">PagedList</span><span class="symbol">&lt;</span><a href="-paged-view-state-observer.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>A <a href="#">ViewStateObserver</a> that supports Android's Paging.
+It observes a <code>LiveData</code> of <a href="-paged-view-state-observer.html#V">V</a> created by a <a href="#">DataSource.Factory</a> of <a href="-paged-view-state-observer.html#V">V</a> and deliver results to itself</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-paged-view-state-store/index.html">PagedViewStateStore</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">PagedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-locked-paged-view-state-store/index.html"><span class="identifier">LockedPagedViewStateStore</span></a><span class="symbol">&lt;</span><a href="-paged-view-state-store/index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="-paged-view-state-store-scope/index.html"><span class="identifier">PagedViewStateStoreScope</span></a></code>
+<p>A <code>ViewStateStore</code> that support Android's Paging</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-paged-view-state-store-scope/index.html">PagedViewStateStoreScope</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">PagedViewStateStoreScope</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ViewStateStoreScope</span></code>
+<p>Only entities that implements this interface will be able to call <code>set</code> and <code>post</code> methods of
+<a href="-locked-paged-view-state-store/index.html">LockedPagedViewStateStore</a>,
+This is also implemented by <a href="-paged-view-state-store/index.html">PagedViewStateStore</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Type Aliases</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-view-state-store-scope.html">ViewStateStoreScope</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">ViewStateStoreScope</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="-paged-view-state-store-scope/index.html"><span class="identifier">PagedViewStateStoreScope</span></a></code>
+<p>Typealias for <a href="-paged-view-state-store-scope/index.html">PagedViewStateStoreScope</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="studio.forface.viewstatestore.-view-state-store/index.html">studio.forface.viewstatestore.ViewStateStore</a></p>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="post-data.html">postData</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="-paged-view-state-store/index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><a href="post-data.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$postData(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.postData.V)), androidx.paging.PagedList((studio.forface.viewstatestore.paging.postData.V)), kotlin.Boolean)/data">data</span><span class="symbol">:</span>&nbsp;<span class="identifier">PagedList</span><span class="symbol">&lt;</span><a href="post-data.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging$postData(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.postData.V)), androidx.paging.PagedList((studio.forface.viewstatestore.paging.postData.V)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="#">ViewState.Success</a> with the given <a href="post-data.html#studio.forface.viewstatestore.paging$postData(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.postData.V)), androidx.paging.PagedList((studio.forface.viewstatestore.paging.postData.V)), kotlin.Boolean)/data">data</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post-error.html">postError</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-paged-view-state-store/index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postError</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$postError(studio.forface.viewstatestore.paging.PagedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging$postError(studio.forface.viewstatestore.paging.PagedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging$postError(studio.forface.viewstatestore.paging.PagedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorResolution">errorResolution</span><span class="symbol">:</span>&nbsp;<span class="identifier">ErrorResolution</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="#">ViewState.Error</a> created from the given <a href="post-error.html#studio.forface.viewstatestore.paging$postError(studio.forface.viewstatestore.paging.PagedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post-loading.html">postLoading</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-paged-view-state-store/index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postLoading</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$postLoading(studio.forface.viewstatestore.paging.PagedViewStateStore((kotlin.Any)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="#">ViewState.Loading</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post-state.html">postState</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="-paged-view-state-store/index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><a href="post-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$postState(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.postState.V)), studio.forface.viewstatestore.ViewState((androidx.paging.PagedList((studio.forface.viewstatestore.paging.postState.V)))), kotlin.Boolean)/state">state</span><span class="symbol">:</span>&nbsp;<span class="identifier">ViewState</span><span class="symbol">&lt;</span><span class="identifier">PagedList</span><span class="symbol">&lt;</span><a href="post-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging$postState(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.postState.V)), studio.forface.viewstatestore.ViewState((androidx.paging.PagedList((studio.forface.viewstatestore.paging.postState.V)))), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="#">ViewState</a> with the given <a href="post-state.html#studio.forface.viewstatestore.paging$postState(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.postState.V)), studio.forface.viewstatestore.ViewState((androidx.paging.PagedList((studio.forface.viewstatestore.paging.postState.V)))), kotlin.Boolean)/state">state</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-data.html">setData</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="-paged-view-state-store/index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><a href="set-data.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$setData(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setData.V)), androidx.paging.PagedList((studio.forface.viewstatestore.paging.setData.V)), kotlin.Boolean)/data">data</span><span class="symbol">:</span>&nbsp;<span class="identifier">PagedList</span><span class="symbol">&lt;</span><a href="set-data.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging$setData(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setData.V)), androidx.paging.PagedList((studio.forface.viewstatestore.paging.setData.V)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="#">ViewState.Success</a> with the given <a href="set-data.html#studio.forface.viewstatestore.paging$setData(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setData.V)), androidx.paging.PagedList((studio.forface.viewstatestore.paging.setData.V)), kotlin.Boolean)/data">data</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-data-source.html">setDataSource</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="-paged-view-state-store/index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><a href="set-data-source.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><s><span class="identifier">setDataSource</span></s><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$setDataSource(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setDataSource.V)), androidx.paging.DataSource.Factory((kotlin.Int, studio.forface.viewstatestore.paging.setDataSource.V)))/factory">factory</span><span class="symbol">:</span>&nbsp;<span class="identifier">Factory</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">,</span>&nbsp;<a href="set-data-source.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set the <a href="#">DataSource.Factory</a> as data source of the requested data <a href="set-data-source.html#V">V</a> for the receiver <a href="-paged-view-state-store/index.html">PagedViewStateStore</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-error.html">setError</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-paged-view-state-store/index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setError</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$setError(studio.forface.viewstatestore.paging.PagedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging$setError(studio.forface.viewstatestore.paging.PagedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging$setError(studio.forface.viewstatestore.paging.PagedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorResolution">errorResolution</span><span class="symbol">:</span>&nbsp;<span class="identifier">ErrorResolution</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="#">ViewState.Error</a> created from the given <a href="set-error.html#studio.forface.viewstatestore.paging$setError(studio.forface.viewstatestore.paging.PagedViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-loading.html">setLoading</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-paged-view-state-store/index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setLoading</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$setLoading(studio.forface.viewstatestore.paging.PagedViewStateStore((kotlin.Any)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="#">ViewState.Loading</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-state.html">setState</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="-paged-view-state-store/index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><a href="set-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$setState(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setState.V)), studio.forface.viewstatestore.ViewState((androidx.paging.PagedList((studio.forface.viewstatestore.paging.setState.V)))), kotlin.Boolean)/state">state</span><span class="symbol">:</span>&nbsp;<span class="identifier">ViewState</span><span class="symbol">&lt;</span><span class="identifier">PagedList</span><span class="symbol">&lt;</span><a href="set-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging$setState(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setState.V)), studio.forface.viewstatestore.ViewState((androidx.paging.PagedList((studio.forface.viewstatestore.paging.setState.V)))), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="#">ViewState</a> with the given <a href="set-state.html#studio.forface.viewstatestore.paging$setState(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setState.V)), studio.forface.viewstatestore.ViewState((androidx.paging.PagedList((studio.forface.viewstatestore.paging.setState.V)))), kotlin.Boolean)/state">state</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

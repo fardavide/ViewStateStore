@@ -10,11 +10,13 @@ import studio.forface.viewstatestore.ViewState.Error.Companion.createDefault
 import studio.forface.viewstatestore.ViewState.Error.Companion.fromThrowable
 
 /**
- * @author Davide Giuseppe Farella.
  * This class hold _data_ for [ViewStateStore].
  * The [data] could be a [Success], an [Error], a [Loading] or [None]
  *
- * @param T the type of the [Success] data.
+ * @param T the type of the [Success] data
+ *
+ *
+ * @author Davide Giuseppe Farella
  */
 sealed class ViewState<out T> {
 
@@ -25,16 +27,25 @@ sealed class ViewState<out T> {
     abstract fun <R> map( mapper: (T) -> R ): ViewState<R>
 
     /** Execute an [action] in case of [Success] */
+    @Deprecated("Use ViewStateObserver.doOnData instead. This will be removed in 1.4",
+        ReplaceWith("if (this is Success) action(this)", "studio.forface.viewstatestore.ViewState.Success")
+    )
     inline fun doOnData( action: (T) -> Unit ) {
         if ( this is Success ) action( data )
     }
 
     /** Execute an [action] in case of [Error] */
+    @Deprecated("Use ViewStateObserver.doOnError instead. This will be removed in 1.4",
+        ReplaceWith("if (this is Error) action(this)", "studio.forface.viewstatestore.ViewState.Error")
+    )
     inline fun doOnError( action: (Error) -> Unit ) {
         if ( this is Error ) action( this )
     }
 
     /** Execute an [action] whether is [Loading] or not */
+    @Deprecated("Use ViewStateObserver.doOnLoadingChange instead. This will be removed in 1.4",
+        ReplaceWith("if (this is Loading) action(this)", "studio.forface.viewstatestore.ViewState.Loading")
+    )
     inline fun doOnLoadingChange( action: (isLoading: Boolean) -> Unit ) {
         action( this is Loading )
     }
@@ -93,7 +104,7 @@ sealed class ViewState<out T> {
              * @return a new instance of [ViewState.Error]
              * This function is used for instantiate a [ViewState.DefaultError] inside the library.
              */
-            internal fun createDefault( throwable: Throwable ): ViewState.Error = ViewState.DefaultError( throwable )
+            internal fun createDefault( throwable: Throwable ): Error = DefaultError( throwable )
         }
 
         /** @return a [String] message from [throwable] */
@@ -198,7 +209,7 @@ sealed class ViewState<out T> {
     }
 
     /** A default ( not customized ) [ViewState.Error] that only holds a [Throwable] */
-    internal class DefaultError( throwable: Throwable ): ViewState.Error( throwable )
+    internal class DefaultError( throwable: Throwable ): Error( throwable )
 
     /**
      * A class that represents the loading state and will contains [Nothing]

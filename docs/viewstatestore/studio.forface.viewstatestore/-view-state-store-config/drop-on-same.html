@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ViewStateStoreConfig.dropOnSame - viewstatestore</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="index.html">ViewStateStoreConfig</a>&nbsp;/&nbsp;<a href="./drop-on-same.html">dropOnSame</a><br/>
+<br/>
+<h1>dropOnSame</h1>
+<a name="studio.forface.viewstatestore.ViewStateStoreConfig$dropOnSame"></a>
+<code><span class="keyword">var </span><span class="identifier">dropOnSame</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>This <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> defines whether a publishing should be dropped if the same <a href="../-view-state/index.html">ViewState</a> is already the last
+<a href="../-locked-view-state-store/state.html">ViewStateStore.state</a></p>
+<p>E.g:</p>
+<ol><li><code>viewStateStore.setState( viewState1 )</code></li>
+<li><code>viewStateStore.postState( viewState2 )</code></li>
+<li><code>viewStateStore.setState( viewState1 )</code></li>
+<li><code>viewStateStore.setState( viewState1 )</code></li>
+<li><code>viewStateStore.postState( viewState1 )</code>
+Here <a href="../-view-state/index.html">ViewState</a>s at points <em>4</em> and <em>5</em> will be dropped if <a href="./drop-on-same.html">dropOnSame</a> is <code>true</code>, since <code>viewState1</code> it's
+already the last <a href="../-view-state/index.html">ViewState</a> published.</li>
+</ol>
+</BODY>
+</HTML>

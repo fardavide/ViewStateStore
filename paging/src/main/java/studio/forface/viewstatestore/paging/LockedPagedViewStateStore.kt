@@ -39,6 +39,7 @@ abstract class LockedPagedViewStateStore<V>(
 ) : LockedViewStateStore<PagedList<V>>( dropOnSame ) {
 
     /** A `LiveData` created by [DataSource.Factory] */
+    // TODO make abstract / move to constructor in 1.4
     internal lateinit var pagedLiveData: LiveData<PagedList<V>>
 
     /**

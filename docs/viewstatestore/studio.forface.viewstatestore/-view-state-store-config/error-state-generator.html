@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ViewStateStoreConfig.errorStateGenerator - viewstatestore</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="index.html">ViewStateStoreConfig</a>&nbsp;/&nbsp;<a href="./error-state-generator.html">errorStateGenerator</a><br/>
+<br/>
+<h1>errorStateGenerator</h1>
+<a name="studio.forface.viewstatestore.ViewStateStoreConfig$errorStateGenerator"></a>
+<code><span class="keyword">var </span><span class="identifier">errorStateGenerator</span><span class="symbol">: </span><a href="../-error-state-generator.html"><span class="identifier">ErrorStateGenerator</span></a></code>
+<p>This is a generator for custom <a href="../-view-state/-error/index.html">ViewState.Error</a></p>
+<p>Set a new value for override the default behaviour and create a custom <a href="../-view-state/-error/index.html">ViewState.Error</a> for your <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html">Throwable</a>.
+E.g. &gt;
+ViewStateStoreConfig.errorStateGenerator = { throwable -&gt; // this = ErrorStateFactory
+when( throwable ) {
+is ClassCastException -&gt; MyClassCastViewStateError
+else -&gt; /* this. */default
+}
+}</p>
+</BODY>
+</HTML>

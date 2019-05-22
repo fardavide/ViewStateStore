@@ -1,0 +1,4 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:studio.forface.viewstatestore.paging$from(studio.forface.viewstatestore.ViewStateStore.Companion, androidx.paging.DataSource.Factory((kotlin.Int, studio.forface.viewstatestore.paging.from.V)), kotlin.Int, kotlin.Boolean)studio.forface.viewstatestore.paging/studio.forface.viewstatestore.-view-state-store/from.html
+studio.forface.viewstatestore.paging

@@ -7,12 +7,23 @@ import androidx.paging.DataSource
 import androidx.paging.PagedList
 import studio.forface.viewstatestore.ErrorResolution
 import studio.forface.viewstatestore.ViewState
+import studio.forface.viewstatestore.ViewStateStore
+import studio.forface.viewstatestore.ViewStateStoreConfig
 
 /*
- * Author: Davide Giuseppe Farella
  * A set of extension functions
+ * Author: Davide Giuseppe Farella
  */
 
+// region factory
+fun <V> ViewStateStore.Companion.from(
+    dataSourceFactory: DataSource.Factory<Int, V>,
+    pageSize: Int = PagedViewStateStore.DEFAULT_PAGE_SIZE,
+    dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
+) = PagedViewStateStore( dataSourceFactory, pageSize, dropOnSame )
+// endregion
+
+// region set
 /**
  * Set a [ViewState] with the given [state].
  * @see PagedViewStateStoreScope.setState
@@ -26,6 +37,14 @@ fun <V> PagedViewStateStore<V>.setState( state: ViewState<PagedList<V>>, dropOnS
  * Set the [DataSource.Factory] as data source of the requested data [V] for the receiver [PagedViewStateStore]
  * @see PagedViewStateStoreScope.setDataSource
  */
+// TODO remove in 1.4
+@Deprecated("Use ViewStateStore.from for initialize with a DataSource.Factory. This will be removed in 1.4",
+    ReplaceWith(
+        "ViewStateStore.from(factory)",
+        "studio.forface.viewstatestore.paging.ViewStateStore",
+        "studio.forface.viewstatestore.paging.from"
+    )
+)
 @UiThread
 fun <V> PagedViewStateStore<V>.setDataSource( factory: DataSource.Factory<Int, V> ) {
     setDataSource( factory )
@@ -61,7 +80,9 @@ fun PagedViewStateStore<*>.setError(
 fun PagedViewStateStore<*>.setLoading( dropOnSame: Boolean = this.dropOnSame ) {
     setState( ViewState.Loading, dropOnSame )
 }
+// endregion
 
+// region post
 /**
  * Post a [ViewState] with the given [state].
  * @see PagedViewStateStoreScope.postState
@@ -97,3 +118,4 @@ fun PagedViewStateStore<*>.postError(
 fun PagedViewStateStore<*>.postLoading( dropOnSame: Boolean = this.dropOnSame ) {
     postState( ViewState.Loading, dropOnSame )
 }
+// endregion

@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>invoke - viewstatestore</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="./invoke.html">invoke</a><br/>
+<br/>
+<h1>invoke</h1>
+<a name="studio.forface.viewstatestore$invoke(studio.forface.viewstatestore.ViewStateStoreConfig, kotlin.Function1((studio.forface.viewstatestore.ViewStateStoreConfig, kotlin.Unit)))"></a>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="-view-state-store-config/index.html"><span class="identifier">ViewStateStoreConfig</span></a><span class="symbol">.</span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$invoke(studio.forface.viewstatestore.ViewStateStoreConfig, kotlin.Function1((studio.forface.viewstatestore.ViewStateStoreConfig, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="-view-state-store-config/index.html"><span class="identifier">ViewStateStoreConfig</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-view-state-store-config/index.html"><span class="identifier">ViewStateStoreConfig</span></a></code>
+<p>An override on <a href="./invoke.html">invoke</a> operator for set <a href="-view-state-store-config/index.html">ViewStateStoreConfig</a> in a more fluent way, using it as receiver of a
+lambda.</p>
+<p>E.g:</p>
+<p>ViewStateStoreConfig {
+dropOnSame = true
+errorStateGenerator = { throwable -&gt; // this = ErrorStateFactory
+when( throwable ) {
+is ClassCastException -&gt; MyClassCastViewStateError
+else -&gt; /* this. */default
+}
+}
+}</p>
+</BODY>
+</HTML>

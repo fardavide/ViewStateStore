@@ -31,7 +31,7 @@ import androidx.lifecycle.Observer
  * @see ViewStateObserver
  *
  *
- * This class is abstract and will be inherited from [AbsViewStateStore], that implements [ViewStateStoreScope] for
+ * This class is abstract and will be inherited from [ViewStateStore], that implements [ViewStateStoreScope] for
  * being able to call `set` functions and `post` functions without defining a [ViewStateStoreScope].
  *
  * @param V is the type of the [data]

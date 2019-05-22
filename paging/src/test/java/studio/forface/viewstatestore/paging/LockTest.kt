@@ -6,6 +6,7 @@ import androidx.paging.PagedList
 import io.mockk.mockk
 import org.junit.Rule
 import studio.forface.viewstatestore.LockedViewStateStore
+import studio.forface.viewstatestore.ViewStateStore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -23,14 +24,14 @@ internal class LockTest {
 
     @Test
     fun `test lock methods from LockedPagedViewStateStore can NOT be called without a PagedViewStateStoreScope`() {
-        val store = PagedViewStateStore<String>()
+        val store = ViewStateStore.from( mockDataSource )
         val lockedStore = store.lock
-        store.setDataSource( mockDataSource )
 
         lockedStore.pagedLiveData
         // lockedStore.setDataSource cannot be called
     }
 
+    @Suppress("DEPRECATION")
     @Test
     fun `test lock methods from LockedPagedViewStateStore can be called within a PagedViewStateStoreScope`() {
         class TestScope : PagedViewStateStoreScope {
@@ -50,7 +51,7 @@ internal class LockTest {
     fun `test type on PagedViewStateStore-lock`() {
         val mockPagedList = mockk<PagedList<Int>>()
 
-        val store = PagedViewStateStore<Int>()
+        @Suppress("DEPRECATION") val store = PagedViewStateStore<Int>()
         val lockedStore = store.lock
 
         store.setData( mockPagedList )

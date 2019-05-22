@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>PagedViewStateStore.<init> - paging</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">paging</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore.paging</a>&nbsp;/&nbsp;<a href="index.html">PagedViewStateStore</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="studio.forface.viewstatestore.paging.PagedViewStateStore$&lt;init&gt;(kotlin.Int, kotlin.Boolean)"></a>
+<code><span class="identifier">PagedViewStateStore</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging.PagedViewStateStore$<init>(kotlin.Int, kotlin.Boolean)/pageSize">pageSize</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;DEFAULT_PAGE_SIZE<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging.PagedViewStateStore$<init>(kotlin.Int, kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ViewStateStoreConfig.dropOnSame<span class="symbol">)</span></code>
+<p>A <code>ViewStateStore</code> that support Android's Paging</p>
+<p>Inherit from <a href="../-locked-paged-view-state-store/index.html">LockedPagedViewStateStore</a> and implements <a href="../-paged-view-state-store-scope/index.html">PagedViewStateStoreScope</a>, so <a href="#">setState</a> and <a href="#">postState</a>
+can be called without any additional scope.</p>
+<p>Use <a href="../-paged-view-state-store-scope/set-data-source.html">setDataSource</a> for generate your data <a href="index.html#V">V</a>
+instead of <a href="#">setData</a>, like you would do a "classic" <code>ViewStateStore</code>,</p>
+<h3>Parameters</h3>
+<p><a name="pageSize"></a>
+<code>pageSize</code> - the size of the page of the internal <a href="#">pagedLiveData</a>.</p>
+<p><a name="dropOnSame"></a>
+<code>dropOnSame</code> - This <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> defines whether a publishing should be dropped if the same <a href="#">ViewState</a> is already
+the last <a href="#">state</a></p>
+<p><strong>See Also</strong><br/>
+<p><a href="#">LivePagedListBuilder</a></p>
+<p><a href="#">ViewStateStoreConfig.dropOnSame</a></p>
+</p>
+<p><strong>Author</strong><br/>
+Davide Giuseppe Farella</p>
+</BODY>
+</HTML>

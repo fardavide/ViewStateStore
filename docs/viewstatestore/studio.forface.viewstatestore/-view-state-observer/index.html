@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ViewStateObserver - viewstatestore</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="./index.html">ViewStateObserver</a><br/>
+<br/>
+<h1>ViewStateObserver</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ViewStateObserver</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p><strong>Author</strong><br/>
+<p>Davide Giuseppe Farella.
+An observer for <a href="../-view-state/index.html">ViewState</a>.</p>
+
+
+<p>It will be returned as lambda receiver of <a href="../-locked-view-state-store/observe.html">ViewStateStore.observe</a> and <a href="../-locked-view-state-store/observe-forever.html">ViewStateStore.observeForever</a>.</p>
+</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ViewStateObserver</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="do-on-data.html">doOnData</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">doOnData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateObserver$doOnData(kotlin.Function1((studio.forface.viewstatestore.ViewStateObserver.V, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span></code>
+<p>Run <a href="do-on-data.html#studio.forface.viewstatestore.ViewStateObserver$doOnData(kotlin.Function1((studio.forface.viewstatestore.ViewStateObserver.V, kotlin.Unit)))/action">action</a> when data is received correctly</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="do-on-each.html">doOnEach</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">doOnEach</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateObserver$doOnEach(kotlin.Function1((studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.ViewStateObserver.V)), kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span></code>
+<p>Run <a href="do-on-each.html#studio.forface.viewstatestore.ViewStateObserver$doOnEach(kotlin.Function1((studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.ViewStateObserver.V)), kotlin.Unit)))/action">action</a> for every event</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="do-on-error.html">doOnError</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">doOnError</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateObserver$doOnError(kotlin.Function1((studio.forface.viewstatestore.ViewState.Error, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="../-view-state/-error/index.html"><span class="identifier">ViewState.Error</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span></code>
+<p>Run <a href="do-on-error.html#studio.forface.viewstatestore.ViewStateObserver$doOnError(kotlin.Function1((studio.forface.viewstatestore.ViewState.Error, kotlin.Unit)))/action">action</a> when an error occurs</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="do-on-loading-change.html">doOnLoadingChange</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">doOnLoadingChange</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewStateObserver$doOnLoadingChange(kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span></code>
+<p>Run <a href="do-on-loading-change.html#studio.forface.viewstatestore.ViewStateObserver$doOnLoadingChange(kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/action">action</a> when the loading state changes</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

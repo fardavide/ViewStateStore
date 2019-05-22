@@ -1,0 +1,251 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>studio.forface.viewstatestore - viewstatestore</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="./index.html">studio.forface.viewstatestore</a><br/>
+<br/>
+<h2>Package studio.forface.viewstatestore</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-error-state-factory/index.html">ErrorStateFactory</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ErrorStateFactory</span></code>
+<p>A class that only hold a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html">Throwable</a> for generate a "default" <a href="-view-state/-error/index.html">ViewState.Error</a> from <a href="-error-state-generator.html">ErrorStateGenerator</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-locked-view-state-store/index.html">LockedViewStateStore</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">LockedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>This class will store and handle the <a href="-view-state/index.html">ViewState</a> and submit it via a <a href="#">LiveData</a>.
+<code>ViewStateStore</code> will only deliver the last <a href="#">data</a> when the observer become active.
+This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> functions and <code>post</code> functions can only be called within <a href="-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-view-state/index.html">ViewState</a></p>
+</td>
+<td>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">ViewState</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>This class hold <em>data</em> for <a href="-view-state-store/index.html">ViewStateStore</a>.
+The <a href="-view-state/data.html">data</a> could be a <a href="-view-state/-success/index.html">Success</a>, an <a href="-view-state/-error/index.html">Error</a>, a <a href="-view-state/-loading/index.html">Loading</a> or <a href="-view-state/-none/index.html">None</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-view-state-activity/index.html">ViewStateActivity</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ViewStateActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-view-state-fragment/index.html">ViewStateFragment</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ViewStateFragment</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-view-state-observer/index.html">ViewStateObserver</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ViewStateObserver</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-view-state-store/index.html">ViewStateStore</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><a href="-view-state-store/index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="-view-state-store-scope/index.html"><span class="identifier">ViewStateStoreScope</span></a></code>
+<p>This class will store and handle the <a href="-view-state/index.html">ViewState</a> and submit it via a <code>LiveData</code>.
+<code>ViewStateStore</code> will only deliver the last <a href="#">data</a> when the observer become active.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-view-state-store-config/index.html">ViewStateStoreConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">object </span><span class="identifier">ViewStateStoreConfig</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ViewStateStoreScope</span></code>
+<p>Only entities that implements this interface will be able to call <code>set</code> and <code>post</code> methods of <a href="-locked-view-state-store/index.html">LockedViewStateStore</a>,
+This is also implemented by <a href="-view-state-store/index.html">ViewStateStore</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Exceptions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-no-resolution-exception.html">NoResolutionException</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">NoResolutionException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html"><span class="identifier">Exception</span></a></code>
+<p>An <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html">Exception</a> that represents that <a href="-view-state/-error/resolve.html">ViewState.Error.resolve</a> has been called, while no <a href="#">ViewState.Error.resolution</a>
+has been set.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Type Aliases</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-error-resolution.html">ErrorResolution</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">ErrorResolution</span>&nbsp;<span class="symbol">=</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Typealias for a lambda that resolves a <a href="-view-state/-error/index.html">ViewState.Error</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-error-state-generator.html">ErrorStateGenerator</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">ErrorStateGenerator</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="-error-state-factory/index.html"><span class="identifier">ErrorStateFactory</span></a><span class="symbol">.</span><span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="-view-state/-error/index.html"><span class="identifier">ViewState.Error</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="kotlin.-function2/index.html">kotlin.Function2</a></p>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="invoke.html">invoke</a></p>
+</td>
+<td>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><a href="-view-state-store-config/index.html"><span class="identifier">ViewStateStoreConfig</span></a><span class="symbol">.</span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$invoke(studio.forface.viewstatestore.ViewStateStoreConfig, kotlin.Function1((studio.forface.viewstatestore.ViewStateStoreConfig, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="-view-state-store-config/index.html"><span class="identifier">ViewStateStoreConfig</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-view-state-store-config/index.html"><span class="identifier">ViewStateStoreConfig</span></a></code>
+<p>An override on <a href="invoke.html">invoke</a> operator for set <a href="-view-state-store-config/index.html">ViewStateStoreConfig</a> in a more fluent way, using it as receiver of a
+lambda.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post-data.html">postData</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><a href="post-data.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$postData(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.postData.V)), studio.forface.viewstatestore.postData.V, kotlin.Boolean)/data">data</span><span class="symbol">:</span>&nbsp;<a href="post-data.html#V"><span class="identifier">V</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$postData(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.postData.V)), studio.forface.viewstatestore.postData.V, kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="-view-state/-success/index.html">ViewState.Success</a> with the given <a href="post-data.html#studio.forface.viewstatestore$postData(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.postData.V)), studio.forface.viewstatestore.postData.V, kotlin.Boolean)/data">data</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post-error.html">postError</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postError</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$postError(studio.forface.viewstatestore.ViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$postError(studio.forface.viewstatestore.ViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$postError(studio.forface.viewstatestore.ViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorResolution">errorResolution</span><span class="symbol">:</span>&nbsp;<a href="-error-resolution.html"><span class="identifier">ErrorResolution</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="-view-state/-error/index.html">ViewState.Error</a> created from the given <a href="post-error.html#studio.forface.viewstatestore$postError(studio.forface.viewstatestore.ViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post-loading.html">postLoading</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postLoading</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$postLoading(studio.forface.viewstatestore.ViewStateStore((kotlin.Any)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="-view-state/-loading/index.html">ViewState.Loading</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post-state.html">postState</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><a href="post-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">postState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$postState(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.postState.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.postState.V)), kotlin.Boolean)/state">state</span><span class="symbol">:</span>&nbsp;<a href="-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="post-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$postState(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.postState.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.postState.V)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Post a <a href="-view-state/index.html">ViewState</a> with the given <a href="post-state.html#studio.forface.viewstatestore$postState(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.postState.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.postState.V)), kotlin.Boolean)/state">state</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-data.html">setData</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><a href="set-data.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$setData(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.setData.V)), studio.forface.viewstatestore.setData.V, kotlin.Boolean)/data">data</span><span class="symbol">:</span>&nbsp;<a href="set-data.html#V"><span class="identifier">V</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$setData(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.setData.V)), studio.forface.viewstatestore.setData.V, kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="-view-state/-success/index.html">ViewState.Success</a> with the given <a href="set-data.html#studio.forface.viewstatestore$setData(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.setData.V)), studio.forface.viewstatestore.setData.V, kotlin.Boolean)/data">data</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-error.html">setError</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setError</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$setError(studio.forface.viewstatestore.ViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$setError(studio.forface.viewstatestore.ViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$setError(studio.forface.viewstatestore.ViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorResolution">errorResolution</span><span class="symbol">:</span>&nbsp;<a href="-error-resolution.html"><span class="identifier">ErrorResolution</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="-view-state/-error/index.html">ViewState.Error</a> created from the given <a href="set-error.html#studio.forface.viewstatestore$setError(studio.forface.viewstatestore.ViewStateStore((kotlin.Any)), kotlin.Throwable, kotlin.Boolean, kotlin.Function0((kotlin.Unit)))/errorThrowable">errorThrowable</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-loading.html">setLoading</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setLoading</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$setLoading(studio.forface.viewstatestore.ViewStateStore((kotlin.Any)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="-view-state/-loading/index.html">ViewState.Loading</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-state.html">setState</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><a href="set-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$setState(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.setState.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.setState.V)), kotlin.Boolean)/state">state</span><span class="symbol">:</span>&nbsp;<a href="-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="set-state.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$setState(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.setState.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.setState.V)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Set a <a href="-view-state/index.html">ViewState</a> with the given <a href="set-state.html#studio.forface.viewstatestore$setState(studio.forface.viewstatestore.ViewStateStore((studio.forface.viewstatestore.setState.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.setState.V)), kotlin.Boolean)/state">state</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-view-state.html">ViewState</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span> <span class="identifier">ViewState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$ViewState(studio.forface.viewstatestore.ViewState.T)/data">data</span><span class="symbol">:</span>&nbsp;<a href="-view-state.html#T"><span class="identifier">T</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-view-state/-success/index.html"><span class="identifier">ViewState.Success</span></a><span class="symbol">&lt;</span><a href="-view-state.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="from.html">from</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <span class="identifier">ViewStateStore.Companion</span><span class="symbol">.</span><span class="identifier">from</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, androidx.lifecycle.LiveData((studio.forface.viewstatestore.from.V)), kotlin.Boolean)/liveData">liveData</span><span class="symbol">:</span>&nbsp;<span class="identifier">LiveData</span><span class="symbol">&lt;</span><a href="from.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, androidx.lifecycle.LiveData((studio.forface.viewstatestore.from.V)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ViewStateStoreConfig.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><a href="from.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span></code>
+<p>Create a <a href="-view-state-store/index.html">ViewStateStore</a> from a <a href="#">LiveData</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
