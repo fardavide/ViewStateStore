@@ -1,16 +1,17 @@
 plugins {
-    id("com.android.library" )
-    id("kotlin-android" )
+    id( "com.android.library" )
+    id( "kotlin-android" )
 }
 
 android { applyAndroidConfig() }
 
 dependencies {
-    implementation( project(":viewstatestore" ) )
+    implementation( project( ":viewstatestore" ) )
     applyAndroidTests()
 
     api( Libs.Android.paging )
     androidTestImplementation( Libs.Android.paging_testing )
 }
 
-publish("viewstatestore-paging" )
+publish( "viewstatestore-paging" )
+applyDokka()

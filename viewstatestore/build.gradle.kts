@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.library" )
-    id("kotlin-android" )
+    id( "com.android.library" )
+    id( "kotlin-android" )
 }
 
 android { applyAndroidConfig() }
@@ -12,4 +12,5 @@ dependencies {
     api( Libs.Android.livedata )
 }
 
-publish("viewstatestore" )
+publish( "viewstatestore" )
+applyDokka()
