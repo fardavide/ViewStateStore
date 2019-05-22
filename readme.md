@@ -107,6 +107,29 @@ class CarsFragment: Fragment(), ViewStateFragment {
 }
 ```
 
-## Wiki
+
+
+### From external source
+
+A `ViewStateStore` can also be created from a `LiveData` or a `DataSource.Factory` ( see _paging_ artifact for last one ).
+
+```kotlin
+val carsLiveData: LiveData<Car> = roomDatabase.getCars()
+val cars = ViewStateStore.from( carsLiveData )
+```
+
+```kotlin
+val carsDataSource: DataSource.Factory<Int, Car> = roomDatabase.getCars()
+val cars = ViewStateStore.from( carsDataSource )
+```
+
+
+
+## [Wiki](https://4face-studi0.github.io/ViewStateStore/paging/)
 
 #### Full Wiki [here](https://github.com/4face-studi0/ViewStateStore/wiki)
+
+#### ViewStateStore Doc [here](https://4face-studi0.github.io/ViewStateStore/viewstatestore/)
+
+#### Paging Doc [here](https://4face-studi0.github.io/ViewStateStore/paging/)
+

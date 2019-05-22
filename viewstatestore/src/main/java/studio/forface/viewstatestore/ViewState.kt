@@ -24,9 +24,12 @@ sealed class ViewState<out T> {
     open val data: T? = null
 
     /** A function for map the current [data] */
+    // TODO remove in 1.4
+    @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
     abstract fun <R> map( mapper: (T) -> R ): ViewState<R>
 
     /** Execute an [action] in case of [Success] */
+    // TODO remove in 1.4
     @Deprecated("Use ViewStateObserver.doOnData instead. This will be removed in 1.4",
         ReplaceWith("if (this is Success) action(this)", "studio.forface.viewstatestore.ViewState.Success")
     )
@@ -35,6 +38,7 @@ sealed class ViewState<out T> {
     }
 
     /** Execute an [action] in case of [Error] */
+    // TODO remove in 1.4
     @Deprecated("Use ViewStateObserver.doOnError instead. This will be removed in 1.4",
         ReplaceWith("if (this is Error) action(this)", "studio.forface.viewstatestore.ViewState.Error")
     )
@@ -43,6 +47,7 @@ sealed class ViewState<out T> {
     }
 
     /** Execute an [action] whether is [Loading] or not */
+    // TODO remove in 1.4
     @Deprecated("Use ViewStateObserver.doOnLoadingChange instead. This will be removed in 1.4",
         ReplaceWith("if (this is Loading) action(this)", "studio.forface.viewstatestore.ViewState.Loading")
     )
@@ -55,6 +60,9 @@ sealed class ViewState<out T> {
      * Inherit from [ViewState]
      */
     data class Success<out T>( override val data: T ) : ViewState<T>() {
+        // TODO remove in 1.4
+        @Suppress("DeprecatedCallableAddReplaceWith")
+        @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
         override fun <R> map( mapper: (T) -> R ): ViewState<R> =
             Success( mapper( data ) )
     }
@@ -205,6 +213,9 @@ sealed class ViewState<out T> {
         /** Invoke [resolution] lambda if not `null`, else do nothing */
         fun tryToResolve() = resolution?.invoke()
 
+        // TODO remove in 1.4
+        @Suppress("DeprecatedCallableAddReplaceWith")
+        @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
         override fun <R> map( mapper: (Nothing) -> R ): ViewState<R> = this
     }
 
@@ -216,6 +227,9 @@ sealed class ViewState<out T> {
      * Inherit from [ViewState]
      */
     object Loading : ViewState<Nothing>() {
+        // TODO remove in 1.4
+       @Suppress("DeprecatedCallableAddReplaceWith")
+         @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
         override fun <R> map( mapper: (Nothing) -> R ): ViewState<R> = this
     }
 
@@ -224,13 +238,16 @@ sealed class ViewState<out T> {
      * Inherit from [ViewState]
      */
     object None : ViewState<Nothing>() {
+        // TODO remove in 1.4
+        @Suppress("DeprecatedCallableAddReplaceWith")
+        @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
         override fun <R> map( mapper: (Nothing) -> R ): ViewState<R> = this
     }
 }
 
 /** @constructor for [ViewState.Success] */
 @Suppress("FunctionName")
-fun <T> ViewState( data: T ) = ViewState.Success( data )
+fun <T> ViewState( data: T ) = Success( data )
 
 /** Typealias for a lambda that resolves a [ViewState.Error] */
 typealias ErrorResolution = () -> Unit
