@@ -1,16 +1,19 @@
 buildscript {
-    repositories( repos )
-    dependencies( classpathDependencies )
+    // Initialize versions of libraries
+    initVersions()
+
+    repositories(repos)
+    dependencies(classpathDependencies)
 }
 
 allprojects {
-    repositories( repos )
+    repositories(repos)
 }
 
 subprojects {
-    tasks.withType( Javadoc::class ).all { enabled = false }
+    tasks.withType(Javadoc::class).all { enabled = false }
 }
 
-tasks.register("clean", Delete::class.java ) {
-    delete( rootProject.buildDir )
+tasks.register("clean", Delete::class.java) {
+    delete(rootProject.buildDir)
 }

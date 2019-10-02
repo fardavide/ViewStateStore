@@ -29,7 +29,7 @@ sealed class ViewState<out T> {
     abstract fun <R> map( mapper: (T) -> R ): ViewState<R>
 
     /** Execute an [action] in case of [Success] */
-    // TODO remove in 1.4
+    // TODO internal in 1.4
     @Deprecated("Use ViewStateObserver.doOnData instead. This will be removed in 1.4",
         ReplaceWith("if (this is Success) action(this)", "studio.forface.viewstatestore.ViewState.Success")
     )
@@ -38,7 +38,7 @@ sealed class ViewState<out T> {
     }
 
     /** Execute an [action] in case of [Error] */
-    // TODO remove in 1.4
+    // TODO internal in 1.4
     @Deprecated("Use ViewStateObserver.doOnError instead. This will be removed in 1.4",
         ReplaceWith("if (this is Error) action(this)", "studio.forface.viewstatestore.ViewState.Error")
     )
@@ -47,7 +47,7 @@ sealed class ViewState<out T> {
     }
 
     /** Execute an [action] whether is [Loading] or not */
-    // TODO remove in 1.4
+    // TODO internal in 1.4
     @Deprecated("Use ViewStateObserver.doOnLoadingChange instead. This will be removed in 1.4",
         ReplaceWith("if (this is Loading) action(this)", "studio.forface.viewstatestore.ViewState.Loading")
     )

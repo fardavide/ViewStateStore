@@ -1,17 +1,26 @@
+import studio.forface.easygradle.dsl.android.*
+import studio.forface.easygradle.dsl.api
+import studio.forface.easygradle.dsl.implementation
+import studio.forface.easygradle.dsl.publish
+
 plugins {
-    id( "com.android.library" )
-    id( "kotlin-android" )
+    `android-library`
+    id("kotlin-android") // TODO: Unresolved ref :/ - `kotlin-android`
+    id("kotlin-android-extensions")// TODO: Unresolved ref :/ - `kotlin-android-extensions`
 }
 
 android { applyAndroidConfig() }
 
 dependencies {
-    implementation( project( ":viewstatestore" ) )
+    implementation(project(":viewstatestore"))
     applyAndroidTests()
 
-    api( Libs.Android.paging )
-    androidTestImplementation( Libs.Android.paging_testing )
+    api(`paging-runtime`)
+    androidTestImplementation(`paging-common`)
 }
 
-publish( "viewstatestore-paging" )
-applyDokka()
+dokkaAndroid()
+publish(baseBlock = defaultPublishConfig) {
+    projectName = "paging"
+    artifact = "viewstatestore-paging"
+}
