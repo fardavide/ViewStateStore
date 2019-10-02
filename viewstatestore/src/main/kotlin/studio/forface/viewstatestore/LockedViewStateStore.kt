@@ -6,6 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import studio.forface.viewstatestore.ViewState.*
 
 /**
  * This class will store and handle the [ViewState] and submit it via a [LiveData].
@@ -89,22 +90,21 @@ abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
         // Every time the observer is triggered for any reason ( loading change, data or error ),
         // if ViewState is Success, we store the new data then, in every case, if data is not
         // null, we deliver the data.
-        viewState.doOnData { data = it }
+        if (viewState is Success) data = viewState.data
         data?.let( onData )
 
         // Every time the observer is triggered for any reason ( loading change, data or error ),
         // we instantiate a new NULL ViewState.Error on newError then, if ViewState is Error
         // we store the value in newError then, if error is different from lastError, we
         // deliver it if not Null and store in lastError.
-        var newError: ViewState.Error? = null
-        viewState.doOnError { error -> newError = error }
+        val newError = viewState as? Error
         if ( newError !== lastError ) {
             newError?.let( onError )
             lastError = newError
         }
 
         // If View.Stare is a loading change, we deliver it.
-        viewState.doOnLoadingChange( onLoadingChange )
+        onLoadingChange(viewState is Loading)
     }
 
     /**
