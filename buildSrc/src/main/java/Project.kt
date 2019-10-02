@@ -17,8 +17,8 @@ object Project {
         major =     1,
         minor =     3,
         channel =   Beta,
-        patch =     1,
-        build =     2
+        patch =     2,
+        build =     0
     )
 
     /** The Android API level as target of the App */

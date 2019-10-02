@@ -80,10 +80,28 @@ interface ViewStateStoreScope {
 
     /**
      * Set a [ViewState.Success] with the given [data].
+     * The data will be delivered only once.
+     * @see setState
+     */
+    fun <V> LockedViewStateStore<V>.setOnce(data: V, dropOnSame: Boolean = this.dropOnSame) {
+        setDataOnce(data, dropOnSame)
+    }
+
+    /**
+     * Set a [ViewState.Success] with the given [data].
      * @see setState
      */
     fun <V> LockedViewStateStore<V>.setData(data: V, dropOnSame: Boolean = this.dropOnSame) {
         setState(ViewState.Success(data), dropOnSame)
+    }
+
+    /**
+     * Set a [ViewState.Success] with the given [data].
+     * The data will be delivered only once.
+     * @see setState
+     */
+    fun <V> LockedViewStateStore<V>.setDataOnce(data: V, dropOnSame: Boolean = this.dropOnSame) {
+        setState(ViewState.Success(data, singleEvent = true), dropOnSame)
     }
 
     /**
@@ -96,10 +114,28 @@ interface ViewStateStoreScope {
 
     /**
      * Post a [ViewState.Success] with the given [data].
+     * The data will be delivered only once.
+     * @see postState
+     */
+    fun <V> LockedViewStateStore<V>.postOnce(data: V, dropOnSame: Boolean = this.dropOnSame) {
+        postDataOnce(data, dropOnSame)
+    }
+
+    /**
+     * Post a [ViewState.Success] with the given [data].
      * @see postState
      */
     fun <V> LockedViewStateStore<V>.postData(data: V, dropOnSame: Boolean = this.dropOnSame) {
         postState(ViewState.Success(data), dropOnSame)
+    }
+
+    /**
+     * Post a [ViewState.Success] with the given [data].
+     * The data will be delivered only once.
+     * @see postState
+     */
+    fun <V> LockedViewStateStore<V>.postDataOnce(data: V, dropOnSame: Boolean = this.dropOnSame) {
+        postState(ViewState.Success(data, singleEvent = true), dropOnSame)
     }
 
     /**

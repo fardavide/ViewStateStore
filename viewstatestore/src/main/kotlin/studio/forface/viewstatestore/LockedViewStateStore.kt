@@ -55,11 +55,18 @@ abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
     private var data: V? = null
 
     /**
+     * This [List] will store the instance of the [ViewState], for
+     * [ViewState.Success.singleEvent], that has already been published, for do not publish them
+     * again
+     */
+    private val singleEvents = mutableListOf<Success<V>>()
+
+    /**
      * This property will store the last [ViewState.Error], so it won't be delivered every
      * time for every new [Observer] so, if for instance we rotate the screen, the last
      * error won't be delivered again.
      */
-    private var lastError: ViewState.Error? = null
+    private var lastError: Error? = null
 
     /** An instance of [MutableLiveData] of [ViewState] of [V] for dispatch [ViewState]'s */
     @PublishedApi
@@ -90,7 +97,15 @@ abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
         // Every time the observer is triggered for any reason ( loading change, data or error ),
         // if ViewState is Success, we store the new data then, in every case, if data is not
         // null, we deliver the data.
-        if (viewState is Success) data = viewState.data
+        if (viewState is Success) {
+            // Check if there is any instance of current data in `singleEventData`
+            data = if (singleEvents.any { it === viewState }) null else viewState.data
+
+            // If ViewState is single event and data has already been published, add it to
+            // `singleEventData`, so it won't be published again
+            if (viewState.singleEvent && liveData.hasActiveObservers())
+                singleEvents += viewState
+        }
         data?.let( onData )
 
         // Every time the observer is triggered for any reason ( loading change, data or error ),

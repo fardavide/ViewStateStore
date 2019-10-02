@@ -35,6 +35,7 @@ fun <V> PagedViewStateStore<V>.set(
 ) {
     setState(state, dropOnSame)
 }
+
 /**
  * Set a [ViewState] with the given [state].
  * @see PagedViewStateStoreScope.setState
@@ -117,6 +118,7 @@ fun <V> PagedViewStateStore<V>.post(
 ) {
     postState(state, dropOnSame)
 }
+
 /**
  * Post a [ViewState] with the given [state].
  * @see PagedViewStateStoreScope.postState

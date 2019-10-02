@@ -29,7 +29,7 @@ sealed class ViewState<out T> {
     abstract fun <R> map( mapper: (T) -> R ): ViewState<R>
 
     /** Execute an [action] in case of [Success] */
-    // TODO internal in 1.4
+    // TODO remove in 1.4
     @Deprecated("Use ViewStateObserver.doOnData instead. This will be removed in 1.4",
         ReplaceWith("if (this is Success) action(this)", "studio.forface.viewstatestore.ViewState.Success")
     )
@@ -38,7 +38,7 @@ sealed class ViewState<out T> {
     }
 
     /** Execute an [action] in case of [Error] */
-    // TODO internal in 1.4
+    // TODO remove in 1.4
     @Deprecated("Use ViewStateObserver.doOnError instead. This will be removed in 1.4",
         ReplaceWith("if (this is Error) action(this)", "studio.forface.viewstatestore.ViewState.Error")
     )
@@ -47,9 +47,9 @@ sealed class ViewState<out T> {
     }
 
     /** Execute an [action] whether is [Loading] or not */
-    // TODO internal in 1.4
+    // TODO remove in 1.4
     @Deprecated("Use ViewStateObserver.doOnLoadingChange instead. This will be removed in 1.4",
-        ReplaceWith("if (this is Loading) action(this)", "studio.forface.viewstatestore.ViewState.Loading")
+        ReplaceWith("action(this is Loading)", "studio.forface.viewstatestore.ViewState.Loading")
     )
     inline fun doOnLoadingChange( action: (isLoading: Boolean) -> Unit ) {
         action( this is Loading )
@@ -58,8 +58,23 @@ sealed class ViewState<out T> {
     /**
      * A class that represents the success and will contains the [data] [T]
      * Inherit from [ViewState]
+     *
+     * @param singleEvent if `true` this [ViewState] will be delivered only once, so it won't be
+     * delivered again when the `LifecycleOwner` back in an active state.
+     * Default is `false`
+     *
+     * @see setOnce
+     * @see postOnce
+     * @see setDataOnce
+     * @see postDataOnce
      */
-    data class Success<out T>( override val data: T ) : ViewState<T>() {
+    data class Success<out T> internal constructor(
+        override val data: T,
+        internal var singleEvent: Boolean
+    ) : ViewState<T>() {
+
+        constructor(data: T) : this(data, false)
+
         // TODO remove in 1.4
         @Suppress("DeprecatedCallableAddReplaceWith")
         @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")

@@ -58,7 +58,17 @@ fun <V> ViewStateStore<V>.setState(state: ViewState<V>, dropOnSame: Boolean = th
  */
 @UiThread
 fun <V> ViewStateStore<V>.set(data: V, dropOnSame: Boolean = this.dropOnSame) {
-    setState(ViewState.Success(data), dropOnSame)
+    set(data, dropOnSame)
+}
+
+/**
+ * Set a [ViewState.Success] with the given [data].
+ * The data will be delivered only once.
+ * @see ViewStateStoreScope.setState
+ */
+@UiThread
+fun <V> ViewStateStore<V>.setOnce(data: V, dropOnSame: Boolean = this.dropOnSame) {
+    setOnce(data, dropOnSame)
 }
 
 /**
@@ -67,7 +77,17 @@ fun <V> ViewStateStore<V>.set(data: V, dropOnSame: Boolean = this.dropOnSame) {
  */
 @UiThread
 fun <V> ViewStateStore<V>.setData(data: V, dropOnSame: Boolean = this.dropOnSame) {
-    setState(ViewState.Success(data), dropOnSame)
+    setData(data, dropOnSame)
+}
+
+/**
+ * Set a [ViewState.Success] with the given [data].
+ * The data will be delivered only once.
+ * @see ViewStateStoreScope.setState
+ */
+@UiThread
+fun <V> ViewStateStore<V>.setDataOnce(data: V, dropOnSame: Boolean = this.dropOnSame) {
+    setDataOnce(data, dropOnSame)
 }
 
 /**
@@ -115,7 +135,16 @@ fun <V> ViewStateStore<V>.post(state: ViewState<V>, dropOnSame: Boolean = this.d
  * @see ViewStateStoreScope.postState
  */
 fun <V> ViewStateStore<V>.post(data: V, dropOnSame: Boolean = this.dropOnSame) {
-    postState(ViewState.Success(data), dropOnSame)
+    post(data, dropOnSame)
+}
+
+/**
+ * Post a [ViewState.Success] with the given [data].
+ * The data will be delivered only once.
+ * @see ViewStateStoreScope.postState
+ */
+fun <V> ViewStateStore<V>.postOnce(data: V, dropOnSame: Boolean = this.dropOnSame) {
+    postOnce(data, dropOnSame)
 }
 
 /**
@@ -123,7 +152,16 @@ fun <V> ViewStateStore<V>.post(data: V, dropOnSame: Boolean = this.dropOnSame) {
  * @see ViewStateStoreScope.postState
  */
 fun <V> ViewStateStore<V>.postData(data: V, dropOnSame: Boolean = this.dropOnSame) {
-    postState(ViewState.Success(data), dropOnSame)
+    postData(data, dropOnSame)
+}
+
+/**
+ * Post a [ViewState.Success] with the given [data].
+ * The data will be delivered only once.
+ * @see ViewStateStoreScope.postState
+ */
+fun <V> ViewStateStore<V>.postDataOnce(data: V, dropOnSame: Boolean = this.dropOnSame) {
+    postDataOnce(data, dropOnSame)
 }
 
 /**
