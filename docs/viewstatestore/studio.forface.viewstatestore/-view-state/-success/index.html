@@ -11,6 +11,17 @@
 <code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Success</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
 <p>A class that represents the success and will contains the <a href="index.html#T">data</a>
 Inherit from <a href="../index.html">ViewState</a></p>
+<h3>Parameters</h3>
+<p><a name="singleEvent"></a>
+<code>singleEvent</code> - if <code>true</code> this <a href="../index.html">ViewState</a> will be delivered only once, so it won't be
+delivered again when the <code>LifecycleOwner</code> back in an active state.
+Default is <code>false</code></p>
+<p><strong>See Also</strong><br/>
+<p><a href="../../set-once.html">setOnce</a></p>
+<p><a href="../../post-once.html">postOnce</a></p>
+<p><a href="../../set-data-once.html">setDataOnce</a></p>
+<p><a href="../../post-data-once.html">postDataOnce</a></p>
+</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -19,10 +30,7 @@ Inherit from <a href="../index.html">ViewState</a></p>
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">Success</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Success$<init>(studio.forface.viewstatestore.ViewState.Success.T)/data">data</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">)</span></code>
-<p>A class that represents the success and will contains the <a href="index.html#T">data</a>
-Inherit from <a href="../index.html">ViewState</a></p>
-</td>
+<code><span class="identifier">Success</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Success$<init>(studio.forface.viewstatestore.ViewState.Success.T)/data">data</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -48,7 +56,7 @@ Inherit from <a href="../index.html">ViewState</a></p>
 <p><a href="map.html">map</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span> <span class="identifier">map</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Success$map(kotlin.Function1((studio.forface.viewstatestore.ViewState.Success.T, studio.forface.viewstatestore.ViewState.Success.map.R)))/mapper">mapper</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="map.html#R"><span class="identifier">R</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="map.html#R"><span class="identifier">R</span></a><span class="symbol">&gt;</span></code>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">R</span><span class="symbol">&gt;</span> <s><span class="identifier">map</span></s><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ViewState.Success$map(kotlin.Function1((studio.forface.viewstatestore.ViewState.Success.T, studio.forface.viewstatestore.ViewState.Success.map.R)))/mapper">mapper</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="map.html#R"><span class="identifier">R</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="map.html#R"><span class="identifier">R</span></a><span class="symbol">&gt;</span></code>
 <p>A function for map the current <a href="../data.html">data</a></p>
 </td>
 </tr>
