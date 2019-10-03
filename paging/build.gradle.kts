@@ -1,6 +1,7 @@
-import studio.forface.easygradle.dsl.android.*
+import studio.forface.easygradle.dsl.android.publishAndroid
 import studio.forface.easygradle.dsl.api
 import studio.forface.easygradle.dsl.implementation
+import studio.forface.easygradle.dsl.publish
 
 plugins {
     `android-library`
