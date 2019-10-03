@@ -1,8 +1,8 @@
 import studio.forface.easygradle.dsl.`kotlin-jdk7`
 import studio.forface.easygradle.dsl.android.`lifecycle-liveData`
 import studio.forface.easygradle.dsl.android.dokkaAndroid
+import studio.forface.easygradle.dsl.android.publishAndroid
 import studio.forface.easygradle.dsl.api
-import studio.forface.easygradle.dsl.publish
 
 plugins {
     `android-library`
@@ -21,7 +21,7 @@ dependencies {
 }
 
 dokkaAndroid()
-publish(baseBlock = defaultPublishConfig) {
+publishAndroid(defaultPublishConfig) {
     projectName = "viewstatestore"
     artifact = "viewstatestore"
 }
