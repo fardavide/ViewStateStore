@@ -1,7 +1,10 @@
+import studio.forface.easygradle.dsl.android.`paging-common`
+import studio.forface.easygradle.dsl.android.`paging-runtime`
+import studio.forface.easygradle.dsl.android.androidTestImplementation
 import studio.forface.easygradle.dsl.android.publishAndroid
 import studio.forface.easygradle.dsl.api
+import studio.forface.easygradle.dsl.dokka
 import studio.forface.easygradle.dsl.implementation
-import studio.forface.easygradle.dsl.publish
 
 plugins {
     `android-library`
@@ -19,7 +22,7 @@ dependencies {
     androidTestImplementation(`paging-common`)
 }
 
-dokkaAndroid()
+dokka()
 publishAndroid(defaultPublishConfig) {
     projectName = "paging"
     artifact = "viewstatestore-paging"
