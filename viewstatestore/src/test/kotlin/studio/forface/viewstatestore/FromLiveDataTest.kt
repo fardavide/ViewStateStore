@@ -2,6 +2,7 @@ package studio.forface.viewstatestore
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.switchMap
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.Rule
@@ -25,13 +26,12 @@ internal class FromLiveDataTest {
     }
 
     @Test
-    fun `ViewStateStore emits correctly`() {
+    fun `ViewStateStore emits correctly from MutableLiveData`() {
         val liveData = MutableLiveData<Int>()
         val vss = ViewStateStore.from(liveData)
 
-        // Setup observer
-        val observer = mockk<(Int) -> Unit>(relaxed = true)
         // Start Observing
+        val observer = mockk<(Int) -> Unit>(relaxed = true)
         vss.observeDataForever(observer)
 
         // Publish to ViewStateStore
@@ -47,5 +47,65 @@ internal class FromLiveDataTest {
         verify(exactly = 2) { observer(any()) }
         // Assert ViewStateStore has right value
         assertEquals(1, vss.unsafeState().data)
+    }
+
+    @Test
+    fun `LiveData_switchMap works correctly`() {
+        val s1 = MutableLiveData<Int>()
+        val s2 = MutableLiveData<Int>()
+        val m = s1.switchMap { v1 -> s2.map { v2 -> v1 * v2 } }
+
+        // Start Observing
+        val observer = mockk<(Int) -> Unit>(relaxed = true)
+        m.observeForever(observer)
+
+        verify(exactly = 0) { observer(any()) }
+
+        // Verity very first emit
+        s1.value = 1
+        verify(exactly = 0) { observer(any()) }
+        s2.value = 1
+        verify(exactly = 1) { observer(any()) }
+        verify(exactly = 1) { observer(1) }
+
+        // Verify emit on s1
+        s1.value = 2
+        verify(exactly = 2) { observer(any()) }
+        verify(exactly = 1) { observer(2) }
+
+        // Verify emit on s2
+        s2.value = 2
+        verify(exactly = 3) { observer(any()) }
+        verify(exactly = 1) { observer(4) }
+    }
+
+    @Test
+    fun `ViewStateStore emits correctly from LiveData_switchMap`() {
+        val s1 = MutableLiveData<Int>()
+        val s2 = MutableLiveData<Int>()
+        val m = ViewStateStore.from(s1.switchMap { v1 -> s2.map { v2 -> v1 * v2 } })
+
+        // Start Observing
+        val observer = mockk<(Int) -> Unit>(relaxed = true)
+        m.observeDataForever(observer)
+
+        verify(exactly = 0) { observer(any()) }
+
+        // Verity very first emit
+        s1.value = 1
+        verify(exactly = 0) { observer(any()) }
+        s2.value = 1
+        verify(exactly = 1) { observer(any()) }
+        verify(exactly = 1) { observer(1) }
+
+        // Verify emit on s1
+        s1.value = 2
+        verify(exactly = 2) { observer(any()) }
+        verify(exactly = 1) { observer(2) }
+
+        // Verify emit on s2
+        s2.value = 2
+        verify(exactly = 3) { observer(any()) }
+        verify(exactly = 1) { observer(4) }
     }
 }
