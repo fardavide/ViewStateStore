@@ -31,12 +31,17 @@ import studio.forface.viewstatestore.ViewStateStoreConfig
  */
 class PagedViewStateStore<V>
 // TODO remove in 1.4
-@Deprecated("Use ViewStateStore.from for initialize with a DataSource.Factory. This will be removed in 1.4",
-    ReplaceWith("ViewStateStore.from(myDataSourceFactory)", "studio.forface.viewstatestore.ViewStateStore"))
-constructor (
+@Deprecated(
+    "Use ViewStateStore.from for initialize with a DataSource.Factory. This will be removed in 1.4",
+    ReplaceWith(
+        "ViewStateStore.from(myDataSourceFactory)",
+        "studio.forface.viewstatestore.ViewStateStore"
+    )
+)
+constructor(
     pageSize: Int = DEFAULT_PAGE_SIZE,
     dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
-) : LockedPagedViewStateStore<V>( pageSize, dropOnSame ), PagedViewStateStoreScope {
+) : LockedPagedViewStateStore<V>(pageSize, dropOnSame), PagedViewStateStoreScope {
 
     /**
      * @return [LockedPagedViewStateStore] obtained by casting `this` instance.
@@ -62,8 +67,8 @@ constructor (
         dataSourceFactory: DataSource.Factory<Int, V>,
         pageSize: Int = DEFAULT_PAGE_SIZE,
         dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
-    ) : this( pageSize, dropOnSame ) {
-        setDataSource( dataSourceFactory )
+    ) : this(pageSize, dropOnSame) {
+        setDataSource(dataSourceFactory)
     }
 
     internal companion object {
