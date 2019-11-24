@@ -31,7 +31,8 @@ import studio.forface.viewstatestore.ViewStateStoreConfig
  */
 class PagedViewStateStore<V>
 // TODO remove in 1.4
-@Deprecated("Use ViewStateStore.from for initialize with a DataSource.Factory. This will be removed in 1.4")
+@Deprecated("Use ViewStateStore.from for initialize with a DataSource.Factory. This will be removed in 1.4",
+    ReplaceWith("ViewStateStore.from(myDataSourceFactory)", "studio.forface.viewstatestore.ViewStateStore"))
 constructor (
     pageSize: Int = DEFAULT_PAGE_SIZE,
     dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
