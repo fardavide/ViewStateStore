@@ -38,14 +38,13 @@ Davide Giuseppe Farella</p>
 <tbody>
 <tr>
 <td>
-<p><a href="-init-.html">&lt;init&gt;</a></p>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
-<code><span class="identifier">LockedViewStateStore</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$<init>(kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span></code>
 <p>This class will store and handle the <a href="../-view-state/index.html">ViewState</a> and submit it via a <a href="#">LiveData</a>.
 <code>ViewStateStore</code> will only deliver the last <a href="#">data</a> when the observer become active.
 This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> functions and <code>post</code> functions can only be called within <a href="../-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
-</td>
+<code><span class="identifier">LockedViewStateStore</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$<init>(kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -54,65 +53,62 @@ This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> function
 <tbody>
 <tr>
 <td>
-<p><a href="handle-view-state.html">handleViewState</a></p>
+<h4><a href="handle-view-state.html">handleViewState</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">handleViewState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$handleViewState(studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.LockedViewStateStore.V)))/observer">observer</span><span class="symbol">:</span>&nbsp;<a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$handleViewState(studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.LockedViewStateStore.V)))/viewState">viewState</span><span class="symbol">:</span>&nbsp;<a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Handle the delivery of a <a href="../-view-state/index.html">ViewState</a> though <a href="../-view-state-observer/index.html">ViewStateObserver</a></p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">handleViewState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$handleViewState(studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.LockedViewStateStore.V)))/observer">observer</span><span class="symbol">:</span>&nbsp;<a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$handleViewState(studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.LockedViewStateStore.V)))/viewState">viewState</span><span class="symbol">:</span>&nbsp;<a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="observe.html">observe</a></p>
+<h4><a href="observe.html">observe</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">observe</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observe(androidx.lifecycle.LifecycleOwner, kotlin.Function1((studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), kotlin.Unit)))/owner">owner</span><span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observe(androidx.lifecycle.LifecycleOwner, kotlin.Function1((studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">observe</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observe(androidx.lifecycle.LifecycleOwner, kotlin.Function1((studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), kotlin.Unit)))/owner">owner</span><span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observe(androidx.lifecycle.LifecycleOwner, kotlin.Function1((studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="observe-data.html">observeData</a></p>
+<h4><a href="observe-data.html">observeData</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">observeData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observeData(androidx.lifecycle.LifecycleOwner, kotlin.Function1((studio.forface.viewstatestore.LockedViewStateStore.V, kotlin.Unit)))/owner">owner</span><span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observeData(androidx.lifecycle.LifecycleOwner, kotlin.Function1((studio.forface.viewstatestore.LockedViewStateStore.V, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Observe the <a href="../-view-state-store/index.html">ViewStateStore</a> and trigger <a href="observe-data.html#studio.forface.viewstatestore.LockedViewStateStore$observeData(androidx.lifecycle.LifecycleOwner, kotlin.Function1((studio.forface.viewstatestore.LockedViewStateStore.V, kotlin.Unit)))/block">block</a> only on <a href="#">ViewStateObserver.onData</a></p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">observeData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observeData(androidx.lifecycle.LifecycleOwner, kotlin.Function1((studio.forface.viewstatestore.LockedViewStateStore.V, kotlin.Unit)))/owner">owner</span><span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observeData(androidx.lifecycle.LifecycleOwner, kotlin.Function1((studio.forface.viewstatestore.LockedViewStateStore.V, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">V</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="observe-data-forever.html">observeDataForever</a></p>
+<h4><a href="observe-data-forever.html">observeDataForever</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">observeDataForever</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observeDataForever(kotlin.Function1((studio.forface.viewstatestore.LockedViewStateStore.V, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Observe the <a href="../-view-state-store/index.html">ViewStateStore</a> and trigger <a href="observe-data-forever.html#studio.forface.viewstatestore.LockedViewStateStore$observeDataForever(kotlin.Function1((studio.forface.viewstatestore.LockedViewStateStore.V, kotlin.Unit)))/block">block</a> only on <a href="#">ViewStateObserver.onData</a></p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">observeDataForever</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observeDataForever(kotlin.Function1((studio.forface.viewstatestore.LockedViewStateStore.V, kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">V</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="observe-forever.html">observeForever</a></p>
+<h4><a href="observe-forever.html">observeForever</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">observeForever</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observeForever(kotlin.Function1((studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">observeForever</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$observeForever(kotlin.Function1((studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), kotlin.Unit)))/block">block</span><span class="symbol">:</span>&nbsp;<a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="on-create-view-state-observer.html">onCreateViewStateObserver</a></p>
+<h4><a href="on-create-view-state-observer.html">onCreateViewStateObserver</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onCreateViewStateObserver</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$onCreateViewStateObserver(androidx.lifecycle.LifecycleOwner)/owner">owner</span><span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onCreateViewStateObserver</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$onCreateViewStateObserver(androidx.lifecycle.LifecycleOwner)/owner">owner</span><span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="state.html">state</a></p>
+<h4><a href="state.html">state</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">state</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">state</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="unsafe-state.html">unsafeState</a></p>
+<h4><a href="unsafe-state.html">unsafeState</a></h4>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">unsafeState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">fun </span><span class="identifier">unsafeState</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -121,13 +117,12 @@ This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> function
 <tbody>
 <tr>
 <td>
-<p><a href="../-view-state-store/index.html">ViewStateStore</a></p>
+<h4><a href="../-view-state-store/index.html">ViewStateStore</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">ViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><a href="../-view-state-store/index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-view-state-store-scope/index.html"><span class="identifier">ViewStateStoreScope</span></a></code>
 <p>This class will store and handle the <a href="../-view-state/index.html">ViewState</a> and submit it via a <code>LiveData</code>.
 <code>ViewStateStore</code> will only deliver the last <a href="#">data</a> when the observer become active.</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">ViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-view-state-store-scope/index.html"><span class="identifier">ViewStateStoreScope</span></a></code></td>
 </tr>
 </tbody>
 </table>

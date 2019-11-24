@@ -8,7 +8,7 @@
 <a href="../../index.html">paging</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore.paging</a>&nbsp;/&nbsp;<a href="./index.html">LockedPagedViewStateStore</a><br/>
 <br/>
 <h1>LockedPagedViewStateStore</h1>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">LockedPagedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">LockedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">PagedList</span><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">LockedPagedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">LockedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">PagedList</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
 <p>A Locked <code>ViewStateStore</code> that support Android's Paging</p>
 <p>Inherit from <a href="#">LockedViewStateStore</a></p>
 <p>Use <a href="../-paged-view-state-store-scope/set-data-source.html">PagedViewStateStoreScope.setDataSource</a> for generate your data <a href="index.html#V">V</a> instead of
@@ -30,12 +30,11 @@ Davide Giuseppe Farella</p>
 <tbody>
 <tr>
 <td>
-<p><a href="-init-.html">&lt;init&gt;</a></p>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
 </td>
 <td>
-<code><span class="identifier">LockedPagedViewStateStore</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging.LockedPagedViewStateStore$<init>(kotlin.Int, kotlin.Boolean)/pageSize">pageSize</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;25<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging.LockedPagedViewStateStore$<init>(kotlin.Int, kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ViewStateStoreConfig.dropOnSame<span class="symbol">)</span></code>
 <p>A Locked <code>ViewStateStore</code> that support Android's Paging</p>
-</td>
+<code><span class="identifier">LockedPagedViewStateStore</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging.LockedPagedViewStateStore$<init>(kotlin.Int, kotlin.Boolean)/pageSize">pageSize</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;25<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging.LockedPagedViewStateStore$<init>(kotlin.Int, kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ViewStateStoreConfig.dropOnSame<span class="symbol">)</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -44,10 +43,10 @@ Davide Giuseppe Farella</p>
 <tbody>
 <tr>
 <td>
-<p><a href="on-create-view-state-observer.html">onCreateViewStateObserver</a></p>
+<h4><a href="on-create-view-state-observer.html">onCreateViewStateObserver</a></h4>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onCreateViewStateObserver</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging.LockedPagedViewStateStore$onCreateViewStateObserver(androidx.lifecycle.LifecycleOwner)/owner">owner</span><span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-paged-view-state-observer.html"><span class="identifier">PagedViewStateObserver</span></a><span class="symbol">&lt;</span><a href="index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onCreateViewStateObserver</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging.LockedPagedViewStateStore$onCreateViewStateObserver(androidx.lifecycle.LifecycleOwner)/owner">owner</span><span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-paged-view-state-observer.html"><span class="identifier">PagedViewStateObserver</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -56,12 +55,11 @@ Davide Giuseppe Farella</p>
 <tbody>
 <tr>
 <td>
-<p><a href="../-paged-view-state-store/index.html">PagedViewStateStore</a></p>
+<h4><a href="../-paged-view-state-store/index.html">PagedViewStateStore</a></h4>
 </td>
 <td>
-<code><span class="keyword">class </span><span class="identifier">PagedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LockedPagedViewStateStore</span></a><span class="symbol">&lt;</span><a href="../-paged-view-state-store/index.html#V"><span class="identifier">V</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-paged-view-state-store-scope/index.html"><span class="identifier">PagedViewStateStoreScope</span></a></code>
 <p>A <code>ViewStateStore</code> that support Android's Paging</p>
-</td>
+<code><span class="keyword">class </span><span class="identifier">PagedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">LockedPagedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-paged-view-state-store-scope/index.html"><span class="identifier">PagedViewStateStoreScope</span></a></code></td>
 </tr>
 </tbody>
 </table>
