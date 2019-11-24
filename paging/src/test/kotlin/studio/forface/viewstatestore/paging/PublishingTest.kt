@@ -28,32 +28,32 @@ internal class PublishingTest {
         val dsf = mockk<DataSource.Factory<Int, Int>> {
             every { create() } answers { mockk<PositionalDataSource<Int>>(relaxed = true) }
         }
-        val vss = ViewStateStore.from( dsf )
-        val observer = mockk<(ViewState<PagedList<Int>>) -> Unit>( relaxed = true )
+        val vss = ViewStateStore.from(dsf)
+        val observer = mockk<(ViewState<PagedList<Int>>) -> Unit>(relaxed = true)
 
         // Start observing
-        vss.observeForever { doOnEach( observer ) }
+        vss.observeForever { doOnEach(observer) }
 
         // Publish mock data to ViewStateStore
         val mockData = mockk<PagedList<Int>>()
-        vss.setData( mockData )
+        vss.setData(mockData)
         // Verify observer has been called once
-        verify( exactly = 1 ) { observer( any() ) }
+        verify(exactly = 1) { observer(any()) }
         // Assert ViewStateStore has right value
-        assertEquals( mockData, vss.unsafeState().data )
+        assertEquals(mockData, vss.unsafeState().data)
 
         // Publish loading to ViewStateStore
         vss.setLoading()
         // Verify observer has been called once
-        verify( exactly = 2 ) { observer( any() ) }
+        verify(exactly = 2) { observer(any()) }
         // Assert ViewStateStore has right value
-        assertEquals( ViewState.Loading, vss.unsafeState() )
+        assertEquals(ViewState.Loading, vss.unsafeState())
 
         // Publish loading to ViewStateStore
-        vss.setError( Exception() )
+        vss.setError(Exception())
         // Verify observer has been called twice
-        verify( exactly = 3 ) { observer( any() ) }
+        verify(exactly = 3) { observer(any()) }
         // Assert ViewStateStore has right value
-        assert( vss.unsafeState() is ViewState.Error )
+        assert(vss.unsafeState() is ViewState.Error)
     }
 }
