@@ -77,6 +77,11 @@ internal class FromLiveDataTest {
         s2.value = 2
         verify(exactly = 3) { observer(any()) }
         verify(exactly = 1) { observer(4) }
+
+        // Re-verify emit on s1
+        s1.value = 3
+        verify(exactly = 4) { observer(any()) }
+        verify(exactly = 1) { observer(6) }
     }
 
     @Test
@@ -107,5 +112,10 @@ internal class FromLiveDataTest {
         s2.value = 2
         verify(exactly = 3) { observer(any()) }
         verify(exactly = 1) { observer(4) }
+
+        // Re-verify emit on s1
+        s1.value = 3
+        verify(exactly = 4) { observer(any()) }
+        verify(exactly = 1) { observer(6) }
     }
 }
