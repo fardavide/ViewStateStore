@@ -21,31 +21,31 @@ internal class FromLiveDataTest {
     @Test
     fun `ViewStateStore is created correctly`() {
         val liveData = MutableLiveData<Boolean>()
-        ViewStateStore.from( liveData )
+        ViewStateStore.from(liveData)
     }
 
     @Test
     fun `ViewStateStore emits correctly`() {
         val liveData = MutableLiveData<Int>()
-        val vss = ViewStateStore.from( liveData )
+        val vss = ViewStateStore.from(liveData)
 
         // Setup observer
-        val observer = mockk<(Int) -> Unit>( relaxed = true )
+        val observer = mockk<(Int) -> Unit>(relaxed = true)
         // Start Observing
-        vss.observeDataForever( observer )
+        vss.observeDataForever(observer)
 
         // Publish to ViewStateStore
-        vss.setData( 0 )
+        vss.setData(0)
         // Verify observer has been called once
-        verify( exactly = 1 ) { observer( any() ) }
+        verify(exactly = 1) { observer(any()) }
         // Assert ViewStateStore has right value
-        assertEquals( 0, vss.unsafeState().data )
+        assertEquals(0, vss.unsafeState().data)
 
         // Publish to LiveData
         liveData.value = 1
         // Verify observer has been called twice
-        verify( exactly = 2 ) { observer( any() ) }
+        verify(exactly = 2) { observer(any()) }
         // Assert ViewStateStore has right value
-        assertEquals( 1, vss.unsafeState().data )
+        assertEquals(1, vss.unsafeState().data)
     }
 }
