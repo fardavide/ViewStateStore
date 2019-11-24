@@ -21,7 +21,8 @@ interface PagedViewStateStoreScope : ViewStateStoreScope {
      * [LockedPagedViewStateStore]
      */
     // TODO remove in 1.4
-    @Deprecated("Use ViewStateStore.from for initialize with a DataSource.Factory. This will be removed in 1.4",
+    @Deprecated(
+        "Use ViewStateStore.from for initialize with a DataSource.Factory. This will be removed in 1.4",
         ReplaceWith(
             "ViewStateStore.from(factory)",
             "studio.forface.viewstatestore.paging.ViewStateStore",
@@ -29,8 +30,8 @@ interface PagedViewStateStoreScope : ViewStateStoreScope {
         )
     )
     @UiThread
-    fun <V> LockedPagedViewStateStore<V>.setDataSource( factory: DataSource.Factory<Int, V> ) {
-        pagedLiveData = LivePagedListBuilder( factory, pageSize ).build()
+    fun <V> LockedPagedViewStateStore<V>.setDataSource(factory: DataSource.Factory<Int, V>) {
+        pagedLiveData = LivePagedListBuilder(factory, pageSize).build()
     }
 }
 
