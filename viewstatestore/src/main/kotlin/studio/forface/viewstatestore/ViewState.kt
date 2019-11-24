@@ -26,33 +26,42 @@ sealed class ViewState<out T> {
     /** A function for map the current [data] */
     // TODO remove in 1.4
     @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
-    abstract fun <R> map( mapper: (T) -> R ): ViewState<R>
+    abstract fun <R> map(mapper: (T) -> R): ViewState<R>
 
     /** Execute an [action] in case of [Success] */
     // TODO remove in 1.4
-    @Deprecated("Use ViewStateObserver.doOnData instead. This will be removed in 1.4",
-        ReplaceWith("if (this is Success) action(this)", "studio.forface.viewstatestore.ViewState.Success")
+    @Deprecated(
+        "Use ViewStateObserver.doOnData instead. This will be removed in 1.4",
+        ReplaceWith(
+            "if (this is Success) action(this)",
+            "studio.forface.viewstatestore.ViewState.Success"
+        )
     )
-    inline fun doOnData( action: (T) -> Unit ) {
-        if ( this is Success ) action( data )
+    inline fun doOnData(action: (T) -> Unit) {
+        if (this is Success) action(data)
     }
 
     /** Execute an [action] in case of [Error] */
     // TODO remove in 1.4
-    @Deprecated("Use ViewStateObserver.doOnError instead. This will be removed in 1.4",
-        ReplaceWith("if (this is Error) action(this)", "studio.forface.viewstatestore.ViewState.Error")
+    @Deprecated(
+        "Use ViewStateObserver.doOnError instead. This will be removed in 1.4",
+        ReplaceWith(
+            "if (this is Error) action(this)",
+            "studio.forface.viewstatestore.ViewState.Error"
+        )
     )
-    inline fun doOnError( action: (Error) -> Unit ) {
-        if ( this is Error ) action( this )
+    inline fun doOnError(action: (Error) -> Unit) {
+        if (this is Error) action(this)
     }
 
     /** Execute an [action] whether is [Loading] or not */
     // TODO remove in 1.4
-    @Deprecated("Use ViewStateObserver.doOnLoadingChange instead. This will be removed in 1.4",
+    @Deprecated(
+        "Use ViewStateObserver.doOnLoadingChange instead. This will be removed in 1.4",
         ReplaceWith("action(this is Loading)", "studio.forface.viewstatestore.ViewState.Loading")
     )
-    inline fun doOnLoadingChange( action: (isLoading: Boolean) -> Unit ) {
-        action( this is Loading )
+    inline fun doOnLoadingChange(action: (isLoading: Boolean) -> Unit) {
+        action(this is Loading)
     }
 
     /**
@@ -78,8 +87,8 @@ sealed class ViewState<out T> {
         // TODO remove in 1.4
         @Suppress("DeprecatedCallableAddReplaceWith")
         @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
-        override fun <R> map( mapper: (T) -> R ): ViewState<R> =
-            Success( mapper( data ) )
+        override fun <R> map(mapper: (T) -> R): ViewState<R> =
+            Success(mapper(data))
     }
 
     /**
@@ -114,24 +123,27 @@ sealed class ViewState<out T> {
         companion object {
 
             /** @return an instance of [ViewState.Error] with an OPTIONAL [ErrorResolution] */
-            fun fromThrowable( throwable: Throwable, resolution: ErrorResolution? = null ) =
-                    create( throwable ).appendResolution( resolution )
+            fun fromThrowable(throwable: Throwable, resolution: ErrorResolution? = null) =
+                create(throwable).appendResolution(resolution)
 
             /**
              * @return an instance of [ViewState.Error] created from [ErrorStateGenerator] with the given [Throwable]
              */
-            private fun create( throwable: Throwable ) =
-                ViewStateStoreConfig.errorStateGenerator( ErrorStateFactory( throwable ), throwable )
+            private fun create(throwable: Throwable) =
+                ViewStateStoreConfig.errorStateGenerator(ErrorStateFactory(throwable), throwable)
 
             /**
              * @return a new instance of [ViewState.Error]
              * This function is used for instantiate a [ViewState.DefaultError] inside the library.
              */
-            internal fun createDefault( throwable: Throwable ): Error = DefaultError( throwable )
+            internal fun createDefault(throwable: Throwable): Error = DefaultError(throwable)
         }
 
         /** @return a [String] message from [throwable] */
-        private val throwableMessage: String get() = with( throwable ) { localizedMessage ?: message ?: "error" }
+        private val throwableMessage: String
+            get() = with(throwable) {
+                localizedMessage ?: message ?: "error"
+            }
 
         /** Strong reference of [Array] of [Any] to homonym vararg in primary constructor */
         private val customMessageResArgs: Array<Any> = customMessageResArgs.toList().toTypedArray()
@@ -153,7 +165,7 @@ sealed class ViewState<out T> {
          * @param throwable
          * @see ViewState.Error.throwable
          */
-        internal constructor( throwable: Throwable ) : this( throwable,null,null )
+        internal constructor(throwable: Throwable) : this(throwable, null, null)
 
         /**
          * @constructor PROTECTED that takes a [Throwable] and a [CharSequence]
@@ -167,7 +179,7 @@ sealed class ViewState<out T> {
         protected constructor(
             throwable: Throwable,
             customMessage: CharSequence
-        ) : this( throwable, customMessage,null )
+        ) : this(throwable, customMessage, null)
 
         /**
          * @constructor PROTECTED that takes a [Throwable] a [StringRes] and a vararg of [Any]
@@ -185,22 +197,22 @@ sealed class ViewState<out T> {
             throwable: Throwable,
             @StringRes customMessageRes: Int,
             vararg args: Any
-        ) : this( throwable,null, customMessageRes, args )
+        ) : this(throwable, null, customMessageRes, args)
 
 
         /**
          * @return a [CharSequence] trying to resolve from [customMessage] if not `null`, else [customMessageRes] with
          * [customMessageResArgs] if not `null`, else [throwableMessage]
          */
-        fun getMessage( context: Context ) = getMessage( context.resources )
+        fun getMessage(context: Context) = getMessage(context.resources)
 
         /**
          * @return a [CharSequence] trying to resolve from [customMessage] if not `null`, else [customMessageRes] with
          * [customMessageResArgs] if not `null`, else [throwableMessage]
          */
-        fun getMessage( resources: Resources ): CharSequence {
+        fun getMessage(resources: Resources): CharSequence {
             return customMessage
-                ?: customMessageRes?.let { resources.getString( it, * customMessageResArgs ) }
+                ?: customMessageRes?.let { resources.getString(it, * customMessageResArgs) }
                 ?: throwableMessage
         }
 
@@ -212,7 +224,7 @@ sealed class ViewState<out T> {
          *
          * @return this [ViewState.Error]
          */
-        fun appendResolution( resolution: ErrorResolution? ) = apply {
+        fun appendResolution(resolution: ErrorResolution?) = apply {
             this.resolution = resolution
         }
 
@@ -223,7 +235,7 @@ sealed class ViewState<out T> {
          * Invoke [resolution] lambda
          * @throws NoResolutionException if [resolution] is `null`
          */
-        fun resolve() = resolution?.invoke() ?: throw NoResolutionException( this )
+        fun resolve() = resolution?.invoke() ?: throw NoResolutionException(this)
 
         /** Invoke [resolution] lambda if not `null`, else do nothing */
         fun tryToResolve() = resolution?.invoke()
@@ -231,11 +243,11 @@ sealed class ViewState<out T> {
         // TODO remove in 1.4
         @Suppress("DeprecatedCallableAddReplaceWith")
         @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
-        override fun <R> map( mapper: (Nothing) -> R ): ViewState<R> = this
+        override fun <R> map(mapper: (Nothing) -> R): ViewState<R> = this
     }
 
     /** A default ( not customized ) [ViewState.Error] that only holds a [Throwable] */
-    internal class DefaultError( throwable: Throwable ): Error( throwable )
+    internal class DefaultError(throwable: Throwable) : Error(throwable)
 
     /**
      * A class that represents the loading state and will contains [Nothing]
@@ -243,9 +255,9 @@ sealed class ViewState<out T> {
      */
     object Loading : ViewState<Nothing>() {
         // TODO remove in 1.4
-       @Suppress("DeprecatedCallableAddReplaceWith")
-         @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
-        override fun <R> map( mapper: (Nothing) -> R ): ViewState<R> = this
+        @Suppress("DeprecatedCallableAddReplaceWith")
+        @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
+        override fun <R> map(mapper: (Nothing) -> R): ViewState<R> = this
     }
 
     /**
@@ -256,13 +268,13 @@ sealed class ViewState<out T> {
         // TODO remove in 1.4
         @Suppress("DeprecatedCallableAddReplaceWith")
         @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
-        override fun <R> map( mapper: (Nothing) -> R ): ViewState<R> = this
+        override fun <R> map(mapper: (Nothing) -> R): ViewState<R> = this
     }
 }
 
 /** @constructor for [ViewState.Success] */
 @Suppress("FunctionName")
-fun <T> ViewState( data: T ) = Success( data )
+fun <T> ViewState(data: T) = Success(data)
 
 /** Typealias for a lambda that resolves a [ViewState.Error] */
 typealias ErrorResolution = () -> Unit
