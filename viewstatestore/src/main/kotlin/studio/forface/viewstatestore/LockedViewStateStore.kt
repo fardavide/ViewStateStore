@@ -16,8 +16,8 @@ import studio.forface.viewstatestore.ViewState.*
  *
  * ### Publish:
  *
- * Use the [ViewStateStoreScope.setState] for deliver the [ViewState] on the current thread.
- * Use the [ViewStateStoreScope.postState] for deliver the [ViewState] on the main thread.
+ * Use [ViewStateStoreScope.setState] for deliver the [ViewState] on the current thread.
+ * Use [ViewStateStoreScope.postState] for deliver the [ViewState] on the main thread.
  * Use [state] for retrieve the last state.
  *
  *
@@ -32,6 +32,27 @@ import studio.forface.viewstatestore.ViewState.*
  * @see ViewStateObserver
  *
  *
+ * ### Get:
+ *
+ * Use [state] for get the current nullable [ViewState]
+ * Use [unsafeData] for get the current [ViewState]
+ * @throws KotlinNullPointerException if no [ViewState] is available
+ *
+ * Use [data] for get the current nullable [V]
+ * Use [unsafeData] for get the current [V]
+ * @throws KotlinNullPointerException if no [ViewState.data] is available
+ *
+ *
+ * ### Await:
+ *
+ * Use [await] for get [ViewState] as soon as available, through a `suspend` function
+ * Use [awaitNext] for get next published [ViewState], through a `suspend` function
+ *
+ * Use [awaitData] for get [V] as soon as available, through a `suspend` function
+ * Use [awaitNextData] for get next published [V], through a `suspend` function
+ *
+ * --- --- --- --- ---
+ *
  * This class is abstract and will be inherited from [ViewStateStore], that implements [ViewStateStoreScope] for
  * being able to call `set` functions and `post` functions without defining a [ViewStateStoreScope].
  *
@@ -39,13 +60,122 @@ import studio.forface.viewstatestore.ViewState.*
  *
  * @param dropOnSame This [Boolean] defines whether a publishing should be dropped if the same [ViewState] is already
  * the last [state]
- * @see ViewStateStoreConfig.dropOnSame
  * Default value is inherited from [ViewStateStoreConfig.dropOnSame]
+ * @see ViewStateStoreConfig.dropOnSame
  *
  *
  * @author Davide Giuseppe Farella
  */
 abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
+
+    // region observe
+    /**
+     * @see LiveData.observe with an [Observer] created with an instance of [ViewStateObserver]
+     * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
+     */
+    inline fun observe( owner: LifecycleOwner, block: ViewStateObserver<V>.() -> Unit ) {
+        val observer = `access$onCreateViewStateObserver`( owner )
+        observer.block()
+        liveData.observe( owner, observerWith( observer ) )
+    }
+
+    /**
+     * Observe the [ViewStateStore] and trigger [block] only on [ViewStateObserver.onData]
+     * @see LiveData.observe with an [Observer] created with an instance of [ViewStateObserver]
+     * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
+     */
+    inline fun observeData( owner: LifecycleOwner, crossinline block: (V) -> Unit ) {
+        val observer = `access$onCreateViewStateObserver`( owner )
+        observer.onData = { block( it ) }
+        liveData.observe( owner, observerWith( observer ) )
+    }
+
+    /**
+     * @see LiveData.observeForever with an [Observer] created with an instance of [ViewStateObserver]
+     * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
+     */
+    inline fun observeForever( block: ViewStateObserver<V>.() -> Unit ) {
+        val observer = `access$onCreateViewStateObserver`()
+        observer.block()
+        liveData.observeForever( observerWith( observer ) )
+    }
+
+    /**
+     * Observe the [ViewStateStore] and trigger [block] only on [ViewStateObserver.onData]
+     * @see LiveData.observeForever with an [Observer] created with an instance of [ViewStateObserver]
+     * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
+     */
+    inline fun observeDataForever( crossinline block: (V) -> Unit ) {
+        val observer = `access$onCreateViewStateObserver`()
+        observer.onData = { block( it ) }
+        liveData.observeForever( observerWith( observer ) )
+    }
+    // endregion
+
+    // region get
+    /** @return (OPTIONAL) current [ViewState] of the */
+    fun state() = liveData.value
+
+    /**
+     * @return current [ViewState] asserted as non null
+     * @throws KotlinNullPointerException if [state] is null.
+     */
+    fun unsafeState() = state()!!
+
+    /** @return (OPTIONAL) [V] from current [ViewState.data] */
+    fun data() = state()?.data
+
+    /**
+     * @return [V] current [ViewState.data] asserted as non null
+     * @throws KotlinNullPointerException if [state] is null.
+     */
+    fun unsafeData() = unsafeState().data!!
+    // endregion
+
+    // region await
+    /** @return [ViewState] as soon as available */
+    @Suppress("RedundantSuspendModifier")
+    suspend fun await(): ViewState<V> {
+        var s = state()
+        while (s == null) {
+            s = state()
+        }
+        return s
+    }
+
+    /** @return next published [ViewState] */
+    @Suppress("RedundantSuspendModifier")
+    suspend fun awaitNext(): ViewState<V> {
+        val old = state()
+        var s = old
+        while (s == null || s == old) {
+            s = state()
+        }
+        return s
+    }
+
+    /** @return [V] as soon as available */
+    @Suppress("RedundantSuspendModifier")
+    suspend fun awaitData(): V {
+        var d = data()
+        while (d == null) {
+            d = data()
+        }
+        return d
+    }
+
+    /** @return next published [V] */
+    @Suppress("RedundantSuspendModifier")
+    suspend fun awaitNextData(): V {
+        val old = data()
+        var d = old
+        while (d == null || d == old) {
+            d = data()
+        }
+        return d
+    }
+    // endregion
+
 
     /**
      * This property will store the last available [ViewState.data], so it will be emitted every
@@ -122,60 +252,9 @@ abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
         onLoadingChange(viewState is Loading)
     }
 
-    /**
-     * @see LiveData.observe with an [Observer] created with an instance of [ViewStateObserver]
-     * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
-     */
-    inline fun observe( owner: LifecycleOwner, block: ViewStateObserver<V>.() -> Unit ) {
-        val observer = `access$onCreateViewStateObserver`( owner )
-        observer.block()
-        liveData.observe( owner, observerWith( observer ) )
-    }
-
-    /**
-     * Observe the [ViewStateStore] and trigger [block] only on [ViewStateObserver.onData]
-     * @see LiveData.observe with an [Observer] created with an instance of [ViewStateObserver]
-     * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
-     */
-    inline fun observeData( owner: LifecycleOwner, crossinline block: (V) -> Unit ) {
-        val observer = `access$onCreateViewStateObserver`( owner )
-        observer.onData = { block( it ) }
-        liveData.observe( owner, observerWith( observer ) )
-    }
-
-    /**
-     * @see LiveData.observeForever with an [Observer] created with an instance of [ViewStateObserver]
-     * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
-     */
-    inline fun observeForever( block: ViewStateObserver<V>.() -> Unit ) {
-        val observer = `access$onCreateViewStateObserver`()
-        observer.block()
-        liveData.observeForever( observerWith( observer ) )
-    }
-
-    /**
-     * Observe the [ViewStateStore] and trigger [block] only on [ViewStateObserver.onData]
-     * @see LiveData.observeForever with an [Observer] created with an instance of [ViewStateObserver]
-     * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
-     */
-    inline fun observeDataForever( crossinline block: (V) -> Unit ) {
-        val observer = `access$onCreateViewStateObserver`()
-        observer.onData = { block( it ) }
-        liveData.observeForever( observerWith( observer ) )
-    }
-
     /** @return a new instance of [ViewStateObserver] */
     protected open fun onCreateViewStateObserver( owner: LifecycleOwner? = null ) =
-            ViewStateObserver<V>()
-
-    /** @return [LiveData.getValue] on [liveData] */
-    fun state() = liveData.value
-
-    /**
-     * @return [LiveData.getValue] asserted as non null
-     * @throws KotlinNullPointerException if [state] is null.
-     */
-    fun unsafeState() = state()!!
+        ViewStateObserver<V>()
 
     @PublishedApi
     @Suppress("FunctionName")

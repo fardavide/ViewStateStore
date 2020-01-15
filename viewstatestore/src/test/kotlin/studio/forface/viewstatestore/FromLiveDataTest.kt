@@ -1,24 +1,19 @@
 package studio.forface.viewstatestore
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
 import io.mockk.Ordering
 import io.mockk.mockk
 import io.mockk.verify
-import org.junit.Rule
 import org.junit.Test
-import org.junit.rules.TestRule
+import studio.forface.viewstatestore.utils.ArchTest
 import kotlin.test.assertEquals
 
 /**
- * A class for test `ViewStateStore` created from a `LiveData`.
+ * A class for test [ViewStateStore] created from a `LiveData`.
  * @author Davide Giuseppe Farella
  */
-internal class FromLiveDataTest {
-
-    @get:Rule
-    var rule: TestRule = InstantTaskExecutorRule()
+internal class FromLiveDataTest : ArchTest {
 
     @Test
     fun `ViewStateStore is created correctly`() {

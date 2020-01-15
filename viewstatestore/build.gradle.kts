@@ -1,3 +1,4 @@
+import studio.forface.easygradle.dsl.`coroutines-android`
 import studio.forface.easygradle.dsl.`kotlin-jdk7`
 import studio.forface.easygradle.dsl.android.`lifecycle-liveData`
 import studio.forface.easygradle.dsl.android.publishAndroid
@@ -16,6 +17,7 @@ dependencies {
 
     api(
         `kotlin-jdk7`,
+        `coroutines-android`,
         `lifecycle-liveData`
     )
 }

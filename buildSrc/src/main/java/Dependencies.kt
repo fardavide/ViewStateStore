@@ -26,6 +26,7 @@ fun DependencyHandler.applyAndroidTests() {
     testImplementation(
         `kotlin-test`,
         `kotlin-test-junit`,
+        `coroutines-test`,
         `android-arch-testing`,
         `lifecycle-runtime`,
         `mockk`

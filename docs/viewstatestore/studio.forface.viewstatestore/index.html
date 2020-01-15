@@ -40,7 +40,7 @@
 </td>
 <td>
 <p>This class will store and handle the <a href="-view-state/index.html">ViewState</a> and submit it via a <a href="#">LiveData</a>.
-<code>ViewStateStore</code> will only deliver the last <a href="#">data</a> when the observer become active.
+<code>ViewStateStore</code> will only deliver the last <a href="-locked-view-state-store/data.html">data</a> when the observer become active.
 This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> functions and <code>post</code> functions can only be called within <a href="-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
 <code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">LockedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
 </tr>
@@ -80,7 +80,7 @@ The <a href="-view-state/data.html">data</a> could be a <a href="-view-state/-su
 </td>
 <td>
 <p>This class will store and handle the <a href="-view-state/index.html">ViewState</a> and submit it via a <code>LiveData</code>.
-<code>ViewStateStore</code> will only deliver the last <a href="#">data</a> when the observer become active.</p>
+<code>ViewStateStore</code> will only deliver the last <a href="-locked-view-state-store/data.html">data</a> when the observer become active.</p>
 <code><span class="keyword">class </span><span class="identifier">ViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-locked-view-state-store/index.html"><span class="identifier">LockedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="-view-state-store-scope/index.html"><span class="identifier">ViewStateStoreScope</span></a></code></td>
 </tr>
 <tr>
