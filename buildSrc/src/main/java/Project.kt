@@ -2,7 +2,7 @@
 
 import org.gradle.api.JavaVersion
 import studio.forface.easygradle.dsl.android.Version
-import studio.forface.easygradle.dsl.android.Version.Channel.Stable
+import studio.forface.easygradle.dsl.android.Version.Channel.Beta
 import studio.forface.easygradle.dsl.android.androidVersion
 import studio.forface.easygradle.dsl.publishConfig
 
@@ -16,8 +16,8 @@ object Project {
     val version = Version(
         major =     1,
         minor =     4,
-        channel =   Stable,
-        patch =     0,
+        channel =   Beta,
+        patch =     2,
         build =     0
     )
 

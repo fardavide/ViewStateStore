@@ -29,19 +29,15 @@ import studio.forface.viewstatestore.ViewStateStoreConfig
  *
  * @author Davide Giuseppe Farella
  */
-class PagedViewStateStore<V>
-// TODO remove in 1.4
-@Deprecated(
-    "Use ViewStateStore.from for initialize with a DataSource.Factory. This will be removed in 1.4",
-    ReplaceWith(
-        "ViewStateStore.from(myDataSourceFactory)",
-        "studio.forface.viewstatestore.ViewStateStore"
-    )
-)
-constructor(
+class PagedViewStateStore<V> internal constructor(
+    dataSourceFactory: DataSource.Factory<Int, V>,
     pageSize: Int = DEFAULT_PAGE_SIZE,
     dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
-) : LockedPagedViewStateStore<V>(pageSize, dropOnSame), PagedViewStateStoreScope {
+) : LockedPagedViewStateStore<V>(
+    LivePagedListBuilder(dataSourceFactory, pageSize).build(),
+    pageSize,
+    dropOnSame
+), PagedViewStateStoreScope {
 
     /**
      * @return [LockedPagedViewStateStore] obtained by casting `this` instance.
@@ -49,27 +45,26 @@ constructor(
      */
     val lock: LockedPagedViewStateStore<V> get() = this
 
-    /**
-     * @constructor for create a [PagedViewStateStore] with the given [dataSourceFactory], [pageSize] and [dropOnSame]
-     *
-     * @param dataSourceFactory [DataSource.Factory] of [V] that will be used as main source of data
-     *
-     * @param pageSize [Int]
-     * Default value is [DEFAULT_PAGE_SIZE]
-     *
-     * @param dropOnSame [Boolean]
-     * Default value is inherited from [ViewStateStoreConfig.dropOnSame]
-     *
-     * @see PagedViewStateStore primary constructor
-     */
-    // TODO move as primary constructor in 1.4
-    internal constructor(
-        dataSourceFactory: DataSource.Factory<Int, V>,
-        pageSize: Int = DEFAULT_PAGE_SIZE,
-        dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
-    ) : this(pageSize, dropOnSame) {
-        setDataSource(dataSourceFactory)
-    }
+//    /**
+//     * @constructor for create a [PagedViewStateStore] with the given [dataSourceFactory], [pageSize] and [dropOnSame]
+//     *
+//     * @param dataSourceFactory [DataSource.Factory] of [V] that will be used as main source of data
+//     *
+//     * @param pageSize [Int]
+//     * Default value is [DEFAULT_PAGE_SIZE]
+//     *
+//     * @param dropOnSame [Boolean]
+//     * Default value is inherited from [ViewStateStoreConfig.dropOnSame]
+//     *
+//     * @see PagedViewStateStore primary constructor
+//     */
+//    // TODO move as primary constructor in 1.4
+//    internal constructor(
+//        pageSize: Int = DEFAULT_PAGE_SIZE,
+//        dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
+//    ) : this(pageSize, dropOnSame) {
+//        setDataSource(dataSourceFactory)
+//    }
 
     internal companion object {
         /** The default value for [LockedPagedViewStateStore.pageSize] */

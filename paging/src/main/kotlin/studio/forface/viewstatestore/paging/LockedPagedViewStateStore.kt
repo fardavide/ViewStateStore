@@ -5,7 +5,6 @@ package studio.forface.viewstatestore.paging
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import studio.forface.viewstatestore.LockedViewStateStore
@@ -34,13 +33,10 @@ import studio.forface.viewstatestore.ViewStateStoreConfig
  * @author Davide Giuseppe Farella
  */
 abstract class LockedPagedViewStateStore<V>(
+    internal val pagedLiveData: LiveData<PagedList<V>>,
     internal var pageSize: Int = 25,
     internal val dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
 ) : LockedViewStateStore<PagedList<V>>( dropOnSame ) {
-
-    /** A `LiveData` created by [DataSource.Factory] */
-    // TODO make abstract / move to constructor in 1.4
-    internal lateinit var pagedLiveData: LiveData<PagedList<V>>
 
     /**
      * @return a new instance of [PagedViewStateObserver]

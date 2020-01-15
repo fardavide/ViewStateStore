@@ -8,11 +8,11 @@
 <a href="../../index.html">paging</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore.paging</a>&nbsp;/&nbsp;<a href="./index.html">PagedViewStateStore</a><br/>
 <br/>
 <h1>PagedViewStateStore</h1>
-<code><span class="keyword">class </span><span class="identifier">PagedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-locked-paged-view-state-store/index.html"><span class="identifier">LockedPagedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-paged-view-state-store-scope/index.html"><span class="identifier">PagedViewStateStoreScope</span></a></code>
+<code><span class="keyword">class </span><span class="identifier">PagedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-locked-paged-view-state-store/index.html"><span class="identifier">LockedPagedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../-paged-view-state-store-scope.html"><span class="identifier">PagedViewStateStoreScope</span></a></code>
 <p>A <code>ViewStateStore</code> that support Android's Paging</p>
-<p>Inherit from <a href="../-locked-paged-view-state-store/index.html">LockedPagedViewStateStore</a> and implements <a href="../-paged-view-state-store-scope/index.html">PagedViewStateStoreScope</a>, so <a href="#">setState</a> and <a href="#">postState</a>
+<p>Inherit from <a href="../-locked-paged-view-state-store/index.html">LockedPagedViewStateStore</a> and implements <a href="../-paged-view-state-store-scope.html">PagedViewStateStoreScope</a>, so <a href="#">setState</a> and <a href="#">postState</a>
 can be called without any additional scope.</p>
-<p>Use <a href="../-paged-view-state-store-scope/set-data-source.html">setDataSource</a> for generate your data <a href="index.html#V">V</a>
+<p>Use <a href="#">setDataSource</a> for generate your data <a href="index.html#V">V</a>
 instead of <a href="#">setData</a>, like you would do a "classic" <code>ViewStateStore</code>,</p>
 <h3>Parameters</h3>
 <p><a name="pageSize"></a>
@@ -26,19 +26,6 @@ the last <a href="#">state</a></p>
 </p>
 <p><strong>Author</strong><br/>
 Davide Giuseppe Farella</p>
-<h3>Constructors</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<h4><a href="-init-.html">&lt;init&gt;</a></h4>
-</td>
-<td>
-<p>A <code>ViewStateStore</code> that support Android's Paging</p>
-<code><span class="identifier">PagedViewStateStore</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging.PagedViewStateStore$<init>(kotlin.Int, kotlin.Boolean)/pageSize">pageSize</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;DEFAULT_PAGE_SIZE<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging.PagedViewStateStore$<init>(kotlin.Int, kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ViewStateStoreConfig.dropOnSame<span class="symbol">)</span></code></td>
-</tr>
-</tbody>
-</table>
 <h3>Properties</h3>
 <table>
 <tbody>
@@ -113,14 +100,6 @@ Davide Giuseppe Farella</p>
 <td>
 <p>Set a <a href="#">ViewState.Success</a> with the given <a href="../set-data.html#studio.forface.viewstatestore.paging$setData(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setData.V)), androidx.paging.PagedList((studio.forface.viewstatestore.paging.setData.V)), kotlin.Boolean)/data">data</a>.</p>
 <code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">setData</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$setData(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setData.V)), androidx.paging.PagedList((studio.forface.viewstatestore.paging.setData.V)), kotlin.Boolean)/data">data</span><span class="symbol">:</span>&nbsp;<span class="identifier">PagedList</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.paging$setData(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setData.V)), androidx.paging.PagedList((studio.forface.viewstatestore.paging.setData.V)), kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;this.dropOnSame<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
-</tr>
-<tr>
-<td>
-<h4><a href="../set-data-source.html">setDataSource</a></h4>
-</td>
-<td>
-<p>Set the <a href="#">DataSource.Factory</a> as data source of the requested data <a href="../set-data-source.html#V">V</a> for the receiver <a href="./index.html">PagedViewStateStore</a></p>
-<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <a href="./index.html"><span class="identifier">PagedViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><s><span class="identifier">setDataSource</span></s><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.paging$setDataSource(studio.forface.viewstatestore.paging.PagedViewStateStore((studio.forface.viewstatestore.paging.setDataSource.V)), androidx.paging.DataSource.Factory((kotlin.Int, studio.forface.viewstatestore.paging.setDataSource.V)))/factory">factory</span><span class="symbol">:</span>&nbsp;<span class="identifier">Factory</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
 </tr>
 <tr>
 <td>
