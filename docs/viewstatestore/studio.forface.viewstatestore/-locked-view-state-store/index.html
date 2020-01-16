@@ -10,7 +10,7 @@
 <h1>LockedViewStateStore</h1>
 <code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">LockedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
 <p>This class will store and handle the <a href="../-view-state/index.html">ViewState</a> and submit it via a <a href="#">LiveData</a>.
-<code>ViewStateStore</code> will only deliver the last <a href="data.html">data</a> when the observer become active.
+<code>ViewStateStore</code> will only deliver the last <a href="#">_data</a> when the observer become active.
 This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> functions and <code>post</code> functions can only be called within <a href="../-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
 <h3>Publish:</h3>
 <p>Use <a href="../-view-state-store-scope/set-state.html">ViewStateStoreScope.setState</a> for deliver the <a href="../-view-state/index.html">ViewState</a> on the current thread.
@@ -19,15 +19,15 @@ Use <a href="state.html">state</a> for retrieve the last state.</p>
 <h3>Observe:</h3>
 <p>Use <a href="observe.html">observe</a> for observe the published <a href="../-view-state/index.html">ViewState</a> within a <a href="#">LifecycleOwner</a>
 Use <a href="observe-forever.html">observeForever</a> for observe the published <a href="../-view-state/index.html">ViewState</a>. NOTE! This will probably lead to a memory leak.</p>
-<p>Use <a href="observe-data.html">observeData</a> for observe ONLY the the published <a href="data.html">data</a> within a <a href="#">LifecycleOwner</a>
-Use <a href="observe-forever.html">observeForever</a> for observe ONLY the the published <a href="data.html">data</a>. NOTE! This will probably lead to a memory leak.</p>
+<p>Use <a href="observe-data.html">observeData</a> for observe ONLY the the published <a href="#">_data</a> within a <a href="#">LifecycleOwner</a>
+Use <a href="observe-forever.html">observeForever</a> for observe ONLY the the published <a href="#">_data</a>. NOTE! This will probably lead to a memory leak.</p>
 <h3>Exceptions</h3>
 <p><a name="KotlinNullPointerException"></a>
 <code>KotlinNullPointerException</code> - 
 <p>if no <a href="../-view-state/index.html">ViewState</a> is available</p>
 
 
-<p>Use <a href="data.html">data</a> for get the current nullable <a href="index.html#V">V</a>
+<p>Use <a href="#">_data</a> for get the current nullable <a href="index.html#V">V</a>
 Use <a href="unsafe-data.html">unsafeData</a> for get the current <a href="index.html#V">V</a></p>
 </p>
 <p><a name="KotlinNullPointerException"></a>
@@ -48,13 +48,30 @@ Use <a href="await-next-data.html">awaitNextData</a> for get next published <a h
 
 
 
+<h3>iterator:</h3>
+
+
+<p>Use <code> for (viewState in viewStateStore) { ... } </code> for get all the <a href="../-view-state/index.html">ViewState</a> published in
+this <a href="../-view-state-store/index.html">ViewStateStore</a></p>
+
+
+<p>Use <code> for (data in viewStateStore.data) { ... } </code> for get all the <a href="index.html#V">V</a> published in this
+<a href="../-view-state-store/index.html">ViewStateStore</a></p>
+
+
+<p>Use <code> for ((data, error, loadingChange)) in viewStateStore.composed) { ... } </code> for get all the
+<a href="../-view-state/index.html">ViewState</a> as <a href="../-composed-view-state/index.html">ComposedViewState</a> published in this <a href="../-view-state-store/index.html">ViewStateStore</a></p>
+
+
+
+
 
 <p>This class is abstract and will be inherited from <a href="../-view-state-store/index.html">ViewStateStore</a>, that implements <a href="../-view-state-store-scope/index.html">ViewStateStoreScope</a> for
 being able to call <code>set</code> functions and <code>post</code> functions without defining a <a href="../-view-state-store-scope/index.html">ViewStateStoreScope</a>.</p>
 </p>
 <h3>Parameters</h3>
 <p><a name="V"></a>
-<code>V</code> - is the type of the <a href="data.html">data</a></p>
+<code>V</code> - is the type of the <a href="#">_data</a></p>
 <p><a name="dropOnSame"></a>
 <code>dropOnSame</code> - This <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> defines whether a publishing should be dropped if the same <a href="../-view-state/index.html">ViewState</a> is already
 the last <a href="state.html">state</a>
@@ -65,6 +82,25 @@ Default value is inherited from <a href="../-view-state-store-config/drop-on-sam
 </p>
 <p><strong>Author</strong><br/>
 Davide Giuseppe Farella</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-composed-view-state-iterable/index.html">ComposedViewStateIterable</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">ComposedViewStateIterable</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-data-iterable/index.html">DataIterable</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">DataIterable</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -74,9 +110,28 @@ Davide Giuseppe Farella</p>
 </td>
 <td>
 <p>This class will store and handle the <a href="../-view-state/index.html">ViewState</a> and submit it via a <a href="#">LiveData</a>.
-<code>ViewStateStore</code> will only deliver the last <a href="data.html">data</a> when the observer become active.
+<code>ViewStateStore</code> will only deliver the last <a href="#">_data</a> when the observer become active.
 This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> functions and <code>post</code> functions can only be called within <a href="../-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
 <code><span class="identifier">LockedViewStateStore</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$<init>(kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="composed.html">composed</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">composed</span><span class="symbol">: </span><span class="identifier">ComposedViewStateIterable</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="data.html">data</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">data</span><span class="symbol">: </span><span class="identifier">DataIterable</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -88,28 +143,28 @@ This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> function
 <h4><a href="await.html">await</a></h4>
 </td>
 <td>
-<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">await</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">await</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="await-data.html">awaitData</a></h4>
 </td>
 <td>
-<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">awaitData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">V</span></code></td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">awaitData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">V</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="await-next.html">awaitNext</a></h4>
 </td>
 <td>
-<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">awaitNext</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">awaitNext</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
 <h4><a href="await-next-data.html">awaitNextData</a></h4>
 </td>
 <td>
-<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">awaitNextData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">V</span></code></td>
+<code><span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">awaitNextData</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">V</span><span class="symbol">?</span></code></td>
 </tr>
 <tr>
 <td>
@@ -125,6 +180,13 @@ This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> function
 <td>
 <p>Handle the delivery of a <a href="../-view-state/index.html">ViewState</a> though <a href="../-view-state-observer/index.html">ViewStateObserver</a></p>
 <code><span class="keyword">fun </span><span class="identifier">handleViewState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$handleViewState(studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.LockedViewStateStore.V)))/observer">observer</span><span class="symbol">:</span>&nbsp;<a href="../-view-state-observer/index.html"><span class="identifier">ViewStateObserver</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$handleViewState(studio.forface.viewstatestore.ViewStateObserver((studio.forface.viewstatestore.LockedViewStateStore.V)), studio.forface.viewstatestore.ViewState((studio.forface.viewstatestore.LockedViewStateStore.V)))/viewState">viewState</span><span class="symbol">:</span>&nbsp;<a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="iterator.html">iterator</a></h4>
+</td>
+<td>
+<code><span class="keyword">suspend</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">iterator</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-suspend-iterator/index.html"><span class="identifier">SuspendIterator</span></a><span class="symbol">&lt;</span><a href="../-view-state/index.html"><span class="identifier">ViewState</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>

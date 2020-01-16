@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ComposedViewState.<init> - viewstatestore</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="index.html">ComposedViewState</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="studio.forface.viewstatestore.ComposedViewState$&lt;init&gt;(studio.forface.viewstatestore.ComposedViewState.T, studio.forface.viewstatestore.ViewState.Error, studio.forface.viewstatestore.ViewState.Loading)"></a>
+<code><span class="identifier">ComposedViewState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ComposedViewState$<init>(studio.forface.viewstatestore.ComposedViewState.T, studio.forface.viewstatestore.ViewState.Error, studio.forface.viewstatestore.ViewState.Loading)/success">success</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ComposedViewState$<init>(studio.forface.viewstatestore.ComposedViewState.T, studio.forface.viewstatestore.ViewState.Error, studio.forface.viewstatestore.ViewState.Loading)/error">error</span><span class="symbol">:</span>&nbsp;<span class="identifier">Error</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ComposedViewState$<init>(studio.forface.viewstatestore.ComposedViewState.T, studio.forface.viewstatestore.ViewState.Error, studio.forface.viewstatestore.ViewState.Loading)/loading">loading</span><span class="symbol">:</span>&nbsp;<span class="identifier">Loading</span><span class="symbol">?</span><span class="symbol">)</span></code>
+<p>An entity that contains any type of <a href="../-view-state/index.html">ViewState</a>
+Use it for destruction
+e.g.</p>
+<pre><code>for ((onData, onError, onLoadingChange) in viewStateStore.composed) {
+    onData?.let {
+        updateUi(it)
+    }
+    onError?.let {
+        showError(it)
+    }
+    onLoadingChange?.let {
+        showProgress(it)
+    }
+}
+</code></pre>
+</BODY>
+</HTML>

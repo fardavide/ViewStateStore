@@ -23,47 +23,6 @@ sealed class ViewState<out T> {
     /** An instance of [T] that will be available in case of [Success], else it will be null */
     open val data: T? = null
 
-//    /** A function for map the current [data] */
-//    // TODO remove in 1.4
-//    @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
-//    abstract fun <R> map(mapper: (T) -> R): ViewState<R>
-//
-//    /** Execute an [action] in case of [Success] */
-//    // TODO remove in 1.4
-//    @Deprecated(
-//        "Use ViewStateObserver.doOnData instead. This will be removed in 1.4",
-//        ReplaceWith(
-//            "if (this is Success) action(this)",
-//            "studio.forface.viewstatestore.ViewState.Success"
-//        )
-//    )
-//    inline fun doOnData(action: (T) -> Unit) {
-//        if (this is Success) action(data)
-//    }
-//
-//    /** Execute an [action] in case of [Error] */
-//    // TODO remove in 1.4
-//    @Deprecated(
-//        "Use ViewStateObserver.doOnError instead. This will be removed in 1.4",
-//        ReplaceWith(
-//            "if (this is Error) action(this)",
-//            "studio.forface.viewstatestore.ViewState.Error"
-//        )
-//    )
-//    inline fun doOnError(action: (Error) -> Unit) {
-//        if (this is Error) action(this)
-//    }
-//
-//    /** Execute an [action] whether is [Loading] or not */
-//    // TODO remove in 1.4
-//    @Deprecated(
-//        "Use ViewStateObserver.doOnLoadingChange instead. This will be removed in 1.4",
-//        ReplaceWith("action(this is Loading)", "studio.forface.viewstatestore.ViewState.Loading")
-//    )
-//    inline fun doOnLoadingChange(action: (isLoading: Boolean) -> Unit) {
-//        action(this is Loading)
-//    }
-
     /**
      * A class that represents the success and will contains the [data] [T]
      * Inherit from [ViewState]
@@ -83,12 +42,6 @@ sealed class ViewState<out T> {
     ) : ViewState<T>() {
 
         constructor(data: T) : this(data, false)
-
-//        // TODO remove in 1.4
-//        @Suppress("DeprecatedCallableAddReplaceWith")
-//        @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
-//        override fun <R> map(mapper: (T) -> R): ViewState<R> =
-//            Success(mapper(data))
     }
 
     /**
@@ -239,11 +192,6 @@ sealed class ViewState<out T> {
 
         /** Invoke [resolution] lambda if not `null`, else do nothing */
         fun tryToResolve() = resolution?.invoke()
-
-//        // TODO remove in 1.4
-//        @Suppress("DeprecatedCallableAddReplaceWith")
-//        @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
-//        override fun <R> map(mapper: (Nothing) -> R): ViewState<R> = this
     }
 
     /** A default ( not customized ) [ViewState.Error] that only holds a [Throwable] */
@@ -253,24 +201,44 @@ sealed class ViewState<out T> {
      * A class that represents the loading state and will contains [Nothing]
      * Inherit from [ViewState]
      */
-    object Loading : ViewState<Nothing>() {
-//        // TODO remove in 1.4
-//        @Suppress("DeprecatedCallableAddReplaceWith")
-//        @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
-//        override fun <R> map(mapper: (Nothing) -> R): ViewState<R> = this
-    }
+    object Loading : ViewState<Nothing>()
 
     /**
      * A class that represents the unknown state and will contains [Nothing]
      * Inherit from [ViewState]
      */
-    object None : ViewState<Nothing>() {
-//        // TODO remove in 1.4
-//        @Suppress("DeprecatedCallableAddReplaceWith")
-//        @Deprecated("This is gonna be removed in 1.4. Do you use it? Please open an issue and let's talk about it")
-//        override fun <R> map(mapper: (Nothing) -> R): ViewState<R> = this
-    }
+    object None : ViewState<Nothing>()
 }
+
+/**
+ * An entity that contains any type of [ViewState]
+ * Use it for destruction
+ * e.g.
+ * ```
+ * for ((onData, onError, onLoadingChange) in viewStateStore.composed) {
+ *     onData?.let {
+ *         updateUi(it)
+ *     }
+ *     onError?.let {
+ *         showError(it)
+ *     }
+ *     onLoadingChange?.let {
+ *         showProgress(it)
+ *     }
+ * }
+ * ```
+ */
+data class ComposedViewState<out T>(
+    val success: T?,
+    val error: Error?,
+    val loading: Loading?
+)
+
+internal fun <T> ViewState<T>.asComposed() = ComposedViewState<T>(
+    success = (this as? Success<T>)?.data,
+    error = this as? Error,
+    loading = this as? Loading
+)
 
 /** @constructor for [ViewState.Success] */
 @Suppress("FunctionName")

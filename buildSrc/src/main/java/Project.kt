@@ -17,7 +17,7 @@ object Project {
         major =     1,
         minor =     4,
         channel =   Beta,
-        patch =     2,
+        patch =     3,
         build =     0
     )
 

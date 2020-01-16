@@ -9,6 +9,12 @@
 <table>
 <tbody>
 <tr>
+<h5><a href="../studio.forface.viewstatestore/-composed-view-state/index.html">studio.forface.viewstatestore.ComposedViewState</a></h5>
+<p>An entity that contains any type of <a href="../studio.forface.viewstatestore/-view-state/index.html">ViewState</a>
+Use it for destruction
+e.g.</p>
+</tr>
+<tr>
 <h5><a href="../studio.forface.viewstatestore/-error-resolution.html">studio.forface.viewstatestore.ErrorResolution</a></h5>
 <p>Typealias for a lambda that resolves a <a href="../studio.forface.viewstatestore/-view-state/-error/index.html">ViewState.Error</a></p>
 </tr>
@@ -26,13 +32,19 @@
 <tr>
 <h5><a href="../studio.forface.viewstatestore/-locked-view-state-store/index.html">studio.forface.viewstatestore.LockedViewStateStore</a></h5>
 <p>This class will store and handle the <a href="../studio.forface.viewstatestore/-view-state/index.html">ViewState</a> and submit it via a <a href="#">LiveData</a>.
-<code>ViewStateStore</code> will only deliver the last <a href="../studio.forface.viewstatestore/-locked-view-state-store/data.html">data</a> when the observer become active.
+<code>ViewStateStore</code> will only deliver the last <a href="#">_data</a> when the observer become active.
 This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> functions and <code>post</code> functions can only be called within <a href="../studio.forface.viewstatestore/-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
 </tr>
 <tr>
 <h5><a href="../studio.forface.viewstatestore/-no-resolution-exception.html">studio.forface.viewstatestore.NoResolutionException</a></h5>
 <p>An <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html">Exception</a> that represents that <a href="../studio.forface.viewstatestore/-view-state/-error/resolve.html">ViewState.Error.resolve</a> has been called, while no <a href="#">ViewState.Error.resolution</a>
 has been set.</p>
+</tr>
+<tr>
+<h5><a href="../studio.forface.viewstatestore/-suspend-iterator/index.html">studio.forface.viewstatestore.SuspendIterator</a></h5>
+<p>Iterator that suspends its functions.
+Instances of this interface are <em>not thread-safe</em> and shall not be used from concurrent
+coroutines.</p>
 </tr>
 <tr>
 <h5><a href="../studio.forface.viewstatestore/-view-state/index.html">studio.forface.viewstatestore.ViewState</a></h5>

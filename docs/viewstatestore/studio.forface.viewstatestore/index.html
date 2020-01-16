@@ -13,6 +13,16 @@
 <tbody>
 <tr>
 <td>
+<h4><a href="-composed-view-state/index.html">ComposedViewState</a></h4>
+</td>
+<td>
+<p>An entity that contains any type of <a href="-view-state/index.html">ViewState</a>
+Use it for destruction
+e.g.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ComposedViewState</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
 <h4><a href="-error-resolution.html">ErrorResolution</a></h4>
 </td>
 <td>
@@ -40,9 +50,19 @@
 </td>
 <td>
 <p>This class will store and handle the <a href="-view-state/index.html">ViewState</a> and submit it via a <a href="#">LiveData</a>.
-<code>ViewStateStore</code> will only deliver the last <a href="-locked-view-state-store/data.html">data</a> when the observer become active.
+<code>ViewStateStore</code> will only deliver the last <a href="#">_data</a> when the observer become active.
 This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> functions and <code>post</code> functions can only be called within <a href="-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
 <code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">LockedViewStateStore</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-suspend-iterator/index.html">SuspendIterator</a></h4>
+</td>
+<td>
+<p>Iterator that suspends its functions.
+Instances of this interface are <em>not thread-safe</em> and shall not be used from concurrent
+coroutines.</p>
+<code><span class="keyword">interface </span><span class="identifier">SuspendIterator</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>

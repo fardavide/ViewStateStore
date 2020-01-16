@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ComposedViewState - viewstatestore</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">viewstatestore</a>&nbsp;/&nbsp;<a href="../index.html">studio.forface.viewstatestore</a>&nbsp;/&nbsp;<a href="./index.html">ComposedViewState</a><br/>
+<br/>
+<h1>ComposedViewState</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ComposedViewState</span><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span></code>
+<p>An entity that contains any type of <a href="../-view-state/index.html">ViewState</a>
+Use it for destruction
+e.g.</p>
+<pre><code>for ((onData, onError, onLoadingChange) in viewStateStore.composed) {
+    onData?.let {
+        updateUi(it)
+    }
+    onError?.let {
+        showError(it)
+    }
+    onLoadingChange?.let {
+        showProgress(it)
+    }
+}
+</code></pre>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>An entity that contains any type of <a href="../-view-state/index.html">ViewState</a>
+Use it for destruction
+e.g.</p>
+<code><span class="identifier">ComposedViewState</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.ComposedViewState$<init>(studio.forface.viewstatestore.ComposedViewState.T, studio.forface.viewstatestore.ViewState.Error, studio.forface.viewstatestore.ViewState.Loading)/success">success</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ComposedViewState$<init>(studio.forface.viewstatestore.ComposedViewState.T, studio.forface.viewstatestore.ViewState.Error, studio.forface.viewstatestore.ViewState.Loading)/error">error</span><span class="symbol">:</span>&nbsp;<span class="identifier">Error</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore.ComposedViewState$<init>(studio.forface.viewstatestore.ComposedViewState.T, studio.forface.viewstatestore.ViewState.Error, studio.forface.viewstatestore.ViewState.Loading)/loading">loading</span><span class="symbol">:</span>&nbsp;<span class="identifier">Loading</span><span class="symbol">?</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="error.html">error</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">error</span><span class="symbol">: </span><span class="identifier">Error</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="loading.html">loading</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">loading</span><span class="symbol">: </span><span class="identifier">Loading</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="success.html">success</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">success</span><span class="symbol">: </span><span class="identifier">T</span><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

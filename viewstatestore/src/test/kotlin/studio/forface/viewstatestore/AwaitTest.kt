@@ -5,7 +5,7 @@ package studio.forface.viewstatestore
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import studio.forface.viewstatestore.utils.ArchTest
 import studio.forface.viewstatestore.utils.CoroutinesTest
@@ -18,7 +18,7 @@ import kotlin.test.assertEquals
 internal class AwaitTest : ArchTest, CoroutinesTest {
 
     @Test
-    fun `ViewStateStore await`() = runBlockingTest {
+    fun `ViewStateStore await`() = runBlocking {
         val vss = ViewStateStore(0)
         val r = GlobalScope.async { vss.await() }
         delay(100)
@@ -28,7 +28,7 @@ internal class AwaitTest : ArchTest, CoroutinesTest {
     }
 
     @Test
-    fun `ViewStateStore awaitNext`() = runBlockingTest {
+    fun `ViewStateStore awaitNext`() = runBlocking {
         val vss = ViewStateStore(0)
         val r = GlobalScope.async { vss.awaitNext() }
         delay(100)
@@ -38,7 +38,7 @@ internal class AwaitTest : ArchTest, CoroutinesTest {
     }
 
     @Test
-    fun `ViewStateStore awaitData`() = runBlockingTest {
+    fun `ViewStateStore awaitData`() = runBlocking {
         val vss = ViewStateStore(0)
         val r = GlobalScope.async { vss.awaitData() }
         delay(100)
@@ -49,7 +49,7 @@ internal class AwaitTest : ArchTest, CoroutinesTest {
     }
 
     @Test
-    fun `ViewStateStore awaitNextData`() = runBlockingTest {
+    fun `ViewStateStore awaitNextData`() = runBlocking {
         val vss = ViewStateStore(0)
         val r = GlobalScope.async { vss.awaitNextData() }
         delay(100)
