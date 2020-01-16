@@ -26,32 +26,102 @@ Supported **ViewState** types are;
 
 `implementation( "studio.forface.viewstatestore:viewstatestore-paging:last_version" )`
 
-## Minimal usage
+# Minimal usage
+
+
+
+## Create
+
 ```kotlin
-class CarsViewModel( val getCars: GetCars ): ViewModel() {
+class CarsViewModel(val getCars: GetCars): ViewModel() {
     val cars = ViewStateStore<List<Car>>()
 
     init {
         cars.setLoading()
         viewModelScope.launch {
-            runCatching { withContext( IO ) { getCars() } }
-                .onSuccess( cars::setData )
-                .onFailure { cars.setError( it ) }
-        }
-    }
-}
-
-class CarsFragment: Fragment(), ViewStateFragment {
-    override fun onActivityCreated( savedInstanceState: Bundle? ) {
-        carsViewModel.cars.observe {
-            doOnLoading { isLoading -> progressBar.isVisible = isLoading }
-            doOnError( ::showError )
-            doOnData( ::updateCars )
+            runCatching { withContext(IO) { getCars() } }
+                .onSuccess { cars::set(it) }
+                .onFailure { cars.setError(it) }
         }
     }
 }
 ```
-Or you can set an `ErrorResolution`
+
+
+
+## Get
+
+#### `observe` ( with LifecycleOwner )
+
+```kotlin
+class CarsFragment: Fragment(), ViewStateFragment {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        // carsViewModel.cars.observeData { cars -> ... }
+        carsViewModel.cars.observe {
+            doOnData(::updateCars)
+            doOnError(::showError)
+            doOnLoading { isLoading -> progressBar.isVisible = isLoading }
+        }
+    }
+}
+```
+#### `Iterator` ( with CoroutineScope )
+
+```kotlin
+class CarsFragment: Fragment(), ViewStateFragment {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        lifecycleScope.launch {
+            // for (viewState in carsViewModel.cars) { ... }
+            // for (cars in carsViewModel.cars.data) { ... }
+            for ((onData, onError, onLoadingChange) in carsViewModel.cars.composed) {
+                onData?let(::updateCars)
+                onError?.let(::showError)
+                onLoadingChange?let { isLoading -> progressBar.isVisible = isLoading }
+            }
+        }
+    }
+}
+```
+
+#### `await` ( with CoroutineScope )
+
+```kotlin
+class CarsFragment: Fragment(), ViewStateFragment {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        lifecycleScope.launch {
+            val currentOrNextViewState = carsViewModel.cars.await()
+            val currentOrNextData = carsViewModel.cars.awaitData()
+            val onlyNextViewState = carsViewModel.cars.awaitNext()
+            val onlyNextData = carsViewModel.cars.awaitNextData()
+        }
+    }
+}
+```
+
+#### get ( nullable )
+
+```kotlin
+class CarsFragment: Fragment(), ViewStateFragment {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        val nullableCurrentViewState = carsViewModel.cars.state()
+        val nullableCurrentData = carsViewModel.cars.data()
+        try {
+        	val currentViewState = carsViewModel.cars.unsafeState()
+        	val currentData = carsViewModel.cars.unsafeData()
+        } catch(e: KotlinNullPointerException) {
+            ...
+        }
+    }
+}
+```
+
+
+
+---
+
+
+
+You can set also an `ErrorResolution`
 
 ```kotlin
 // CarsViewModel
@@ -62,9 +132,9 @@ Or you can set an `ErrorResolution`
     private fun loadCars() {
         cars.setLoading()
         viewModelScope.launch {
-            runCatching { withContext( IO ) { getCars() } }
-                .onSuccess( cars::setData )
-                .onFailure { cars.setError( it, ::loadCars ) }
+            runCatching { withContext(IO) { getCars() } }
+                .onSuccess(cars::setData)
+                .onFailure { cars.setError(it, ::loadCars) }
         }
     }
 }
@@ -73,23 +143,27 @@ Or you can set an `ErrorResolution`
     override fun onActivityCreated( savedInstanceState: Bundle? ) {
         carsViewModel.cars.observe {
             ...
-            doOnError( ::showError )
+            doOnError(::showError)
         }
     }
 
-    fun showError( error: ViewState.Error ) {
+    fun showError(error: ViewState.Error) {
         Snackbar.make(
             coordinatorLayout,
-            error.getMessage( requireContext() ),
+            error.getMessage(requireContext()),
             Snackbar.LENGTH_SHORT
         ).apply {
-            if ( error.hasResolution() )
-                setAction( "Retry" ) { error.resolve() } }
+            if (error.hasResolution())
+                setAction("Retry") { error.resolve() } }
             show()
         }
     }
 }
 ```
+
+
+
+---
 
 
 
