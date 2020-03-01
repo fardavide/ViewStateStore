@@ -1,4 +1,4 @@
-@file:Suppress("unused", "MemberVisibilityCanBePrivate")
+@file:Suppress("MemberVisibilityCanBePrivate")
 
 package studio.forface.viewstatestore
 
@@ -82,17 +82,17 @@ import studio.forface.viewstatestore.ViewState.*
  *
  * @author Davide Giuseppe Farella
  */
-abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
+abstract class LockedViewStateStore<V>(internal val dropOnSame: Boolean) {
 
     // region observe
     /**
      * @see LiveData.observe with an [Observer] created with an instance of [ViewStateObserver]
      * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
      */
-    inline fun observe( owner: LifecycleOwner, block: ViewStateObserver<V>.() -> Unit ) {
-        val observer = `access$onCreateViewStateObserver`( owner )
+    inline fun observe(owner: LifecycleOwner, block: ViewStateObserver<V>.() -> Unit) {
+        val observer = `access$onCreateViewStateObserver`(owner)
         observer.block()
-        liveData.observe( owner, observerWith( observer ) )
+        liveData.observe(owner, observerWith(observer))
     }
 
     /**
@@ -100,20 +100,20 @@ abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
      * @see LiveData.observe with an [Observer] created with an instance of [ViewStateObserver]
      * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
      */
-    inline fun observeData( owner: LifecycleOwner, crossinline block: (V) -> Unit ) {
-        val observer = `access$onCreateViewStateObserver`( owner )
-        observer.onData = { block( it ) }
-        liveData.observe( owner, observerWith( observer ) )
+    inline fun observeData(owner: LifecycleOwner, crossinline block: (V) -> Unit) {
+        val observer = `access$onCreateViewStateObserver`(owner)
+        observer.onData = { block(it) }
+        liveData.observe(owner, observerWith(observer))
     }
 
     /**
      * @see LiveData.observeForever with an [Observer] created with an instance of [ViewStateObserver]
      * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
      */
-    inline fun observeForever( block: ViewStateObserver<V>.() -> Unit ) {
+    inline fun observeForever(block: ViewStateObserver<V>.() -> Unit) {
         val observer = `access$onCreateViewStateObserver`()
         observer.block()
-        liveData.observeForever( observerWith( observer ) )
+        liveData.observeForever(observerWith(observer))
     }
 
     /**
@@ -121,10 +121,10 @@ abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
      * @see LiveData.observeForever with an [Observer] created with an instance of [ViewStateObserver]
      * @param block a lambda with [ViewStateObserver] as receiver that properly sets callbacks on it.
      */
-    inline fun observeDataForever( crossinline block: (V) -> Unit ) {
+    inline fun observeDataForever(crossinline block: (V) -> Unit) {
         val observer = `access$onCreateViewStateObserver`()
-        observer.onData = { block( it ) }
-        liveData.observeForever( observerWith( observer ) )
+        observer.onData = { block(it) }
+        liveData.observeForever(observerWith(observer))
     }
     // endregion
 
@@ -297,8 +297,8 @@ abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
      * @see handleViewState
      */
     @PublishedApi
-    internal fun observerWith( observer: ViewStateObserver<V> ) =
-            Observer<ViewState<V>> { viewState -> handleViewState( observer, viewState ) }
+    internal fun observerWith(observer: ViewStateObserver<V>) =
+            Observer<ViewState<V>> { viewState -> handleViewState(observer, viewState) }
 
     /**
      * Handle the delivery of a [ViewState] though [ViewStateObserver]
@@ -308,11 +308,11 @@ abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
      * and [ViewStateObserver.onLoadingChange].
      */
     protected fun handleViewState(
-        observer: ViewStateObserver<V>,
-        viewState: ViewState<V>
-    ) = with( observer ) {
+            observer: ViewStateObserver<V>,
+            viewState: ViewState<V>
+    ) = with(observer) {
         // Deliver every ViewState.
-        onEach( viewState )
+        onEach(viewState)
 
         // Every time the observer is triggered for any reason ( loading change, data or error ),
         // if ViewState is Success, we store the new data then, in every case, if data is not
@@ -326,15 +326,15 @@ abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
             if (viewState.singleEvent && liveData.hasActiveObservers())
                 singleEvents += viewState
         }
-        _data?.let( onData )
+        _data?.let(onData)
 
         // Every time the observer is triggered for any reason ( loading change, data or error ),
         // we instantiate a new NULL ViewState.Error on newError then, if ViewState is Error
         // we store the value in newError then, if error is different from lastError, we
         // deliver it if not Null and store in lastError.
         val newError = viewState as? Error
-        if ( newError !== lastError ) {
-            newError?.let( onError )
+        if (newError !== lastError) {
+            newError?.let(onError)
             lastError = newError
         }
 
@@ -343,11 +343,11 @@ abstract class LockedViewStateStore<V>( internal val dropOnSame: Boolean ) {
     }
 
     /** @return a new instance of [ViewStateObserver] */
-    protected open fun onCreateViewStateObserver( owner: LifecycleOwner? = null ) =
-        ViewStateObserver<V>()
+    protected open fun onCreateViewStateObserver(owner: LifecycleOwner? = null) =
+            ViewStateObserver<V>()
 
     @PublishedApi
     @Suppress("FunctionName")
-    internal fun `access$onCreateViewStateObserver`( owner: LifecycleOwner? = null ) =
-        onCreateViewStateObserver( owner )
+    internal fun `access$onCreateViewStateObserver`(owner: LifecycleOwner? = null) =
+            onCreateViewStateObserver(owner)
 }

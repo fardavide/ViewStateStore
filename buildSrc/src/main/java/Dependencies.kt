@@ -6,7 +6,9 @@ import org.gradle.kotlin.dsl.DependencyHandlerScope
 import org.gradle.kotlin.dsl.ScriptHandlerScope
 import org.gradle.kotlin.dsl.maven
 import studio.forface.easygradle.dsl.*
-import studio.forface.easygradle.dsl.android.*
+import studio.forface.easygradle.dsl.android.`android-arch-testing`
+import studio.forface.easygradle.dsl.android.`android-gradle-plugin`
+import studio.forface.easygradle.dsl.android.`lifecycle-runtime`
 
 val repos: RepositoryHandler.() -> Unit
     get() = {
@@ -30,10 +32,5 @@ fun DependencyHandler.applyAndroidTests() {
         `android-arch-testing`,
         `lifecycle-runtime`,
         `mockk`
-    )
-    androidTestImplementation(
-        `espresso`,
-        `mockk-android`,
-        `android-test-runner`
     )
 }
