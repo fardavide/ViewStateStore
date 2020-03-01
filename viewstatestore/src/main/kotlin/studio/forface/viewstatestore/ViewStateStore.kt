@@ -46,11 +46,12 @@ import androidx.lifecycle.MutableLiveData
  *
  * @author Davide Giuseppe Farella
  */
-class ViewStateStore<V> internal constructor(
+class ViewStateStore<V> @Suppress("ConstructorParameterNaming") internal constructor(
     override val liveData: MutableLiveData<ViewState<V>> = MutableLiveData<ViewState<V>>().apply {
         value = _initialState
     },
-    _initialState: ViewState<V> = ViewState.None, // underscore '_' is needed for don't let it clash with secondary constructor
+    // underscore '_' is needed for don't let it clash with secondary constructor
+    _initialState: ViewState<V> = ViewState.None,
     dropOnSame: Boolean
 ): LockedViewStateStore<V>( dropOnSame ), ViewStateStoreScope {
 

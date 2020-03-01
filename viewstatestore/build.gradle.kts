@@ -7,7 +7,7 @@ import studio.forface.easygradle.dsl.dokka
 
 plugins {
     `android-library`
-    id("kotlin-android") // TODO: Unresolved ref :/ - `kotlin-android`
+    `kotlin-android`
 }
 
 android { applyAndroidConfig() }

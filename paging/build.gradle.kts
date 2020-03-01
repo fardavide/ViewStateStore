@@ -8,8 +8,8 @@ import studio.forface.easygradle.dsl.implementation
 
 plugins {
     `android-library`
-    id("kotlin-android") // TODO: Unresolved ref :/ - `kotlin-android`
-    id("kotlin-android-extensions")// TODO: Unresolved ref :/ - `kotlin-android-extensions`
+    `kotlin-android`
+    `kotlin-android-extensions`
 }
 
 android { applyAndroidConfig() }

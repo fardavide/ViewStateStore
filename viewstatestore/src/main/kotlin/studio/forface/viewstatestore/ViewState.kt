@@ -5,9 +5,12 @@ package studio.forface.viewstatestore
 import android.content.Context
 import android.content.res.Resources
 import androidx.annotation.StringRes
-import studio.forface.viewstatestore.ViewState.*
+import studio.forface.viewstatestore.ViewState.Error
 import studio.forface.viewstatestore.ViewState.Error.Companion.createDefault
 import studio.forface.viewstatestore.ViewState.Error.Companion.fromThrowable
+import studio.forface.viewstatestore.ViewState.Loading
+import studio.forface.viewstatestore.ViewState.None
+import studio.forface.viewstatestore.ViewState.Success
 
 /**
  * This class hold _data_ for [ViewStateStore].

@@ -9,12 +9,15 @@ import androidx.lifecycle.Observer
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.isActive
-import studio.forface.viewstatestore.ViewState.*
+import studio.forface.viewstatestore.ViewState.Error
+import studio.forface.viewstatestore.ViewState.Loading
+import studio.forface.viewstatestore.ViewState.Success
 
 /**
  * This class will store and handle the [ViewState] and submit it via a [LiveData].
  * `ViewStateStore` will only deliver the last [_data] when the observer become active.
- * This `ViewStateStore` is *locked* so `set` functions and `post` functions can only be called within [ViewStateStoreScope]
+ * This `ViewStateStore` is *locked* so `set` functions and `post` functions can only be called within
+ * [ViewStateStoreScope]
  *
  *
  * ### Publish:
@@ -82,6 +85,7 @@ import studio.forface.viewstatestore.ViewState.*
  *
  * @author Davide Giuseppe Farella
  */
+@Suppress("UnnecessaryAbstractClass")
 abstract class LockedViewStateStore<V>(internal val dropOnSame: Boolean) {
 
     // region observe
