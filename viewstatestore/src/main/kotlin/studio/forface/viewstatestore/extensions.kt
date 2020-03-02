@@ -5,6 +5,12 @@ package studio.forface.viewstatestore
 import androidx.annotation.UiThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
+import kotlinx.coroutines.flow.Flow
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
 
 /*
  * A set of extension functions
@@ -26,11 +32,66 @@ import androidx.lifecycle.MutableLiveData
 fun <V> ViewStateStore.Companion.from(
     liveData: LiveData<V>,
     dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
-) =
-    ViewStateStore(
-        liveData = liveData.map { ViewState(it) } as MutableLiveData<ViewState<V>>,
-        dropOnSame = dropOnSame
-    )
+) = ViewStateStore(
+    liveData = liveData.map { ViewState(it) } as MutableLiveData<ViewState<V>>,
+    dropOnSame = dropOnSame
+)
+
+/**
+ * Create a [ViewStateStore] from a [Flow]
+ *
+ * @param flow [Flow] of [V] that will handle the main flow of [ViewStateStore]
+ *
+ * @param [dropOnSame]
+ *
+ * @param context The [CoroutineContext] to collect the upstream flow in. Defaults to [EmptyCoroutineContext]
+ * combined with [Dispatchers.Main.immediate][kotlinx.coroutines.MainCoroutineDispatcher.immediate]
+ *
+ * @param timeoutInMs The timeout in ms before cancelling the block if there are no active observers
+ * ([LiveData.hasActiveObservers]. Defaults to [DEFAULT_TIMEOUT].
+ *
+ *
+ * @see ViewStateStore primary constructor
+ *
+ * @return [ViewStateStore] of [V]
+ */
+@Suppress("UNCHECKED_CAST") // LiveData.map function produces a MediatorLiveData, which is subtype of MutableLiveData
+fun <V> ViewStateStore.Companion.from(
+    flow: Flow<V>,
+    dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame,
+    context: CoroutineContext = EmptyCoroutineContext,
+    timeoutInMs: Long = DEFAULT_TIMEOUT
+) = from(flow.asLiveData(context, timeoutInMs), dropOnSame)
+
+/**
+ * Create a [ViewStateStore] from a [Flow]
+ *
+ * @param flow [Flow] of [V] that will handle the main flow of [ViewStateStore]
+ *
+ * @param [dropOnSame]
+ *
+ * @param context The [CoroutineContext] to collect the upstream flow in.
+ * Defaults to [EmptyCoroutineContext] combined with
+ * [Dispatchers.Main.immediate][kotlinx.coroutines.MainCoroutineDispatcher.immediate]
+ *
+ * @param timeout The timeout in [Duration] before cancelling the block if there are no active observers
+ * ([LiveData.hasActiveObservers]
+ *
+ *
+ * @see ViewStateStore primary constructor
+ *
+ * @return [ViewStateStore] of [V]
+ */
+@ExperimentalTime
+@Suppress("UNCHECKED_CAST") // LiveData.map function produces a MediatorLiveData, which is subtype of MutableLiveData
+fun <V> ViewStateStore.Companion.from(
+    flow: Flow<V>,
+    dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame,
+    context: CoroutineContext = EmptyCoroutineContext,
+    timeout: Duration
+) = from(flow.asLiveData(context, timeout.toLongMilliseconds()), dropOnSame)
+
+private const val DEFAULT_TIMEOUT = 5000L
 // endregion
 
 // region set

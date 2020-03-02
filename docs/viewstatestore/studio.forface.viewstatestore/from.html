@@ -21,5 +21,44 @@
 </p>
 <p><strong>Return</strong><br/>
 <a href="-view-state-store/index.html">ViewStateStore</a> of <a href="from.html#V">V</a></p>
+<a name="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, kotlinx.coroutines.flow.Flow((studio.forface.viewstatestore.from.V)), kotlin.Boolean, kotlin.coroutines.CoroutineContext, kotlin.Long)"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <span class="identifier">ViewStateStore.Companion</span><span class="symbol">.</span><span class="identifier">from</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, kotlinx.coroutines.flow.Flow((studio.forface.viewstatestore.from.V)), kotlin.Boolean, kotlin.coroutines.CoroutineContext, kotlin.Long)/flow">flow</span><span class="symbol">:</span>&nbsp;<span class="identifier">Flow</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, kotlinx.coroutines.flow.Flow((studio.forface.viewstatestore.from.V)), kotlin.Boolean, kotlin.coroutines.CoroutineContext, kotlin.Long)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ViewStateStoreConfig.dropOnSame<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, kotlinx.coroutines.flow.Flow((studio.forface.viewstatestore.from.V)), kotlin.Boolean, kotlin.coroutines.CoroutineContext, kotlin.Long)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/index.html"><span class="identifier">CoroutineContext</span></a>&nbsp;<span class="symbol">=</span>&nbsp;EmptyCoroutineContext<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, kotlinx.coroutines.flow.Flow((studio.forface.viewstatestore.from.V)), kotlin.Boolean, kotlin.coroutines.CoroutineContext, kotlin.Long)/timeoutInMs">timeoutInMs</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a>&nbsp;<span class="symbol">=</span>&nbsp;DEFAULT_TIMEOUT<span class="symbol">)</span><span class="symbol">: </span><a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Create a <a href="-view-state-store/index.html">ViewStateStore</a> from a <a href="#">Flow</a></p>
+<h3>Parameters</h3>
+<p><a name="flow"></a>
+<code>flow</code> - <a href="#">Flow</a> of <a href="from.html#V">V</a> that will handle the main flow of <a href="-view-state-store/index.html">ViewStateStore</a></p>
+<p><a name="dropOnSame"></a>
+<code>dropOnSame</code> - </p>
+<p><a name="context"></a>
+<code>context</code> - The <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/index.html">CoroutineContext</a> to collect the upstream flow in. Defaults to <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-empty-coroutine-context/index.html">EmptyCoroutineContext</a>
+combined with <a href="#">Dispatchers.Main.immediate</a></p>
+<p><a name="timeoutInMs"></a>
+<code>timeoutInMs</code> - The timeout in ms before cancelling the block if there are no active observers
+(<a href="#">LiveData.hasActiveObservers</a>. Defaults to <a href="#">DEFAULT_TIMEOUT</a>.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="-view-state-store/index.html">ViewStateStore</a></p>
+</p>
+<p><strong>Return</strong><br/>
+<a href="-view-state-store/index.html">ViewStateStore</a> of <a href="from.html#V">V</a></p>
+<a name="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, kotlinx.coroutines.flow.Flow((studio.forface.viewstatestore.from.V)), kotlin.Boolean, kotlin.coroutines.CoroutineContext, kotlin.time.Duration)"></a>
+<code><span class="identifier">@ExperimentalTime</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span> <span class="identifier">ViewStateStore.Companion</span><span class="symbol">.</span><span class="identifier">from</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, kotlinx.coroutines.flow.Flow((studio.forface.viewstatestore.from.V)), kotlin.Boolean, kotlin.coroutines.CoroutineContext, kotlin.time.Duration)/flow">flow</span><span class="symbol">:</span>&nbsp;<span class="identifier">Flow</span><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, kotlinx.coroutines.flow.Flow((studio.forface.viewstatestore.from.V)), kotlin.Boolean, kotlin.coroutines.CoroutineContext, kotlin.time.Duration)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;ViewStateStoreConfig.dropOnSame<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, kotlinx.coroutines.flow.Flow((studio.forface.viewstatestore.from.V)), kotlin.Boolean, kotlin.coroutines.CoroutineContext, kotlin.time.Duration)/context">context</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/index.html"><span class="identifier">CoroutineContext</span></a>&nbsp;<span class="symbol">=</span>&nbsp;EmptyCoroutineContext<span class="symbol">, </span><span class="identifier" id="studio.forface.viewstatestore$from(studio.forface.viewstatestore.ViewStateStore.Companion, kotlinx.coroutines.flow.Flow((studio.forface.viewstatestore.from.V)), kotlin.Boolean, kotlin.coroutines.CoroutineContext, kotlin.time.Duration)/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration/index.html"><span class="identifier">Duration</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-view-state-store/index.html"><span class="identifier">ViewStateStore</span></a><span class="symbol">&lt;</span><span class="identifier">V</span><span class="symbol">&gt;</span></code>
+<p>Create a <a href="-view-state-store/index.html">ViewStateStore</a> from a <a href="#">Flow</a></p>
+<h3>Parameters</h3>
+<p><a name="flow"></a>
+<code>flow</code> - <a href="#">Flow</a> of <a href="from.html#V">V</a> that will handle the main flow of <a href="-view-state-store/index.html">ViewStateStore</a></p>
+<p><a name="dropOnSame"></a>
+<code>dropOnSame</code> - </p>
+<p><a name="context"></a>
+<code>context</code> - The <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/index.html">CoroutineContext</a> to collect the upstream flow in.
+Defaults to <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-empty-coroutine-context/index.html">EmptyCoroutineContext</a> combined with
+<a href="#">Dispatchers.Main.immediate</a></p>
+<p><a name="timeout"></a>
+<code>timeout</code> - The timeout in <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.time/-duration/index.html">Duration</a> before cancelling the block if there are no active observers
+(<a href="#">LiveData.hasActiveObservers</a></p>
+<p><strong>See Also</strong><br/>
+<p><a href="-view-state-store/index.html">ViewStateStore</a></p>
+</p>
+<p><strong>Return</strong><br/>
+<a href="-view-state-store/index.html">ViewStateStore</a> of <a href="from.html#V">V</a></p>
 </BODY>
 </HTML>

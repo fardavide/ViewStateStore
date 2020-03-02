@@ -312,8 +312,8 @@ abstract class LockedViewStateStore<V>(internal val dropOnSame: Boolean) {
      * and [ViewStateObserver.onLoadingChange].
      */
     protected fun handleViewState(
-            observer: ViewStateObserver<V>,
-            viewState: ViewState<V>
+        observer: ViewStateObserver<V>,
+        viewState: ViewState<V>
     ) = with(observer) {
         // Deliver every ViewState.
         onEach(viewState)

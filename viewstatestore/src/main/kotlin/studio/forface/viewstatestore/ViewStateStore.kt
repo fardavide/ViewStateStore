@@ -53,7 +53,7 @@ class ViewStateStore<V> @Suppress("ConstructorParameterNaming") internal constru
     // underscore '_' is needed for don't let it clash with secondary constructor
     _initialState: ViewState<V> = ViewState.None,
     dropOnSame: Boolean
-): LockedViewStateStore<V>( dropOnSame ), ViewStateStoreScope {
+) : LockedViewStateStore<V>(dropOnSame), ViewStateStoreScope {
 
     /**
      * @return [LockedViewStateStore] obtained by casting `this` instance.
@@ -71,8 +71,10 @@ class ViewStateStore<V> @Suppress("ConstructorParameterNaming") internal constru
      *
      * @see ViewStateStore primary constructor
      */
-    constructor( initialState: ViewState<V> = ViewState.None, dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame ) :
-            this( _initialState = initialState, dropOnSame = dropOnSame )
+    constructor(
+        initialState: ViewState<V> = ViewState.None,
+        dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame
+    ) : this(_initialState = initialState, dropOnSame = dropOnSame)
 
     /**
      * @constructor for create a [ViewStateStore] with the given [initialData] and [dropOnSame]
@@ -85,8 +87,8 @@ class ViewStateStore<V> @Suppress("ConstructorParameterNaming") internal constru
      *
      * @see ViewStateStore primary constructor
      */
-    constructor( initialData: V, dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame ) :
-            this( initialState = ViewState( initialData ), dropOnSame = dropOnSame )
+    constructor(initialData: V, dropOnSame: Boolean = ViewStateStoreConfig.dropOnSame) :
+        this(initialState = ViewState(initialData), dropOnSame = dropOnSame)
 
     /** Empty companion object for extensions purpose */
     companion object

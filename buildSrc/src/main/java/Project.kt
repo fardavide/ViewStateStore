@@ -17,14 +17,14 @@ object Project {
         major =     1,
         minor =     4,
         channel =   Beta,
-        patch =     3,
-        build =     1
+        patch =     4,
+        build =     0
     )
 
     /** The Android API level as target of the App */
-    val targetSdk = 28
+    const val targetSdk = 28
     /** The Android API level required for run the App */
-    val minSdk = 14
+    const val minSdk = 14
     /** The version of the JDK  */
     val jdkVersion = JavaVersion.VERSION_1_8
 }

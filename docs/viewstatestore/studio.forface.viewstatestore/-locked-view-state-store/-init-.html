@@ -12,7 +12,8 @@
 <code><span class="identifier">LockedViewStateStore</span><span class="symbol">(</span><span class="identifier" id="studio.forface.viewstatestore.LockedViewStateStore$<init>(kotlin.Boolean)/dropOnSame">dropOnSame</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span></code>
 <p>This class will store and handle the <a href="../-view-state/index.html">ViewState</a> and submit it via a <a href="#">LiveData</a>.
 <code>ViewStateStore</code> will only deliver the last <a href="#">_data</a> when the observer become active.
-This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> functions and <code>post</code> functions can only be called within <a href="../-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
+This <code>ViewStateStore</code> is <em>locked</em> so <code>set</code> functions and <code>post</code> functions can only be called within
+<a href="../-view-state-store-scope/index.html">ViewStateStoreScope</a></p>
 <h3>Publish:</h3>
 <p>Use <a href="../-view-state-store-scope/set-state.html">ViewStateStoreScope.setState</a> for deliver the <a href="../-view-state/index.html">ViewState</a> on the current thread.
 Use <a href="../-view-state-store-scope/post-state.html">ViewStateStoreScope.postState</a> for deliver the <a href="../-view-state/index.html">ViewState</a> on the main thread.
